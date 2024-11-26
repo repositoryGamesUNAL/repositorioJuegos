@@ -44,7 +44,6 @@ src/
 ├── server.ts              # Archivo principal para configurar el servidor Express
 └── app.ts                 # Configuración de la aplicación y rutas (opcional en este caso)
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/a72af1c2-e960-4d20-84a8-09ad04b41dea/973dd8fb-543d-4004-879d-a820d5bf5a91/image.png)
 
 ### **1. controllers/**
 
