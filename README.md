@@ -7,32 +7,33 @@ El modelo **Model-Controller-Service**, usa el siguiente sistema de carpetas:
 
 src/  
 │  
-├── controllers/           # Contiene los controladores, manejadores de rutas  
-│   └── userController.ts  # Controlador para las rutas relacionadas con los usuarios  
+├── controllers/  
+│   └── userController.ts  
 │  
-├── services/              # Contiene la lógica de negocio  
-│   └── userService.ts     # Servicio para la gestión de usuarios  
+├── services/  
+│   └── userService.ts  
 │  
-├── models/                # Contiene los modelos, definición de datos y validaciones  
-│   └── userModel.ts       # Modelo de usuario (puede interactuar con la base de datos)  
+├── models/  
+│   └── userModel.ts  
 │  
-├── repositories/          # Capa que abstrae el acceso a la base de datos  
-│   └── userRepository.ts  # Repositorio para la gestión de usuarios en la base de datos  
+├── repositories/  
+│   └── userRepository.ts  
 │  
-├── routes/                # Definición de rutas  
-│   └── userRoutes.ts      # Rutas de la API de usuarios  
+├── routes/  
+│   └── userRoutes.ts  
 │  
-├── middlewares/           # Middleware de validación, autenticación, etc.  
-│   └── authMiddleware.ts  # Middleware para la autenticación  
+├── middlewares/  
+│   └── authMiddleware.ts  
 │  
-├── utils/                 # Funciones auxiliares y utilidades (opcional)  
-│   └── logger.ts          # Logger, funciones de utilidad  
+├── utils/  
+│   └── logger.ts  
 │  
-├── config/                # Configuración general de la aplicación  
-│   └── dbConfig.ts        # Configuración de la base de datos  
+├── config/  
+│   └── dbConfig.ts  
 │  
-├── server.ts              # Archivo principal para configurar el servidor Express  
-└── app.ts                 # Configuración de la aplicación y rutas (opcional en este caso)  
+├── server.ts  
+└── app.ts  
+
 
 
 
