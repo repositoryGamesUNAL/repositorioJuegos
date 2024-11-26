@@ -5,34 +5,8 @@ El backend será realizado con [typescript](https://www.typescriptlang.org/docs/
 
 El modelo **Model-Controller-Service**, usa el siguiente sistema de carpetas:
 
-src/  
-│  
-├── controllers/  
-│   └── userController.ts  
-│  
-├── services/  
-│   └── userService.ts  
-│  
-├── models/  
-│   └── userModel.ts  
-│  
-├── repositories/  
-│   └── userRepository.ts  
-│  
-├── routes/  
-│   └── userRoutes.ts  
-│  
-├── middlewares/  
-│   └── authMiddleware.ts  
-│  
-├── utils/  
-│   └── logger.ts  
-│  
-├── config/  
-│   └── dbConfig.ts  
-│  
-├── server.ts  
-└── app.ts  
+![image](https://github.com/user-attachments/assets/2b327064-b4e2-4d9b-8e04-abdc3e88aafc)
+
 
 
 
