@@ -1,6 +1,7 @@
 import app from "./app";
-import { config } from "./config";
+import { config } from "./config/general";
 import sequelize from "./config/database";
+
 const { port } = config;
 
 const startServer = async () => {

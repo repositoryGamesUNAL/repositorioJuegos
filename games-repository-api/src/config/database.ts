@@ -1,18 +1,16 @@
-import dotenv from 'dotenv';
+// database.ts
 import { Sequelize } from 'sequelize-typescript';
+import { config } from './general'; 
 
-dotenv.config();
-
-//Nos conectamos a una base de datos publica provicional
+// Nos conectamos a la base de datos usando las variables de configuración
 const sequelize = new Sequelize({
     dialect: 'postgres',
-    host: process.env.DB_HOST,
-    port: parseInt(process.env.DB_PORT || '5432'),  
-    username: process.env.DB_USERNAME,  
-    password: process.env.DB_PASSWORD,  
-    database: process.env.DB_DATABASE,  
-    //models: [Person], Se puede colocar un array de modelos importandolos directamente
-    models: [__dirname + '../models'],
+    host: config.dbHost,           
+    port: config.dbPort,           
+    username: config.dbUsername,   
+    password: config.dbPassword,   
+    database: config.dbDatabase,   
+    models: [__dirname + '/models'],
     logging: false,
 });
 
