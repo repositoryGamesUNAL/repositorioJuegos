@@ -1,14 +1,14 @@
 
 import express, { Router, Request, Response } from "express" 
-import GameService from "../services/gameService"
+import {GameService, GameServiceType} from "../services/gameService"
 
 export const gamesRouter:Router  = express.Router() 
-const service:GameService | null = GameService?.getInstance();
+const service:GameServiceType = GameService.getInstance();
 
-gamesRouter.get("/",function (req:Request , res:Response , next:any): any {
+gamesRouter.get("/", (req:Request , res:Response , next:any): any => {
     try{
         if(service){
-            const data:object = service.getGames()
+            const data:object = service.findAllGames()
             res.status(200) 
             res.json(data)
         }else{
@@ -19,12 +19,12 @@ gamesRouter.get("/",function (req:Request , res:Response , next:any): any {
         next(err);
     }
 })
-gamesRouter.get("/:id", function (req:Request , res:Response, next:any): any {
+gamesRouter.get("/:id", (req:Request , res:Response, next:any): any => {
 
     try{
         if(service){
             const {id} =req.params;
-            const game = service.getGame(Number(id));
+            const game = service.findGameById(Number(id));
             res.status(200)
             res.json(game);
 
@@ -37,11 +37,11 @@ gamesRouter.get("/:id", function (req:Request , res:Response, next:any): any {
     }
 })
 
-gamesRouter.post("/",function (req:Request , res:Response, next:any): any {
+gamesRouter.post("/",(req:Request , res:Response, next:any): any => {
     try{
         if(service){
         const {body} = req.body;
-        const newGame = service.postGame(body);
+        const newGame = service.createGame(body);
         res.status(201);
         res.json(newGame); 
         
@@ -54,7 +54,7 @@ gamesRouter.post("/",function (req:Request , res:Response, next:any): any {
     }
 })
 
-gamesRouter.patch("/:id", function (req:Request , res:Response, next:any): any {
+gamesRouter.patch("/:id", (req:Request , res:Response, next:any):any  => {
 
     try{
         

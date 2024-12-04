@@ -1,79 +1,93 @@
-export default class Game{
-    private _id:number = 0;
-    private _name:string = ""; 
-    private _date:string = ""; 
-    private _purpose:string = ""; 
-    private _thematic:object = {};
-    private _genre:string = ""; 
-    private _materials:object= {}; 
-    private _objectives:string = ""; 
-    private _time:string = "";
-    constructor(entrance:{id:number,
-        name:string, 
-        date:string, 
-        purpose:string, 
-        thematic:object, 
-        genre:string, 
-        materials:object, 
-        objectives:string, 
-        time:string}){
+export type jsonGame = {
+    id:number,
+    date:string, 
+    name:string, 
+    purpose:string, 
+    thematic:object, 
+    genre:string, 
+    materials:object, 
+    objectives:string, 
+    time:string
+};
+export type newGame = Omit<jsonGame,"id"|"date">;  
+export type changesOfGame = Partial<newGame>;
+export type GameType = Game |null;
+export class Game{
+
+    private _id:number;
+    private _name:string; 
+    private _date:string; 
+    private _purpose:string; 
+    private _thematic:object;
+    private _genre:string; 
+    private _materials:object; 
+    private _objectives:string; 
+    private _time:string ;
+
+    constructor(entrance:jsonGame){
         this._id = entrance["id"];
         this._name = entrance["name"];
-        this._purpose = entrance["purpose"];
         this._date = entrance["date"];
+        this._purpose = entrance["purpose"];
+        this._thematic = entrance["thematic"];
+        this._genre= entrance["genre"];
+        this._materials= entrance["materials"];
+        this._objectives = entrance["objectives"];
+        this._time = entrance["time"];
+
     }
 
-    get Id():number{
+    get id():number{
         return this._id;
     }
-    get Name():string {
+    get name():string {
         return this._name;
     }
-    get Purpose():string {
+    get purpose():string {
         return this._purpose;
     }
-    get Date():string {
+    get date():string {
         return this._date;
     }
-    get Thematic():object {
+    get thematic():object {
         return this._thematic;
     }
-    get Genre():string {
+    get genre():string {
         return this._genre;
     }
-    get Materials():{} {
+    get materials():{} {
         return this._materials;
     }
-    get Objectives():string {
+    get objectives():string {
         return this._date;
     }
-    get Time():string {
+    get time():string {
         return this._date;
     }
     
     
-    set Name(change:string){
+    set name(change:string){
         this._name = change;
     }
-    set Purpose(change:string){
+    set purpose(change:string){
         this._purpose = change;
     }
-    set Date(change:string){
+    set date(change:string){
         this._date = change;
     }
-    set Thematic(change:object){
+    set thematic(change:object){
         this._thematic = change;
     }
-    set Genre(change:string){
+    set genre(change:string){
         this._genre = change;
     }
-    set Materials(change:object){
+    set materials(change:object){
         this._materials = change
     }
-    set Objectives(change:string){
+    set objectives(change:string){
         this._date = change;
     }
-    set Time(change:string){
+    set time(change:string){
     this._time = change;
     }
 }

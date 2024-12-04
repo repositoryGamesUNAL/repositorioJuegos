@@ -1,71 +1,64 @@
 //@ts-check
-import Game from "../models/game"
+import { Game, jsonGame, newGame, changesOfGame, GameType } from "../models/game"
 
-export default class GameService { 
-    private static _instance: null | GameService = null; 
-    private _storage: Game[] = [] ;  
+const fecha = new Date().getTime
+export type GameServiceType = GameService | null;
+export class GameService {
+    private static _instance: GameServiceType;
+    private _storage: Game[];
 
-    constructor(){
+    constructor() {
+        this._storage = [];
     }
 
-    static getInstance(): GameService | null {
+    static getInstance(): GameServiceType {
 
         //see if any instance exist, if not then create it and return it 
-        if(!this._instance){
-            this._instance = new GameService();            
+        if (!this._instance) {
+            this._instance = new GameService();
             return this._instance;
         }
         return null;
     }
 
-    getGames(): object{
-        let games:object = {};
-        
+    findAllGames(): object {
+        let games: object = {};
+
         //defines the game object types
-        let game:{
-            id:number,
-            name:string, 
-            date:string, 
-            purpose:string, 
-            thematic:object, 
-            genre:string, 
-            materials:object, 
-            objectives:string, 
-            time:string} =
-            {
-            "id" : 0,
-            "name" : "",
-            "date" : "",
-            "purpose" : "",
-            "thematic" :{},
-            "genre": "",
-            "materials": {},
-            "objectives" : "",
-            "time": ""
+        let game: jsonGame = {
+            id: 0,
+            name: "",
+            date: "",
+            purpose: "",
+            thematic: {},
+            genre: "",
+            materials: {},
+            objectives: "",
+            time: ""
         };
-        for(let instance  of this._storage){
+        for (let instance of this._storage) {
 
             //gives the game variable its values 
-            game.id = instance.Id;
-            game.name = instance.Name;
-            game.date = instance.Date;
-            game.purpose = instance.Purpose;
-            game.thematic = instance.Thematic;
-            game.genre = instance.Genre;
-            game.materials = instance.Materials;
-            game.objectives = instance.Objectives;
-            game.time = instance.Time;
+            game.id = instance.id;
+            game.name = instance.name;
+            game.date = instance.date;
+            game.purpose = instance.purpose;
+            game.thematic = instance.thematic;
+            game.genre = instance.genre;
+            game.materials = instance.materials;
+            game.objectives = instance.objectives;
+            game.time = instance.time;
 
             //insert game into games
             games = {
                 ...games,
                 game
-            }; 
+            };
         }
-            const res: {status: number , data:object} = {
+        const res: { status: number, data: object } = {
             "status": 0,
             "data": {},
-            
+
         }
 
         res.status = 201;
@@ -74,119 +67,136 @@ export default class GameService {
         return res;
     }
 
-    getGame(id:number): object{
-        let game:Game | null = null;
-        const res:{status: number, data:object} = {
+    findGameById(id: number): object {
+        let game: GameType = null;
+        const res: { status: number, data: object } = {
             "status": 0,
             "data": {},
         }
-        for(let instance of this._storage) if( instance.Id === id) game = instance ;
-        if(game){
-            let instance:{
-                id:number, 
-                name:string, 
-                date:string, 
-                descriptioon:string} = {
-
-                "id" : game.Id,
-                "name":game.Name,
-                "date" : game.Date,
-                "descriptioon" : game.Purpose
+        for (let instance of this._storage) if (instance.id === id) game = instance;
+        if (game) {
+            const {id, name, date, purpose, thematic, genre, materials, objectives, time} = game;
+            let instance: jsonGame = {
+                id: id,
+                name: name,
+                date: date,
+                purpose: purpose,
+                thematic: thematic,
+                genre: genre,
+                materials: materials,
+                objectives: objectives,
+                time: time
             };
 
             res.status = 201;
-            res.data = game; 
+            res.data = game;
             return res;
 
-        }else{
-            throw(new Error("id doesn't exist")); 
+        } else {
+            throw (new Error("id doesn't exist"));
         }
     }
 
-    postGame(data:{name:string, 
-        date:string, 
-        purpose:string, 
-        thematic:object, 
-        genre:string, 
-        materials:object, 
-        objectives:string, 
-        time:string}): object
-    {
-        const res:{status:number, data:object} = 
+    createGame(data: newGame): object {
+        const res: { status: number, data: object } =
         {
-            "status" : 0,
-            "data" : {},
+            "status": 0,
+            "data": {},
         }
-        try{
-            //take out the data
-            const game:{id:number,
-                name:string, 
-                date:string, 
-                purpose:string, 
-                thematic:object, 
-                genre:string, 
-                materials:object, 
-                objectives:string, 
-                time:string}= {
-                id:this._storage.length + 1,
-                name:data.name,
-                date:data.date,
-                purpose:data.purpose,
-                thematic: data.thematic,
-                genre:data.genre,
-                materials:data.materials,
-                objectives:data.objectives,
-                time:data.time
-            }
-            
-            if(!data.name || !data.purpose || !data.date || !data.thematic || !data.genre || !data.materials || !data.objectives || !data.time) throw(new Error("not enough data"));
+        try {
+            //verify if there is any missing argument 
+            for (let atrib in data) if (data[atrib as keyof newGame]) throw (new Error("not enough data"));
+
+            //obtain the current hour of creation
+            const now: Date = new Date();
+            const options: object = { timeZone: 'America/Bogota', day: '2-digit', month: '2-digit', year: 'numeric' };
+            const formattedDate = new Intl.DateTimeFormat('en-GB', options).format(now);
+
 
             //create new game 
-            const newGame:Game = new Game({
-                id : game.id,
-                name : game.name,
-                date : game.date,
-                purpose : game.purpose,
-                thematic : game.thematic,
-                genre : game.genre,
-                materials : game.materials,
-                objectives : game.objectives,
-                time : game.time
+            const newGame: Game = new Game({
+                id: this._storage.length + 1,
+                name: data.name,
+                date: formattedDate,
+                purpose: data.purpose,
+                thematic: data.thematic,
+                genre: data.genre,
+                materials: data.materials,
+                objectives: data.objectives,
+                time: data.time
             })
 
             //get it into the storage
             this._storage.push(newGame);
             res.status = 201;
-            res.data = game;
+            res.data = {
+                id: this._storage.length,
+                ...data
+            };
         }
-        catch(err){
-            throw(new Error("bad request"));
+        catch (err) {
+            throw (new Error("bad request"));
         }
         return res;
     }
 
-    editGame( id:number, changes:{name:string, description:string, fecha:string}): object
-    {
-        let game : Game|null  = null; 
-        for(let i = 0; i<this._storage.length; i++){
-            if(this._storage.at(i)?.Id == id) game = this._storage[i];
+    editGame(id: number, changes: changesOfGame): object {
+        let game: GameType = null;
+
+        for (let i = 0; i < this._storage.length; i++) {
+            if (this._storage[i].id == id) game = this._storage[i];
         }
-        if(game)
-            {
-            if(changes["name"]) game.Name = changes["name"];
-            if(changes["description"]) game.Purpose = changes["description"];
-            if(changes["fecha"]) game.Date = changes["fecha"];
+        if (game) {
+            for (const key in changes) {
+                if (changes[key as keyof changesOfGame]) {
+                    // Using a type check to ensure we are setting valid keys
+                    switch (key) {
+                        case 'name':
+                            game.name = <string>changes[key as keyof changesOfGame];
+                            break;
+                        case 'purpose':
+                            game.purpose = <string>changes[key as keyof changesOfGame];
+                            break;
+                        case 'thematic':
+                            game.thematic = <object>changes[key as keyof changesOfGame];
+                            break;
+                        case 'genre':
+                            game.genre = <string>changes[key as keyof changesOfGame];
+                            break;
+                        case 'materials':
+                            game.materials = <object>changes[key as keyof changesOfGame];
+                            break;
+                        case 'objectives':
+                            game.objectives = <string>changes[key as keyof changesOfGame];
+                            break;
+                        case 'time':
+                            game.time = <string>changes[key as keyof changesOfGame];
+                            break;
+                        default:
+                            break; // If key is not valid for this class, do nothing
+                    }
+                }
+            }
+            if (changes["name"]) game.name = changes["name"];
+            const {id, name, date, purpose, thematic, genre, materials, objectives, time} = game;
             return {
-                "status": "201",
-                "data":{
-                    "id" : `${game.Id}`,
-                    "date" : `${game.Date}`,
-                    "description" : `${game.Purpose}`
-                    }   
+                status: "201",
+                data: {
+                    id: `${id}`,
+                    name: `${name}`,
+                    date: `${date}`,
+                    purpose: `${purpose}`,
+                    thematic: `${thematic}`,
+                    genre: `${genre}`,
+                    materials: `${materials}`,
+                    objectives: `${objectives}`,
+                    time: `${time}`
+                }
             };
         }
-        else{
+        else {
             throw(new Error("id not found"));
         }
     }
 }
+export default GameService;
