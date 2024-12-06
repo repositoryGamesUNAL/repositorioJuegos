@@ -3,6 +3,7 @@ import { Game, jsonGame, newGame, changesOfGame, GameType } from "../models/game
 
 const fecha = new Date().getTime
 export type GameServiceType = GameService | null;
+export type jsonRequestReturn = {status:number, games: object, message:string};
 export class GameService {
     private static _instance: GameServiceType;
     private _storage: Game[];
@@ -21,57 +22,57 @@ export class GameService {
         return null;
     }
 
-    findAllGames(): object {
-        let games: object = {};
+    findAllGames(): jsonRequestReturn {
+        const ans: jsonRequestReturn = {
+            status:0,
+            games:{},
+            message:""
+        };
 
         //defines the game object types
-        let game: jsonGame = {
+        const game: jsonGame = {
             id: 0,
             name: "",
             date: "",
             purpose: "",
-            thematic: {},
+            thematic: [],
             genre: "",
-            materials: {},
+            materials: [],
             objectives: "",
             time: ""
         };
         for (let instance of this._storage) {
+            const {id, name, date, purpose, thematic, genre, materials, objectives, time} = instance;
 
             //gives the game variable its values 
-            game.id = instance.id;
-            game.name = instance.name;
-            game.date = instance.date;
-            game.purpose = instance.purpose;
-            game.thematic = instance.thematic;
-            game.genre = instance.genre;
-            game.materials = instance.materials;
-            game.objectives = instance.objectives;
-            game.time = instance.time;
+            game.id= id;
+            game.name= name;
+            game.date= date;
+            game.purpose= purpose;
+            game.thematic= thematic;
+            game.genre= genre;
+            game.materials= materials;
+            game.objectives= objectives;
+            game.time= time;
 
-            //insert game into games
-            games = {
-                ...games,
+            //insert game into totalGames
+            ans.games = 
+            {
+                ...ans.games,
                 game
             };
         }
-        const res: { status: number, data: object } = {
-            "status": 0,
-            "data": {},
-
-        }
-
-        res.status = 201;
-        res.data = games;
-
-        return res;
+        ans.status = 201;
+        ans.message = "succesful";
+        return ans;
     }
 
-    findGameById(id: number): object {
+    findGameById(id: number): jsonRequestReturn {
         let game: GameType = null;
-        const res: { status: number, data: object } = {
+        const res: jsonRequestReturn = {
             "status": 0,
-            "data": {},
+            "games": {},
+            message: ""
         }
         for (let instance of this._storage) if (instance.id === id) game = instance;
         if (game) {
@@ -89,7 +90,8 @@ export class GameService {
             };
 
             res.status = 201;
-            res.data = game;
+            res.games = game;
+            res.message = "succesfull"
             return res;
 
         } else {
@@ -97,11 +99,12 @@ export class GameService {
         }
     }
 
-    createGame(data: newGame): object {
-        const res: { status: number, data: object } =
+    createGame(data: newGame): jsonRequestReturn {
+        const res:jsonRequestReturn =
         {
-            "status": 0,
-            "data": {},
+            status: 0,
+            games: {},
+            message: ""
         }
         try {
             //verify if there is any missing argument 
@@ -112,27 +115,30 @@ export class GameService {
             const options: object = { timeZone: 'America/Bogota', day: '2-digit', month: '2-digit', year: 'numeric' };
             const formattedDate = new Intl.DateTimeFormat('en-GB', options).format(now);
 
+            const id:number = this._storage.length + 1; 
+            const {name , purpose, thematic, genre, materials, objectives, time} = data;
 
             //create new game 
             const newGame: Game = new Game({
-                id: this._storage.length + 1,
-                name: data.name,
+                id: id,
+                name: name,
                 date: formattedDate,
-                purpose: data.purpose,
-                thematic: data.thematic,
-                genre: data.genre,
-                materials: data.materials,
-                objectives: data.objectives,
-                time: data.time
+                purpose: purpose,
+                thematic: thematic,
+                genre: genre,
+                materials: materials,
+                objectives: objectives,
+                time: time
             })
 
             //get it into the storage
             this._storage.push(newGame);
             res.status = 201;
-            res.data = {
-                id: this._storage.length,
+            res.games = {
+                id: id,
                 ...data
             };
+            res.message = "succesfull";
         }
         catch (err) {
             throw (new Error("bad request"));
@@ -140,7 +146,7 @@ export class GameService {
         return res;
     }
 
-    editGame(id: number, changes: changesOfGame): object {
+    editGame(id: number, changes: changesOfGame): jsonRequestReturn {
         let game: GameType = null;
 
         for (let i = 0; i < this._storage.length; i++) {
@@ -158,13 +164,13 @@ export class GameService {
                             game.purpose = <string>changes[key as keyof changesOfGame];
                             break;
                         case 'thematic':
-                            game.thematic = <object>changes[key as keyof changesOfGame];
+                            game.thematic = <string[]>changes[key as keyof changesOfGame];
                             break;
                         case 'genre':
                             game.genre = <string>changes[key as keyof changesOfGame];
                             break;
                         case 'materials':
-                            game.materials = <object>changes[key as keyof changesOfGame];
+                            game.materials = <string[]>changes[key as keyof changesOfGame];
                             break;
                         case 'objectives':
                             game.objectives = <string>changes[key as keyof changesOfGame];
@@ -179,9 +185,10 @@ export class GameService {
             }
             if (changes["name"]) game.name = changes["name"];
             const {id, name, date, purpose, thematic, genre, materials, objectives, time} = game;
-            return {
-                status: "201",
-                data: {
+
+            const ans: jsonRequestReturn = {   
+                status: 201,
+                games: {
                     id: `${id}`,
                     name: `${name}`,
                     date: `${date}`,
@@ -191,8 +198,10 @@ export class GameService {
                     materials: `${materials}`,
                     objectives: `${objectives}`,
                     time: `${time}`
-                }
-            };
+                },
+                message: "succesfull"
+            }
+            return ans;
         }
         else {
             throw(new Error("id not found"));

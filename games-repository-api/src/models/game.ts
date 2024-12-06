@@ -3,9 +3,9 @@ export type jsonGame = {
     date:string, 
     name:string, 
     purpose:string, 
-    thematic:object, 
+    thematic:string[], 
     genre:string, 
-    materials:object, 
+    materials:string[], 
     objectives:string, 
     time:string
 };
@@ -18,9 +18,9 @@ export class Game{
     private _name:string; 
     private _date:string; 
     private _purpose:string; 
-    private _thematic:object;
+    private _thematic:string[];
     private _genre:string; 
-    private _materials:object; 
+    private _materials:string[]; 
     private _objectives:string; 
     private _time:string ;
 
@@ -37,57 +37,57 @@ export class Game{
 
     }
 
-    get id():number{
+    get id(): number{
         return this._id;
     }
-    get name():string {
+    get name(): string {
         return this._name;
     }
-    get purpose():string {
+    get purpose(): string {
         return this._purpose;
     }
-    get date():string {
+    get date(): string {
         return this._date;
     }
-    get thematic():object {
+    get thematic(): string[] {
         return this._thematic;
     }
-    get genre():string {
+    get genre(): string {
         return this._genre;
     }
-    get materials():{} {
+    get materials(): string[] {
         return this._materials;
     }
-    get objectives():string {
+    get objectives(): string {
         return this._date;
     }
-    get time():string {
+    get time(): string {
         return this._date;
     }
     
     
-    set name(change:string){
+    set name(change: string){
         this._name = change;
     }
-    set purpose(change:string){
+    set purpose(change: string){
         this._purpose = change;
     }
-    set date(change:string){
+    set date(change: string){
         this._date = change;
     }
-    set thematic(change:object){
+    set thematic(change: string[]){
         this._thematic = change;
     }
-    set genre(change:string){
+    set genre(change: string){
         this._genre = change;
     }
-    set materials(change:object){
+    set materials(change: string[]){
         this._materials = change
     }
-    set objectives(change:string){
+    set objectives(change: string){
         this._date = change;
     }
     set time(change:string){
-    this._time = change;
+        this._time = change;    
     }
 }
