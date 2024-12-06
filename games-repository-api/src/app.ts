@@ -1,10 +1,11 @@
-import express from "express";
-import pingRouter from "./routes/ping"
+import express from "express"
+import { Application } from "express";
+import initializeRoutes from "./routes";
 
-const app = express();
+const app:Application = express();
 
 app.use(express.json()); //permite las solicitudes con body
 
-app.use("/", pingRouter)
+initializeRoutes(app);
 
 export default app;

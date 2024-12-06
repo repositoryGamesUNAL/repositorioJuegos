@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "games-repository-api": "file:",
     "dotenv": "^16.4.6",
     "express": "^4.21.1",
     "pg": "^8.13.1",
