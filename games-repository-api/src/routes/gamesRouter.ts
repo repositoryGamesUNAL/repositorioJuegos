@@ -1,6 +1,7 @@
 
 import express, { Router, Request, Response } from "express" 
 import {GameService, GameServiceType} from "../services/gameService"
+import { validateId,validateNewGame,validateGameChanges } from "../middlewares/middlewareGames";
 
 export const gamesRouter:Router  = express.Router() 
 const service:GameServiceType = GameService.getInstance();
@@ -19,7 +20,7 @@ gamesRouter.get("/", (req:Request , res:Response , next:any): any => {
         next(err);
     }
 })
-gamesRouter.get("/:id", (req:Request , res:Response, next:any): any => {
+gamesRouter.get("/:id",validateId, (req:Request , res:Response, next:any): any => {
 
     try{
         if(service){
@@ -37,7 +38,7 @@ gamesRouter.get("/:id", (req:Request , res:Response, next:any): any => {
     }
 })
 
-gamesRouter.post("/",(req:Request , res:Response, next:any): any => {
+gamesRouter.post("/",validateNewGame,(req:Request , res:Response, next:any): any => {
     try{
         if(service){
         const {body} = req.body;
@@ -54,7 +55,7 @@ gamesRouter.post("/",(req:Request , res:Response, next:any): any => {
     }
 })
 
-gamesRouter.patch("/:id", (req:Request , res:Response, next:any):any  => {
+gamesRouter.patch("/:id",validateGameChanges, (req:Request , res:Response, next:any):any  => {
 
     try{
         
