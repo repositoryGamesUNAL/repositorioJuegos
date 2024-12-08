@@ -1,0 +1,30 @@
+.typography {
+    font-family: "Open Sans", sans-serif;
+    margin: 0;
+    color:black;
+  
+    &.h1 {
+      font-size: 44px;
+      font-weight: 400;
+      line-height: 128%;
+    }
+  
+    &.h2 {
+      font-size: 30px;
+      font-weight: 400;
+      line-height: 120%;
+    }
+  
+    &.h3 {
+      font-size: 22px;
+      font-weight: 600;
+      line-height: 124%;
+    }
+  
+    &.h4 {
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 132%;
+    }
+  }
+  
