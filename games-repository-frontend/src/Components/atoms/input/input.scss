@@ -1,0 +1,129 @@
+// Variables
+$primary-border-color: #ccc;
+$error-border-color: red;
+$active-border-color: orange;
+$disabled-background-color: #f2f2f2;
+$disabled-text-color: #aaa;
+$font-family: Arial, sans-serif;
+
+$label-color: #333;
+$error-text-color: red;
+$padding-normal-size:12px;
+$padding-small-size-y: 8px;
+$padding-small-size-x: 12px;
+
+
+// Placeholder para estilos comunes de inputs
+%input-common {
+  font-family: $font-family;
+  border: 1px solid $primary-border-color;
+  border-radius: 4px;
+  padding: 10px;
+  font-size: 16px;
+  width: 100%;
+  transition: border-color 0.3s;
+}
+
+// Placeholder para estilos comunes de botones
+%button-common {
+  font-family: $font-family;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+// Contenedor general de inputs
+.input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  margin: 10px;
+
+  // Label del input
+  .input-label {
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: $label-color;
+  }
+
+  // Mensaje de error
+  .input-error {
+    color: $error-text-color;
+    font-size: 12px;
+    margin-top: 5px;
+  }
+
+  // -------------------------------------
+  // Input de texto normal
+  // -------------------------------------
+  .input {
+    @extend %input-common;
+
+    // Tamaño pequeño
+    &--small {
+      font-size: 14px;
+      padding: $padding-small-size-y $padding-small-size-x;
+    }
+    &--medium {
+        padding:$padding-normal-size
+
+    }
+
+    // Estado de error
+    &--error {
+      border-color: $error-border-color;
+    }
+
+    // Estado deshabilitado
+    &--disabled {
+      background-color: $disabled-background-color;
+      color: $disabled-text-color;
+      pointer-events: none;
+    }
+
+    // Estado activo
+    &--active {
+      border-color: $active-border-color;
+    }
+  }
+
+  // -------------------------------------
+  // Input de área de texto
+  // -------------------------------------
+  .input-textarea {
+    @extend %input-common;
+    resize: vertical; /* Permite redimensionar verticalmente */
+    min-height: 80px; /* Altura mínima para el área de texto */
+    padding: 12px;
+    line-height: 1.5;
+  }
+
+  // -------------------------------------
+  // Input de tipo número
+  // -------------------------------------
+  .input-number {
+    display: flex;
+    align-items: center;
+
+    // Botones del input numérico
+    .input-number-btn {
+      @extend %button-common;
+      background: $disabled-background-color;
+      border: none;
+      padding: 5px 10px;
+
+      &:disabled {
+        cursor: not-allowed;
+        background: $disabled-background-color;
+      }
+    }
+
+    // Campo de entrada numérico
+    input {
+      @extend %input-common;
+      text-align: center;
+      max-width: 60px;
+    }
+  }
+}
+
