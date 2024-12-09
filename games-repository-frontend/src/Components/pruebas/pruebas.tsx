@@ -66,9 +66,9 @@ const pruebaInput: React.FC = () => {
       <Input size="normal" active placeholder="Active" />
       </div>
       <div>
-      <Input size="normal" active placeholder="Active"  />
+      <Input size="big" active placeholder="Active"  />
       </div>
-      <Input type="number" placeholder="Number" />
+     
     </div>
   );
 };

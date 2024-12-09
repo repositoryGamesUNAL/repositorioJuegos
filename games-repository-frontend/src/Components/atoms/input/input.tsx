@@ -18,7 +18,7 @@ const Input: React.FC<InputProps> = ({
 
   const inputClassName = `
     input 
-    ${size === "small" ? "input--small" : "input--medium"} 
+    ${size === "small" ? "input--small" : size === "big" ? "input--big" : "input--medium"} 
     ${error ? "input--error" : ""} 
     ${disabled ? "input--disabled" : ""}
     ${active ? "input--active" : ""}

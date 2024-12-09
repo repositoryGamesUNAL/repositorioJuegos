@@ -1,4 +1,7 @@
 // Variables
+
+@use "../../../styles/colors.scss";
+
 $primary-border-color: #ccc;
 $error-border-color: red;
 $active-border-color: orange;
@@ -11,6 +14,9 @@ $error-text-color: red;
 $padding-normal-size:12px;
 $padding-small-size-y: 8px;
 $padding-small-size-x: 12px;
+$big-size-y:300px;
+$big-size-x: 200px;
+
 
 
 // Placeholder para estilos comunes de inputs
@@ -20,7 +26,7 @@ $padding-small-size-x: 12px;
   border-radius: 4px;
   padding: 10px;
   font-size: 16px;
-  width: 100%;
+ 
   transition: border-color 0.3s;
 }
 
@@ -65,7 +71,17 @@ $padding-small-size-x: 12px;
       padding: $padding-small-size-y $padding-small-size-x;
     }
     &--medium {
-        padding:$padding-normal-size
+        padding:$padding-normal-size;
+        overflow-y: scroll; /* Habilitar desplazamiento horizontal */
+        
+
+    }
+    &--big{
+      background-color: red;
+     
+      width: $big-size-x;
+      height: $big-size-y;
+      overflow-y: scroll; /* Habilitar desplazamiento horizontal */
 
     }
 
@@ -96,6 +112,10 @@ $padding-small-size-x: 12px;
     min-height: 80px; /* Altura mínima para el área de texto */
     padding: 12px;
     line-height: 1.5;
+     /* Habilitar desplazamiento horizontal */
+
+
+   
   }
 
   // -------------------------------------

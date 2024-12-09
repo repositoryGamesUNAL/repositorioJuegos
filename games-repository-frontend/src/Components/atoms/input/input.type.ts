@@ -1,5 +1,5 @@
 export interface InputProps {
-    size?: "normal" | "small";
+    size?: "normal" | "small"| "big";
     label?: string;
     error?: string;
     value?: string;

@@ -2,6 +2,7 @@
 
 import Button from '../atoms/button/button'
 
+
 const pruebaBoton: React.FC = () => {
     return (
         <>
@@ -16,7 +17,7 @@ const pruebaBoton: React.FC = () => {
             gap:'20px'
     
           }}>
-          <Button size="small" variant="main" status="default">Button</Button>
+          <Button size="small" variant="main" status="default"></Button>
           
           <Button  size="medium" variant="main" status="default">Button</Button>
           </div >

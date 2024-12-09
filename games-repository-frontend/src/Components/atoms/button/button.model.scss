@@ -1,5 +1,7 @@
 // Definición de variables
-$primary-color: #e16e21;
+@import "../../../styles/colors.scss";
+
+$primary-color:$orange;
 $hover-color: #FD954F;
 $click-color: #CD5C10;
 $disabled-color: #D6CDC2;
@@ -8,7 +10,6 @@ $secondary-color:#e16e21;
 $secondary-hover-color: #FD954F;
 $secondary-click-color: #CD5C10;
 
-$font-family: Arial, sans-serif;
 
 
 
