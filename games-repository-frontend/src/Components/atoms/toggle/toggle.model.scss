@@ -1,0 +1,147 @@
+// _toggle.scss
+
+// Variables
+$primary-color: #E16E21;
+$background-color:#EFE9E3;
+$slider-size: 28px;
+$slider-width: 51px;
+$width-labl: 65px;
+$slider-height: 32px;
+$disabled-opacity: 0.5;
+$font-color: #EFE9E3;
+$disable-circle:#BFAFA7;
+
+// Mixins
+@mixin transition($property, $duration, $ease) {
+  transition: $property $duration $ease;
+}
+
+// Estilos del Toggler
+.toggler {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+
+  &--disabled {
+    cursor: not-allowed;
+    opacity: $disabled-opacity;
+    
+  }
+
+  &__slider {
+    width: $slider-width;
+    height: $slider-height;
+    background-color: $background-color; // Fondo gris por defecto
+    border-radius: 32px;
+    position: relative;
+    overflow: hidden;
+    @include transition(background-color, 0.3s, ease);
+
+    &::before {
+      content: "";
+      width: $slider-size;
+      height: $slider-size;
+      background-color: #ffffff;
+      border-radius: 50%;
+      position: absolute;
+      top: 1px;
+      left: 1px;
+     
+      @include transition(transform, 0.3s, ease);
+
+
+
+    }
+
+    &--with-label {
+        width: $width-labl; // Aumentar el ancho cuando haya label
+    
+    
+    
+      }
+    &--disabled{
+        background-color:#D6CDC2 ;
+        &::before {
+            background-color: #BFAFA7;
+        }
+    }
+
+    
+  }
+
+  // Si está "on" y no está deshabilitado, cambia el fondo del slider a naranja
+  &--on .toggler__slider {
+    background-color: $primary-color;
+
+    &::before {
+      transform: translateX(20px);
+    }
+    &--with-label {
+         // Aumentar el ancho cuando haya label
+  
+      
+  
+      &::before {
+        transform: translateX(40px);
+        
+
+      }
+      &--disabled{
+        background-color:#D6CDC2;
+        &::before {
+            
+            background-color: #BFAFA7; 
+            
+            // Cambiar el círculo a gris cuando está deshabilitado
+                 // Posicionar el círculo cuando está deshabilitado
+            transform: translateX(40px);
+              
+
+
+        }
+
+      }
+    
+      }
+      &--disabled{
+        background-color:#D6CDC2;
+        
+      }
+   
+  }
+ 
+
+  // mantener el color cuando está deshabilidatdo
+ 
+
+  &__label {
+    position: absolute;
+    font-size: 20px;
+    color: $font-color;
+    font-family: 'Open Sans', sans-serif; /* Define la fuente */
+    font-weight: 400; /* Grosor del texto (normal) */
+    font-size: 20px; /* Tamaño del texto */
+    line-height: 28.8px; /* Altura de la línea, es decir, el espacio vertical entre líneas */
+
+
+    &--left {
+      left: 10px;
+      color:#ffffff; // Posicionar "On" a la izquierda
+      &--disabled{
+        color:#BFAFA7; // Cambiar el color del label cuando está deshabilitado
+    }
+    }
+
+    &--right {
+      color: black;
+      right: 4px; // Posicionar "Off" a la derecha
+      &--disabled{
+        color:#BFAFA7; // Cambiar el color del label cuando está deshabilitado
+    }
+    }
+    
+  }
+
+
+}
