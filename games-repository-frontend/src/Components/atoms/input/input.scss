@@ -14,8 +14,8 @@ $error-text-color: red;
 $padding-normal-size:12px;
 $padding-small-size-y: 8px;
 $padding-small-size-x: 12px;
-$big-size-y:300px;
-$big-size-x: 200px;
+$big-size-y:200px;
+$big-size-x: 300px;
 
 
 
@@ -76,14 +76,7 @@ $big-size-x: 200px;
         
 
     }
-    &--big{
-      background-color: red;
-     
-      width: $big-size-x;
-      height: $big-size-y;
-      overflow-y: scroll; /* Habilitar desplazamiento horizontal */
-
-    }
+    
 
     // Estado de error
     &--error {
@@ -113,6 +106,18 @@ $big-size-x: 200px;
     padding: 12px;
     line-height: 1.5;
      /* Habilitar desplazamiento horizontal */
+
+
+     &--fixed{
+      
+     
+      width: $big-size-x;
+      height: $big-size-y;
+      overflow-y: scroll; /* Habilitar desplazamiento horizontal */
+      resize: none;
+
+
+    }
 
 
    

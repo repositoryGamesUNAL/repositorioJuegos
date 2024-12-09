@@ -54,7 +54,7 @@ const pruebaInput: React.FC = () => {
 
       </div>
       <div>
-      <Input  type="text area"size="small" label="Label" placeholder="text area" maxLength={2} />
+      <Input  type="textarea"size="small" label="Label" placeholder="text area" maxLength={2} />
       </div>
       <div>
       <Input size="normal" error="Error text" placeholder="Error" />
@@ -66,7 +66,7 @@ const pruebaInput: React.FC = () => {
       <Input size="normal" active placeholder="Active" />
       </div>
       <div>
-      <Input size="big" active placeholder="Active"  />
+      <Input size="fixed" active placeholder="text area" type="textarea" />
       </div>
      
     </div>
