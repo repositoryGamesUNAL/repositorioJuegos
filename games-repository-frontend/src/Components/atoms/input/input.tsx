@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import '../input/input.scss';
+import '../input/input.scss'; // Importar estilos
 import { InputProps } from './input.type';
 
 const Input: React.FC<InputProps> = ({
@@ -20,7 +20,7 @@ const Input: React.FC<InputProps> = ({
     input 
     ${size === "small" ? "input--small" : size === "fixed" ? "input-textarea--fixed" : "input--medium"} 
     ${error ? "input--error" : ""} 
-    ${disabled ? "input--disabled" : ""}
+    ${disabled ? "input--disabled" : ""} 
     ${active ? "input--active" : ""}
   `;
 
@@ -52,24 +52,7 @@ const Input: React.FC<InputProps> = ({
       )}
 
       {/* Input de tipo número */}
-      {type === "number" && (
-        <div className="input-number">
-          <button className="input-number-btn" disabled={disabled}>
-            -
-          </button>
-          <input
-            type="number"
-            className={inputClassName}
-            ref={inputRef} // Asignar la referencia del input
-            disabled={disabled}
-            placeholder={placeholder}
-          />
-          <button className="input-number-btn" disabled={disabled}>
-            +
-          </button>
-        </div>
-      )}
-
+      
       {/* Mensaje de error */}
       {error && <span className="input-error">{error}</span>}
     </div>
