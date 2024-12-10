@@ -66,7 +66,7 @@ const pruebaInput: React.FC = () => {
       <Input size="normal" active placeholder="Active" />
       </div>
       <div>
-      <Input size="fixed" disabled placeholder="text area" type="textarea" />
+      <Input size="small" disabled placeholder="text area" type="textarea" />
       </div>
      
     </div>

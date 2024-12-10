@@ -11,7 +11,7 @@ $huge: 24px;
   border-radius: $huge;
 }
 
-// Utility Classes for Border Radius
+
 .radius-medium {
   @include border-radius-medium;
 }

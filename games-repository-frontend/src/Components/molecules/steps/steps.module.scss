@@ -1,0 +1,91 @@
+.step {
+  display: flex;
+  flex-direction: column;
+  position: relative; /* Necesario para posicionar pseudo-elementos */
+
+  &.horizontal {
+    flex-direction: row;
+    align-items: center;
+
+    // Barra horizontal que conecta los pasos
+    &::before {
+      content: "";
+      position: absolute;
+      top: 50%; /* Centrado vertical */
+      left: 0;
+      width: 100%;
+      height: 3px; /* Grosor de la barra */
+      background-color: #d9d9d9; /* Color de la barra */
+      z-index: -1; /* Colocar detrás de los pasos */
+    }
+
+    // Ajustar cada paso
+    .stepItem {
+      position: relative; /* Necesario para poner los íconos sobre la barra */
+      z-index: 1; /* Asegurarse de que los pasos estén delante de la barra */
+    }
+
+    // Eliminar el último separador horizontal
+    .stepItem:last-child::after {
+      display: none;
+    }
+  }
+
+  &.vertical {
+    flex-direction: column;
+    align-items: flex-start;
+
+    .stepItem {
+      position: relative;
+    }
+
+    // Barra vertical que conecta los pasos
+    .stepItem::after {
+      content: "";
+      position: absolute;
+      top: 50%; /* Empieza desde el medio del ítem */
+      left: 10px; /* Alineado con los íconos */
+      width: 2px; /* Grosor de la barra */
+      height: calc(100% + 16px); /* Largo de la barra */
+      background-color: #d9d9d9; /* Color de la barra */
+      z-index: 0;
+    }
+
+    // Eliminar la barra del último paso
+    .stepItem:last-child::after {
+      display: none;
+    }
+  }
+}
+
+.stepItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  &.finished .icon {
+    color: #f58c25;
+  }
+
+  &.process .icon {
+    color: #f58c25;
+  }
+
+  &.error .icon {
+    color: #ff4d4f;
+  }
+
+  &.waiting .icon {
+    color: #d9d9d9;
+  }
+}
+
+.icon {
+  font-size: 1.5rem;
+  margin-right: 8px;
+}
+
+.description {
+  font-size: 0.9rem;
+  color: #333;
+}

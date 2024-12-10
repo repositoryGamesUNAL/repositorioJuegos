@@ -1,21 +1,32 @@
 // Definición de variables
 @import "../../../styles/colors.scss";
 
-$primary-color:$orange;
+
+$primary-color: $orange;
 $hover-color: #FD954F;
 $click-color: #CD5C10;
-$disabled-color: #D6CDC2;
+$disabled-color: $disabled;
 
-$secondary-color:#e16e21;
+$secondary-color: #e16e21;
 $secondary-hover-color: #FD954F;
 $secondary-click-color: #CD5C10;
 
+// Mixin para manejar el estado deshabilitado
+@mixin button-disabled {
+  background-color: $disabled-color;
+  cursor: not-allowed;
+}
 
-
+// Mixin para definir tamaños de botones
+@mixin button-size($width, $height, $padding) {
+  width: $width;
+  height: $height;
+  padding: $padding;
+}
 
 // Placeholder para estilos comunes de botones
 %button-common {
-  font-family: $font-family;
+  
   border: none;
   cursor: pointer;
   text-align: center;
@@ -26,20 +37,13 @@ $secondary-click-color: #CD5C10;
 .button {
   @extend %button-common;
 
-  // Tamaños
+  // Tamaños utilizando el mixin
   &.medium {
-    width: 110px;
-    height: 39px;
-
-    
-    padding: 8px 16px;
+    @include button-size(110px, 39px, 8px 16px);
   }
 
   &.small {
-    width: 71px;
-    height: 27px;
-   
-    padding: 4px 12px;
+    @include button-size(71px, 27px, 4px 12px);
   }
 
   // Variantes principal
@@ -57,11 +61,11 @@ $secondary-click-color: #CD5C10;
     }
 
     &.disabled {
-      background-color: $disabled-color;
-      cursor: not-allowed;
+      @include button-disabled;
     }
   }
- // variante  secundaria 
+
+  // Variantes secundaria 
   &.secondary {
     color: $primary-color;
     background-color: transparent;
@@ -92,8 +96,7 @@ $secondary-click-color: #CD5C10;
     cursor: pointer;
 
     &.disabled {
-      color: $disabled-color;
-      cursor: not-allowed;
+      @include button-disabled;
       pointer-events: none;
     }
 
