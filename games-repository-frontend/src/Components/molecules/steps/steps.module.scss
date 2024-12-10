@@ -1,91 +1,114 @@
-.step {
-  display: flex;
-  flex-direction: column;
-  position: relative; /* Necesario para posicionar pseudo-elementos */
+@import "../../../styles/colors.scss";//importación de la paleta de colores definida
 
-  &.horizontal {
+
+
+
+
+%step-comon {
+  
+display: flex;
+
+}
+.step{
+  @extend %step-comon;
+
+  &--horizontal{
+
     flex-direction: row;
-    align-items: center;
-
-    // Barra horizontal que conecta los pasos
-    &::before {
-      content: "";
-      position: absolute;
-      top: 50%; /* Centrado vertical */
-      left: 0;
-      width: 100%;
-      height: 3px; /* Grosor de la barra */
-      background-color: #d9d9d9; /* Color de la barra */
-      z-index: -1; /* Colocar detrás de los pasos */
-    }
-
-    // Ajustar cada paso
-    .stepItem {
-      position: relative; /* Necesario para poner los íconos sobre la barra */
-      z-index: 1; /* Asegurarse de que los pasos estén delante de la barra */
-    }
-
-    // Eliminar el último separador horizontal
-    .stepItem:last-child::after {
-      display: none;
-    }
-  }
-
-  &.vertical {
+    gap: 8px
+  };
+  &--vertical{
     flex-direction: column;
-    align-items: flex-start;
+  };
+  .content{
+ 
+    &--vertical{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
 
-    .stepItem {
-      position: relative;
+    };
+    &--horizontal{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
     }
+    
 
-    // Barra vertical que conecta los pasos
-    .stepItem::after {
-      content: "";
-      position: absolute;
-      top: 50%; /* Empieza desde el medio del ítem */
-      left: 10px; /* Alineado con los íconos */
-      width: 2px; /* Grosor de la barra */
-      height: calc(100% + 16px); /* Largo de la barra */
-      background-color: #d9d9d9; /* Color de la barra */
-      z-index: 0;
-    }
-
-    // Eliminar la barra del último paso
-    .stepItem:last-child::after {
-      display: none;
-    }
   }
+
+
+
 }
+.circle{
+  width: 40px;         /* Ancho del círculo */
+  height: 40px;        /* Alto del círculo */
+  background-color: $orange; /* Color de fondo del círculo */
+  border-radius: 50%;
+  
+  margin-top: 8px;
+  &--finished{
+    background-color: $orange;
 
-.stepItem {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  }
+  &--process{
+   
+    border: 2px solid $orange;
+    
+    background-color: white;
+    border-color: $orange;
+  }
+  &--error{
+    border: 2px solid red;
+    background-color: white;
 
-  &.finished .icon {
-    color: #f58c25;
+  }
+  &--waiting{
+    border: 2px solid $spacer-light;
+    background-color: white;
+
   }
 
-  &.process .icon {
-    color: #f58c25;
-  }
-
-  &.error .icon {
-    color: #ff4d4f;
-  }
-
-  &.waiting .icon {
-    color: #d9d9d9;
-  }
 }
+.label{
+  margin: 4px;
+  
+  &--error{
+    color: red;
 
-.icon {
-  font-size: 1.5rem;
-  margin-right: 8px;
+  }
+  &--waiting{
+    color: $spacer-light;
+
+  }
+
 }
+.bar{
+  
 
-.description {
-  font-size: 0.9rem;
-  color: #333;
+  &--horizontal{
+    width: 140px;
+  height: 4px;
+  background-color: $orange;
+  position: relative;
+  top: -15%;
+
+  }
+  &--vertical{
+    width: 4px;
+    height: 16px;
+    background-color: $orange;
+    position: relative;
+    top: -20%;
+    left: -4%;
+    margin-top: 8px;
+
+  }
+  &--disabled {
+    background-color:$spacer-light!important;
+  }
+  
+
+
 }
