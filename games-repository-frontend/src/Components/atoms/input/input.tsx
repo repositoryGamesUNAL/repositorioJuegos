@@ -18,10 +18,11 @@ const Input: React.FC<InputProps> = ({
 
   const inputClassName = `
     input 
-    ${size === "small" ? "input--small" : size === "fixed" ? "input-textarea--fixed" : "input--medium"} 
+     input--${size} 
     ${error ? "input--error" : ""} 
     ${disabled ? "input--disabled" : ""} 
     ${active ? "input--active" : ""}
+    ${type === "scroll" ? "input-textarea--scroll":""}
   `;
 
   return (
@@ -41,7 +42,7 @@ const Input: React.FC<InputProps> = ({
       )}
 
       {/* Textarea */}
-      {type === "textarea" && (
+      {type === "textarea"|| type==="scroll" && (
         <textarea
           className={inputClassName}
           ref={textareaRef} // Asignar la referencia del textarea

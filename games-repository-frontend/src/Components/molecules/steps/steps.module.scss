@@ -63,7 +63,7 @@ display: flex;
     border-color: $orange;
   }
   &--error{
-    border: 2px solid red;
+    border: 2px solid #D51A52;
     background-color: white;
 
   }
@@ -78,7 +78,7 @@ display: flex;
   margin: 4px;
   
   &--error{
-    color: red;
+    color: #D51A52;
 
   }
   &--waiting{

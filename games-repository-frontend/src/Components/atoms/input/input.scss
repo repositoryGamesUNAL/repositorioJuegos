@@ -103,7 +103,7 @@ $big-size-x: 300px;
     padding: 12px;
     line-height: 1.5;
 
-    &--fixed {
+    &--scroll {
       width: $big-size-x;
       height: $big-size-y;
       overflow-y: scroll; // Habilitar desplazamiento horizontal
