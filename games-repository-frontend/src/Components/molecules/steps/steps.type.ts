@@ -6,5 +6,6 @@ export type StepItem = {
   export type StepProps = {
     steps: StepItem[];
     direction: "horizontal" | "vertical";
+    
   };
   
