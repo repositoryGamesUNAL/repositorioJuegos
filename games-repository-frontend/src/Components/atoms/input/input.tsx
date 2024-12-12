@@ -11,6 +11,7 @@ const Input: React.FC<InputProps> = ({
   type = "text",
   active = false,
   maxLength,
+  width,
 }) => {
   // Crear referencias separadas para input y textarea
   const inputRef = useRef<HTMLInputElement>(null);
@@ -18,7 +19,7 @@ const Input: React.FC<InputProps> = ({
 
   const inputClassName = `
     input 
-     input--${size} 
+    input--${size} 
     ${error ? "input--error" : ""} 
     ${disabled ? "input--disabled" : ""} 
     ${active ? "input--active" : ""}
@@ -26,7 +27,7 @@ const Input: React.FC<InputProps> = ({
   `;
 
   return (
-    <div className="input-container">
+    <div className={"input-container"}>
       {/* Renderizado del label */}
       {label && <label className="input-label">{label}</label>}
 
@@ -38,22 +39,22 @@ const Input: React.FC<InputProps> = ({
           ref={inputRef} // Asignar la referencia del input
           placeholder={placeholder}
           disabled={disabled}
+          style={{ width: `${width}px` }} // Aplicar el estilo aquí
         />
       )}
 
       {/* Textarea */}
-      {type === "textarea"|| type==="scroll" && (
+      {(type === "textarea" || type === "scroll") && (
         <textarea
           className={inputClassName}
           ref={textareaRef} // Asignar la referencia del textarea
           placeholder={placeholder}
           disabled={disabled}
           maxLength={maxLength}
+          style={{ width: `${width}px` }} // Aplicar el estilo aquí
         />
       )}
 
-      {/* Input de tipo número */}
-      
       {/* Mensaje de error */}
       {error && <span className="input-error">{error}</span>}
     </div>
@@ -61,5 +62,3 @@ const Input: React.FC<InputProps> = ({
 };
 
 export default Input;
-
-

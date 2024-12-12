@@ -9,5 +9,7 @@ export interface InputProps {
     active?: boolean;
     maxLength?: number;
     onChange?: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+    width: number;
+
   }
   

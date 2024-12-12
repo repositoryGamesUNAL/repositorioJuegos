@@ -17,6 +17,7 @@ $big-size-x: 300px;
 // Mixins
 @mixin input-padding($y, $x) {
   padding: $y $x;
+  
 }
 
 @mixin transition($properties...) {
