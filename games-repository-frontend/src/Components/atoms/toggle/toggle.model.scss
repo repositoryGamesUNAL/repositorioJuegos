@@ -1,0 +1,121 @@
+// _toggle.scss
+@import "../../../styles/colors.scss";  // Se importa el archivo de colores para poder usar las variables de color definidas allí.
+
+
+// Variables
+$primary-color: $orange;  // Definición del color primario como el color naranja.
+$background-color:$spacer-light;  // Definición del color de fondo para el toggle.
+$slider-size: 28px;  // Tamaño del círculo (el slider) dentro del toggle.
+$slider-width: 51px;  // Ancho del slider en su estado normal.
+$width-labl: 65px;  // Ancho del slider cuando tiene una etiqueta (con el label visible).
+$slider-height: 32px;  // Altura del slider.
+$disabled-opacity: 0.5;  // Opacidad del toggle cuando está deshabilitado.
+$font-color: $spacer-light;  // Color de la fuente para el texto del toggle.
+$disable-circle:$border;
+$disable:$disabled;  // Color del círculo cuando el toggle está deshabilitado.
+
+
+// Mixins
+@mixin transition($property, $duration, $ease) {  // Mixin que permite agregar transiciones CSS personalizadas.
+  transition: $property $duration $ease;  // Define una transición para una propiedad específica, con duración y tipo de "ease".
+}
+
+
+// Estilos del Toggler
+.toggler {
+  display: inline-flex;  // Se usa un display inline-flex para que los elementos hijos se alineen en línea y de manera flexible.
+  align-items: center;  // Alineación vertical de los elementos dentro del toggle.
+  cursor: pointer;  // Se usa un cursor de tipo puntero para indicar que es interactivo.
+  user-select: none;  // Evita que el texto dentro del toggle sea seleccionado.
+
+  &--disabled {  // Clase que se aplica cuando el toggle está deshabilitado.
+    cursor: not-allowed;  // El cursor cambia a un icono que indica que no se puede interactuar.
+    opacity: $disabled-opacity;  // Reduce la opacidad para mostrar que está deshabilitado.
+  }
+
+  &__slider {  // Estilo para el slider que representa la parte móvil del toggle.
+    width: $slider-width;  // Establece el ancho del slider.
+    height: $slider-height;  // Establece la altura del slider.
+    background-color: $background-color;  // Color de fondo para el slider (gris).
+    border-radius: 32px;  // Bordes redondeados del slider.
+    position: relative;  // Necesario para el posicionamiento absoluto del círculo.
+    overflow: hidden;  // Se asegura de que el círculo no sobresalga del slider.
+    @include transition(background-color, 0.3s, ease);  // Se aplica una transición suave al cambio de color de fondo.
+
+    &::before {  // Pseudo-elemento que representa el círculo dentro del slider.
+      content: "";  // Contenido vacío para crear un pseudo-elemento.
+      width: $slider-size;  // Ancho del círculo (igual al tamaño del slider).
+      height: $slider-size;  // Altura del círculo (igual al tamaño del slider).
+      background-color: #ffffff;  // Color del círculo (blanco).
+      border-radius: 50%;  // Hace que el círculo sea redondeado.
+      position: absolute;  // Posicionamiento absoluto dentro del slider.
+      top: 1px;  // Lo posiciona un píxel desde la parte superior del slider.
+      left: 1px;  // Lo posiciona un píxel desde la izquierda del slider.
+      @include transition(transform, 0.3s, ease);  // Transición suave para el movimiento del círculo.
+    }
+
+    &--with-label {  // Estilo cuando el toggle tiene una etiqueta visible.
+        width: $width-labl;  // Aumenta el ancho del slider para hacer espacio para la etiqueta.
+    }
+
+    &--disabled {  // Estilo cuando el toggle está deshabilitado.
+      background-color: $disable;  // Cambia el color de fondo a un gris más claro.
+      &::before {  // Estilo para el círculo cuando está deshabilitado.
+        background-color: $disable-circle;  // Cambia el color del círculo a un gris más claro.
+      }
+    }
+  }
+
+  // Estilo cuando el toggle está activado (on) y no está deshabilitado.
+  &--on .toggler__slider {
+    background-color: $primary-color;  // Cambia el color de fondo del slider a naranja cuando está "on".
+
+    &::before {  // Pseudo-elemento que representa el círculo dentro del slider.
+      transform: translateX(20px);  // Mueve el círculo hacia la derecha cuando está "on".
+    }
+
+    &--with-label {  // Estilo cuando el toggle tiene una etiqueta visible.
+      &::before {  // Mueve el círculo más hacia la derecha cuando está "on" con etiqueta visible.
+        transform: translateX(40px);
+      }
+
+      &--disabled {  // Estilo cuando el toggle está deshabilitado y tiene una etiqueta visible.
+        background-color: $disable;  // Cambia el color de fondo a gris.
+        &::before {  // Estilo para el círculo deshabilitado con etiqueta visible.
+          background-color: $disable-circle;  // Cambia el color del círculo a gris.
+          transform: translateX(40px);  // Mueve el círculo hacia la posición correspondiente.
+        }
+      }
+    }
+
+    &--disabled {  // Estilo cuando el toggle está deshabilitado sin etiqueta.
+      background-color: $disable;  // Cambia el color de fondo a gris.
+    }
+  }
+
+  // Mantener el color cuando está deshabilitado.
+  &__label {
+    position: absolute;  // Posicionamiento absoluto del texto dentro del slider.
+    font-size: 20px;  // Tamaño de la fuente.
+    color: $font-color;  // Color de la fuente (gris claro).
+    font-family: 'Open Sans', sans-serif;  // Define la fuente.
+    font-weight: 400;  // Grosor normal de la fuente.
+    line-height: 28.8px;  // Altura de la línea (espacio vertical entre líneas).
+
+    &--left {  // Estilo para la etiqueta de la izquierda (para el texto "On").
+      left: 10px;  // Posiciona la etiqueta a la izquierda del slider.
+      color: #ffffff;  // Color del texto a blanco cuando está "On".
+      &--disabled {  // Estilo cuando la etiqueta de la izquierda está deshabilitada.
+        color: $disable-circle;  // Cambia el color de la etiqueta a gris cuando está deshabilitada.
+      }
+    }
+
+    &--right {  // Estilo para la etiqueta de la derecha (para el texto "Off").
+      color: black;  // Color del texto a negro cuando está "Off".
+      right: 4px;  // Posiciona la etiqueta a la derecha del slider.
+      &--disabled {  // Estilo cuando la etiqueta de la derecha está deshabilitada.
+        color:$disable-circle;  // Cambia el color de la etiqueta a gris cuando está deshabilitada.
+      }
+    }
+  }
+}

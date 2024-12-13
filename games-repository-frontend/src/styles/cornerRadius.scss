@@ -1,0 +1,21 @@
+// Border Radius Variables
+$medium: 8px;
+$huge: 24px;
+
+// Mixins for Border Radius
+@mixin border-radius-medium {
+  border-radius: $medium;
+}
+
+@mixin border-radius-huge {
+  border-radius: $huge;
+}
+
+
+.radius-medium {
+  @include border-radius-medium;
+}
+
+.radius-huge {
+  @include border-radius-huge;
+}
