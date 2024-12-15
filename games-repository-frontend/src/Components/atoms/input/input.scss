@@ -1,0 +1,123 @@
+// Variables
+$primary-border-color: #ccc;
+$error-border-color: red;
+$active-border-color: orange;
+$disabled-background-color: #f2f2f2;
+$disabled-text-color: #aaa;
+$font-family: Arial, sans-serif;
+
+$label-color: #333;
+$error-text-color: red;
+$padding-normal-size: 12px;
+$padding-small-size-y: 8px;
+$padding-small-size-x: 12px;
+$big-size-y: 200px;
+$big-size-x: 300px;
+
+// Mixins
+@mixin input-padding($y, $x) {
+  padding: $y $x;
+  
+}
+
+@mixin transition($properties...) {
+  transition: $properties 0.3s ease;
+}
+
+@mixin disabled-styles {
+  background-color: $disabled-background-color;
+  color: $disabled-text-color;
+  pointer-events: none;
+}
+
+// Estilos Comunes
+%input-common {
+  font-family: $font-family;
+  border: 1px solid $primary-border-color;
+  border-radius: 4px;
+  @include input-padding(10px, 12px);
+  font-size: 16px;
+  @include transition(border-color);
+}
+
+%button-common {
+  font-family: $font-family;
+  cursor: pointer;
+  text-align: center;
+  @include transition(background-color, border-color);
+}
+
+// Contenedor General de Inputs
+.input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  margin: 10px;
+
+  // Label del Input
+  .input-label {
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: $label-color;
+  }
+
+  // Mensaje de Error
+  .input-error {
+    color: $error-text-color;
+    font-size: 12px;
+    margin-top: 5px;
+  }
+
+  // Input de Texto Normal
+  .input {
+    @extend %input-common;
+
+    // Tamaños
+    &--small {
+      font-size: 14px;
+      @include input-padding($padding-small-size-y, $padding-small-size-x);
+    }
+    &--medium {
+      @include input-padding($padding-normal-size, $padding-normal-size);
+      overflow-y: scroll; // Habilitar desplazamiento horizontal
+    }
+
+    // Estados
+    &--error {
+      border-color: $error-border-color;
+    }
+
+    &--disabled {
+      @include disabled-styles; // Aplicar estilos de deshabilitado
+    }
+
+    &--active {
+      border-color: $active-border-color;
+    }
+  }
+
+  // Input de Área de Texto
+  .input-textarea {
+    @extend %input-common;
+    resize: vertical; // Permite redimensionar verticalmente
+    min-height: 80px; // Altura mínima
+    padding: 12px;
+    line-height: 1.5;
+
+    &--scroll {
+      width: $big-size-x;
+      height: $big-size-y;
+      overflow-y: scroll; // Habilitar desplazamiento horizontal
+      resize: none;
+    }
+
+    &--disabled {
+      @include disabled-styles; // Aplicar estilos de deshabilitado
+    }
+  }
+
+  // Input de Tipo Número
+  
+}
+
+

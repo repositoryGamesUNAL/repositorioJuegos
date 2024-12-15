@@ -1,0 +1,117 @@
+@import "../../../styles/colors.scss";//importación de la paleta de colores definida
+
+
+
+
+
+%step-comon {
+  
+display: flex;
+
+}
+.step{
+  @extend %step-comon;
+
+  &--horizontal{
+
+    flex-direction: row;
+    gap: 8px
+  };
+  &--vertical{
+    flex-direction: column;
+  };
+  .content{
+ 
+    &--vertical{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+    };
+    &--horizontal{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+    }
+    
+
+  }
+
+
+
+}
+.circle{
+  width: 40px;         /* Ancho del círculo */
+  height: 40px;        /* Alto del círculo */
+  background-color: $orange; /* Color de fondo del círculo */
+  border-radius: 50%;
+  
+  margin-top: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &--finished{
+    background-color: $orange;
+
+  }
+  &--process{
+   
+    border: 2px solid $orange;
+    
+    background-color: white;
+    border-color: $orange;
+  }
+  &--error{
+    border: 2px solid #D51A52;
+    background-color: white;
+
+  }
+  &--waiting{
+    border: 2px solid $spacer-light;
+    background-color: white;
+
+  }
+
+}
+.label{
+  margin: 4px;
+  
+  &--error{
+    color: #D51A52;
+
+  }
+  &--waiting{
+    color: $spacer-light;
+
+  }
+
+}
+.bar{
+  
+
+  &--horizontal{
+    width: 140px;
+  height: 4px;
+  background-color: $orange;
+  position: relative;
+  top: -15%;
+
+  }
+  &--vertical{
+    width: 4px;
+    height: 16px;
+    background-color: $orange;
+    position: relative;
+    top: -20%;
+    left: -4%;
+    margin-top: 8px;
+
+  }
+  &--disabled {
+    background-color:$spacer-light!important;
+  }
+  
+
+
+}

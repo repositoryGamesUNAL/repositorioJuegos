@@ -1,0 +1,108 @@
+// Definición de variables
+@import "../../../styles/colors.scss";
+
+
+$primary-color: $orange;
+$hover-color: #FD954F;
+$click-color: #CD5C10;
+$disabled-color: $disabled;
+
+$secondary-color: #e16e21;
+$secondary-hover-color: #FD954F;
+$secondary-click-color: #CD5C10;
+
+// Mixin para manejar el estado deshabilitado
+@mixin button-disabled {
+  background-color: $disabled-color;
+  cursor: not-allowed;
+}
+
+// Mixin para definir tamaños de botones
+@mixin button-size($width, $height, $padding) {
+  width: $width;
+  height: $height;
+  padding: $padding;
+}
+
+// Placeholder para estilos comunes de botones
+%button-common {
+  
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  display: inline-block;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.button {
+  @extend %button-common;
+
+  // Tamaños utilizando el mixin
+  &.medium {
+    @include button-size(110px, 39px, 8px 16px);
+  }
+
+  &.small {
+    @include button-size(71px, 27px, 4px 12px);
+  }
+
+  // Variantes principal
+  &.main {
+    color: #fff;
+    background-color: $primary-color;
+    border-radius: 4px;
+
+    &.hover {
+      background-color: $hover-color;
+    }
+
+    &.click {
+      background-color: $click-color;
+    }
+
+    &.disabled {
+      @include button-disabled;
+    }
+  }
+
+  // Variantes secundaria 
+  &.secondary {
+    color: $primary-color;
+    background-color: transparent;
+    border: 2px solid $primary-color;
+    border-radius: 4px;
+
+    &.hover {
+      color: $secondary-hover-color;
+      border: 2px solid $secondary-hover-color;
+    }
+
+    &.click {
+      color: $click-color;
+      border: 2px solid $secondary-click-color;
+    }
+
+    &.disabled {
+      color: $disabled-color;
+      border-color: $disabled-color;
+      cursor: not-allowed;
+    }
+  }
+
+  &.link {
+    background: none;
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+
+    &.disabled {
+      @include button-disabled;
+      pointer-events: none;
+    }
+
+    a {
+      text-decoration: inherit;
+      color: inherit;
+    }
+  }
+}
