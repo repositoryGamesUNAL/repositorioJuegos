@@ -1,36 +1,48 @@
 //import React from 'react';
-import './styles.module.css';
+import './Style.css';
+import Button from '../atoms/button/button';
+import logo from'./logoprototipo.png'
 
 function Footer() {
     return (
-        <footer className="footer">
-            <div className="footer-section">
-                <h4>Menu 1</h4>
-                <button>Button</button>
-                <p>+7 (495) 000-00-00</p>
+        <>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+        <footer className='pie-pagina'>
+            <div className="grupo-1">
+                <div className="box">
+                    <figure>
+                        <a href="#">
+                            <img src={logo} alt="Logo Prototipo" />
+                        </a>
+                    </figure>
+                </div>
+                <div className="box">
+                    <h3>Menu 1</h3>
+                    <h3>Menu 2</h3>
+                    <h3>Menu 3</h3>
+                    <h3>Menu 4</h3>
+                </div>
+                <div className="box">
+                    <Button>Boton 1</Button>
+                    <Button>Boton 2</Button>
+                </div>
+                <div className="box">
+                    <h3>+7 (495) 000-00-00</h3>
+                    <h3>Moscow,ul. Name d. 1</h3>
+                    <h3>mhenaoga@unal.edu.co</h3>
+                    <div className="red-social">
+                        <a href="https://www.instagram.com/"target='_blank'><i className="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/" target='_blank'> <i className="fa-brands fa-facebook"></i></a>
+                        <a href="https://www.facebook.com/"target='_blank'>  <i className="fa-brands fa-linkedin"></i></a>
+                    </div>
+                </div>
             </div>
-            <div className="footer-section">
-                <h4>Menu 2</h4>
-                <p>mon-fri 9:00 - 18:00</p>
-            </div>
-            <div className="footer-section">
-                <h4>Menu 3</h4>
-                <button>Button 2</button>
-                <p>Moscow,ul. Name d. 1</p>
-            </div>
-            <div className="footer-section">
-                <h4>Menu 4</h4>
-                <button>Button</button>
-                <address>mhenaoga@unal.edu.co</address>
-            </div>
-            <div className="footer-section">
-                <h4>Menu 5</h4>
-            </div>
-            <div>
-                <p>© 2021-2021 Company name. All rights reserved</p>
-                <a href="/privacity_ppolicy">Privacy Policy</a>
+            <div className="grupo-2">
+                <small>&copy; 2024 <b>Repositorio de juegos</b>-Todos los derechos reservados</small>
+                <small>Privacy Policy</small>
             </div>
         </footer>
+        </>
     );
 }
 
