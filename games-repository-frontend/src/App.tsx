@@ -1,21 +1,20 @@
 import React from 'react';
-import './App.css'
-import Steps from './Components/pruebas/pruebaStep'
-import Input from './Components/pruebas/pruebas'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Layout from './Components/templates/layout/layout';
+import { routes } from './Components/templates/layout/routes.config'; // Importamos las rutas dinámicas
 
-
-function App() {
- 
-
+const App: React.FC = () => {
   return (
-    <>
- <Steps/>
+    <Router>
+      <Layout>
+        <Routes>
+          {routes.map(({ path, element }) => (
+            <Route key={path} path={path} element={element} />
+          ))}
+        </Routes>
+      </Layout>
+    </Router>
+  );
+};
 
-
-  
-      
-    </>
-  )
-}
-
-export default App
+export default App;
