@@ -1,11 +1,8 @@
 import React from 'react';
 
 // Define las props que acepta el componente
-interface FooterProps {
-  className?: string; // Prop opcional para estilos
-}
 
-const Footer: React.FC<FooterProps> = ({ className }) => {
+const Footer: React.FC = () => {
   // Define estilos utilizando CSSProperties
   const footerStyles: React.CSSProperties = {
     display: 'grid',
@@ -36,7 +33,7 @@ const Footer: React.FC<FooterProps> = ({ className }) => {
   };
 
   return (
-    <footer style={footerStyles} className={className}>
+    <footer style={footerStyles}>
       {/* Primera columna */}
       <div style={columnStyles}>
         <ul style={menuStyles}>

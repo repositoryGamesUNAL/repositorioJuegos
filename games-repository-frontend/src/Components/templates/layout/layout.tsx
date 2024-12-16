@@ -7,9 +7,9 @@ import "./layout.model.scss";
 const Layout: React.FC<layoutProps> = ({ children }) => {
   return (
     <div className="layout">
-      <Navbar className="layout__header" />
+      <Navbar/>
       <main className="layout__main">{children}</main>
-      <Footer className="layout__footer" />
+      <Footer/>
     </div>
   );
 };
