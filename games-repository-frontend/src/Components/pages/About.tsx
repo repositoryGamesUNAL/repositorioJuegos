@@ -18,6 +18,10 @@ const About: React.FC = () => {
         Together, we strive to create projects that solve real-world problems and contribute to our personal and
         professional growth.
       </p>
+      <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum mollitia earum corporis iusto, ab perspiciatis eos minus dicta molestiae nobis autem a vitae, aliquid illo distinctio dignissimos commodi deleniti quae?
+      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Provident a facere illum quod? Perspiciatis dicta error quos omnis labore odio natus voluptate in quasi iusto cupiditate provident officiis, vel tempore.
+      </p>
     </div>
   );
 };

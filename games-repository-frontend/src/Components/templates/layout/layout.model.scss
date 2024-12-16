@@ -1,2 +1,11 @@
-@import "../../../styles/colors.scss";
+.layout {
+  display: flex;
+  flex-direction: column; // Coloca los hijos en una columna
+  min-height: 100vh; // Garantiza que el layout ocupe al menos toda la pantalla
+  width: 100vw; // Ocupa todo el ancho
 
+  &__main {
+    flex: 1; // Toma todo el espacio restante si el contenido es pequeño
+    background-color: #ffffff;
+  }
+}
