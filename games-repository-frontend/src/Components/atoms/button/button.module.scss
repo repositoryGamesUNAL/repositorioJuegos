@@ -1,11 +1,13 @@
 // Definición de variables
-@import "../../../styles/colors.scss";
+@use "../../../styles/colors" as colors;
 
 
-$primary-color: $orange;
+
+$primary-color: colors.$orange;
+$disabled-color: colors.$disabled;
 $hover-color: #FD954F;
 $click-color: #CD5C10;
-$disabled-color: $disabled;
+
 
 $secondary-color: #e16e21;
 $secondary-hover-color: #FD954F;
@@ -15,6 +17,7 @@ $secondary-click-color: #CD5C10;
 @mixin button-disabled {
   background-color: $disabled-color;
   cursor: not-allowed;
+  opacity: 0.6;
 }
 
 // Mixin para definir tamaños de botones
@@ -26,7 +29,6 @@ $secondary-click-color: #CD5C10;
 
 // Placeholder para estilos comunes de botones
 %button-common {
-  
   border: none;
   cursor: pointer;
   text-align: center;
@@ -52,50 +54,64 @@ $secondary-click-color: #CD5C10;
     background-color: $primary-color;
     border-radius: 4px;
 
-    &.hover {
+    &:hover {
       background-color: $hover-color;
     }
 
-    &.click {
+    &:active {
       background-color: $click-color;
     }
 
-    &.disabled {
+    &:disabled {
       @include button-disabled;
     }
   }
 
-  // Variantes secundaria 
+  &.icon {
+    // Estilos específicos para la variante "icon"
+    background-color: red;
+    width: 30px;
+    height: 30px;
+    border: none;
+    padding: 0;
+  }
+
+  // Variantes secundaria
   &.secondary {
     color: $primary-color;
     background-color: transparent;
     border: 2px solid $primary-color;
     border-radius: 4px;
 
-    &.hover {
+    &:hover {
       color: $secondary-hover-color;
-      border: 2px solid $secondary-hover-color;
+      border-color: $secondary-hover-color;
     }
 
-    &.click {
-      color: $click-color;
-      border: 2px solid $secondary-click-color;
+    &:active {
+      color: $secondary-click-color;
+      border-color: $secondary-click-color;
     }
 
-    &.disabled {
+    &:disabled {
       color: $disabled-color;
       border-color: $disabled-color;
       cursor: not-allowed;
     }
   }
 
+  // Variante tipo enlace
   &.link {
     background: none;
     color: blue;
     text-decoration: underline;
     cursor: pointer;
 
-    &.disabled {
+    &:hover {
+      color: darkblue;
+    }
+
+    &:disabled {
       @include button-disabled;
       pointer-events: none;
     }
