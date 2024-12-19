@@ -1,0 +1,19 @@
+.container{
+    display: flex;  /* El contenedor es un flexbox */
+    flex-direction: column;  /* O row, dependiendo de la orientación que desees */
+    height: 85vh;  /* O cualquier valor fijo */
+}
+
+.stepper{
+    margin:20px 0px;
+    width: 100%;
+}
+
+.div-buttons{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+
+  
