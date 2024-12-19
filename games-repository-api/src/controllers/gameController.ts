@@ -26,7 +26,7 @@ export class gameController {
 
   static createGame(req: Request, res: Response, next: NextFunction): void {
     try {
-      const { body } = req.body;
+      const  body  = req.body;
       const newGame = gameController.service.createGame(body);
       res.status(201);
       res.json(newGame);

@@ -97,6 +97,7 @@ export class GameService {
     }
 
     createGame(data: newGame): jsonRequestReturn {
+        console.log(data)
         const res:jsonRequestReturn =
         {
             status: 0,
@@ -105,7 +106,7 @@ export class GameService {
         }
         try {
             //verify if there is any missing argument 
-            for (let atrib in data) if (data[atrib as keyof newGame]) throw (new Error("not enough data"));
+            for (let atrib in data) if (!data[atrib as keyof newGame]) throw (new Error("not enough data"));
 
             //obtain the current hour of creation
             const now: Date = new Date();
@@ -138,7 +139,7 @@ export class GameService {
             res.message = "succesfull";
         }
         catch (err) {
-            throw (new Error("bad request"));
+            throw (new Error("bad request" + err));
         }
         return res;
     }
