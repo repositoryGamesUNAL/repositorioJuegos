@@ -3,14 +3,21 @@ import {
   validateId,
   validateNewGame,
   validateGameChanges,
-} from "../middlewares/middlewareGames";
-import { gameController } from "../controllers/gameController";
+} from "../middlewares/validateMiddleware";
+import {
+  getAllGames,
+  getGameById,
+  postGame,
+  modifyGame,
+} from "../middlewares/gameMiddleware";
+import { gameNotFound } from "../middlewares/errorMiddleware";
+import app from "../app";
 
 export const gamesRouter: Router = express.Router();
 
-gamesRouter.get("/", gameController.getAllGames);
-gamesRouter.get("/:id", validateId, gameController.getGameById);
-gamesRouter.post("/", validateNewGame, gameController.createGame);
-gamesRouter.patch("/:id", validateGameChanges, gameController.modifyGame);
+gamesRouter.get("/", getAllGames);
+gamesRouter.get("/:id", validateId, getGameById, gameNotFound);
+gamesRouter.post("/", validateNewGame, postGame);
+gamesRouter.patch("/:id", validateGameChanges, modifyGame, gameNotFound);
 
 export default gamesRouter;
