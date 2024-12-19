@@ -1,7 +1,7 @@
 import express from "express"
 import { Application } from "express";
 import initializeRoutes from "./routes";
-import { logError,errorResponse } from "./middlewares/errorHandler";
+import { logError,errorResponse } from "./middlewares/errorMiddleware";
 
 
 const app:Application = express();
