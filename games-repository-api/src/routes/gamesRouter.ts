@@ -41,7 +41,7 @@ gamesRouter.get("/:id",validateId, (req:Request , res:Response, next:any): any =
 gamesRouter.post("/",validateNewGame,(req:Request , res:Response, next:any): any => {
     try{
         if(service){
-        const {body} = req.body;
+        const body = req.body;
         const newGame = service.createGame(body);
         res.status(201);
         res.json(newGame); 
