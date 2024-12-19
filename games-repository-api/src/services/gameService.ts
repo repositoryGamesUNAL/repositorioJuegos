@@ -2,24 +2,21 @@
 import { Game, jsonGame, newGame, changesOfGame, GameType } from "../models/game"
 
 const fecha = new Date().getTime
-export type GameServiceType = GameService | null;
 export type jsonRequestReturn = {status:number, games: object, message:string};
 export class GameService {
-    private static _instance: GameServiceType;
+    private static _instance: GameService;
     private _storage: Game[];
 
     constructor() {
         this._storage = [];
     }
 
-    static getInstance(): GameServiceType {
-
+    static getInstance(): GameService {
         //see if any instance exist, if not then create it and return it 
-        if (!this._instance) {
-            this._instance = new GameService();
-            return this._instance;
+        if (this._instance == null){
+            this._instance == new GameService();
         }
-        return null;
+        return this._instance;
     }
 
     findAllGames(): jsonRequestReturn {
