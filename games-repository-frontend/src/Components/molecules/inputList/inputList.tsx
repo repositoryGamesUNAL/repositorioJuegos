@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Input from "../../atoms/input/input";
 import Button from "../../atoms/button/button";
 import styles from "./inputList.module.scss";
-import { InputListProps } from "./inputList.type";
+import { InputListProps } from "./inputList.type"; 
 import { v4 as uuidv4 } from "uuid";
 
 const InputList: React.FC<InputListProps> = ({
@@ -45,6 +45,7 @@ const InputList: React.FC<InputListProps> = ({
 				className={styles.deleteButton} 
 				onClick={() => handleRemoveInput(input.id)}
 				size="small"
+				variant="icon"
 				>
 				🗑️
 				</Button>

@@ -1,9 +1,12 @@
 import React from 'react';
+import Headlines from '../atoms/headlines/headlines';
 
 const About: React.FC = () => {
   return (
     <div style={{ padding: '20px', textAlign: 'center' }}>
-      <h1>About Us</h1>
+
+     
+      <Headlines level="h1" text="About Us "></Headlines>
       <p>We are a team of students passionate about technology and innovation. Meet our members:</p>
       <ul style={{ listStyleType: 'none', padding: 0, lineHeight: '1.8' }}>
         <li>Sara Acevedo Maya</li>

@@ -17,17 +17,9 @@
 }
 
 .deleteButton {
-  flex: 0 0 10%; /* El botón ocupa el 10% del ancho */
-  max-width: 50px; /* Tamaño máximo del botón */
-  height: 100%; /* Ajusta la altura al contenedor padre */
-  background-color: red; /* Color para diferenciar */
-  color: white; /* Color del texto */
-  border: none; /* Sin bordes */
-  border-radius: 4px; /* Esquinas redondeadas */
-  cursor: pointer; /* Cambia el cursor al pasar */
-  display: flex;
-  align-items: center;
-  justify-content: center; /* Centrar icono */
+  
+  background-color: rgb(55, 255, 245); /* Color para diferenciar */
+
 }
 
 .deleteButton:hover {
