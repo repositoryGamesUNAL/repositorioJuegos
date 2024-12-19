@@ -1,0 +1,41 @@
+.inputListContainer {
+  padding: 1px;
+  display: flex;
+  flex-direction: column;
+}
+
+.inputItem {
+  display: flex;
+  align-items: center; /* Alinear input y botón verticalmente */
+  padding: 1px; /* Padding del contenedor */
+  width: 100%; /* Asegurarse de que el contenedor ocupe todo el ancho */
+  box-sizing: border-box; /* Incluir el padding en el ancho total */
+}
+
+.inputItem input {
+  flex: 1; /* El input ocupa el espacio restante */
+}
+
+.deleteButton {
+  flex: 0 0 10%; /* El botón ocupa el 10% del ancho */
+  max-width: 50px; /* Tamaño máximo del botón */
+  height: 100%; /* Ajusta la altura al contenedor padre */
+  background-color: red; /* Color para diferenciar */
+  color: white; /* Color del texto */
+  border: none; /* Sin bordes */
+  border-radius: 4px; /* Esquinas redondeadas */
+  cursor: pointer; /* Cambia el cursor al pasar */
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centrar icono */
+}
+
+.deleteButton:hover {
+  background-color: darkred; /* Cambiar color en hover */
+}
+
+.buttonsContainer {
+  display: flex;
+  margin-top: 5px;
+  margin-left: 10px;
+}

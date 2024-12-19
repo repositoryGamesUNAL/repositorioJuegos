@@ -13,7 +13,8 @@
     "games-repository-frontend": "file:",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^7.0.2"
+    "react-router-dom": "^7.0.2",
+    "uuid": "^11.0.3"
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",

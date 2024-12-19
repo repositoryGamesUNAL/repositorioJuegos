@@ -1,11 +1,10 @@
 import React from 'react';
-import  {ButtonProps} from './button.type'
+import { ButtonProps } from './button.type';
 
 import './button.model.scss';
 
-
-
 const Button: React.FC<ButtonProps> = ({
+  className, 
   size = 'medium',
   variant = 'main',
   status = 'default',
@@ -14,7 +13,7 @@ const Button: React.FC<ButtonProps> = ({
 }) => {
   return (
     <button
-      className={`button ${size} ${variant} ${status}`}
+      className={`button ${size} ${variant} ${status} ${className || ''}`}
       onClick={onClick}
       disabled={status === 'disabled'}
     >
