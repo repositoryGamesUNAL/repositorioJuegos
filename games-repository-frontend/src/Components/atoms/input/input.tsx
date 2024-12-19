@@ -1,64 +1,62 @@
-import React, { useRef } from "react";
-import '../input/input.scss'; // Importar estilos
-import { InputProps } from './input.type';
+import React, { forwardRef } from "react";
+import "../input/input.scss"; // Importar estilos
+import { InputProps } from "./input.type";
 
-const Input: React.FC<InputProps> = ({
+const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputProps>(({
   size = "normal",
   label,
   error,
   placeholder = "Text",
   disabled = false,
   type = "text",
-  active = false,
   maxLength,
-  onChange
-}) => {
-  // Crear referencias separadas para input y textarea
-  const inputRef = useRef<HTMLInputElement>(null);
-  const textareaRef = useRef<HTMLTextAreaElement>(null);
-
+  onChange,
+  value,
+  name,
+}, ref) => {
   const inputClassName = `
     input 
     input--${size} 
     ${error ? "input--error" : ""} 
     ${disabled ? "input--disabled" : ""} 
-    ${active ? "input--active" : ""}
-    ${type === "scroll" ? "input-textarea--scroll":""}
+    ${type === "scroll" ? "input-textarea--scroll" : ""}
   `;
 
+  const normalizedValue = typeof value === "number" ? value.toString() : value; // Convertir números a cadena
+
   return (
-    <div className={"input-container"}>
-      {/* Renderizado del label */}
+    <div className="input-container">
       {label && <label className="input-label">{label}</label>}
 
-      {/* Input de texto normal */}
       {type === "text" && (
         <input
           type="text"
           className={inputClassName}
-          ref={inputRef} 
+          ref={ref as React.Ref<HTMLInputElement>}
           placeholder={placeholder}
-          disabled={disabled} 
+          disabled={disabled}
+          value={normalizedValue} // Usar el valor normalizado
           onChange={onChange}
+          name={name}
         />
       )}
 
-      {/* Textarea */}
       {(type === "textarea" || type === "scroll") && (
         <textarea
           className={inputClassName}
-          ref={textareaRef}
+          ref={ref as React.Ref<HTMLTextAreaElement>}
           placeholder={placeholder}
           disabled={disabled}
-          maxLength={maxLength} 
+          maxLength={maxLength}
+          value={normalizedValue} // Usar el valor normalizado
           onChange={onChange}
+          name={name}
         />
       )}
 
-      {/* Mensaje de error */}
       {error && <span className="input-error">{error}</span>}
     </div>
   );
-};
+});
 
 export default Input;
