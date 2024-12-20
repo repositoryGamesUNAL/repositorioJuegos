@@ -5,7 +5,7 @@ $orange: colors.$orange;
 .inputListContainer {
   display: flex;
   flex-direction: column;
-  
+
   #hide{
     opacity: 0;
     cursor: auto; 
@@ -18,11 +18,22 @@ $orange: colors.$orange;
     box-sizing: border-box;
   }
 
+  .column{
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 16px; 
+  }
+
   .inputItem {
     display: flex;
     align-items: center; 
     width: 100%; 
-    box-sizing: border-box; 
+    box-sizing: border-box;
+
+    &--column {
+      flex: 1 1 13.5rem;
+      max-width: 13.5rem;
+    }
   
     svg{
       width: 40%;
@@ -34,17 +45,17 @@ $orange: colors.$orange;
     .fatherInput{
       width: 100%;
       margin-left: 0px;
+      height: 4.313rem;
     }
   
     .input{
       width: 100%;
-      height: 4.313rem;
+      height: 100%;
       resize: none; 
       overflow: auto;
       font-weight: 400;
       font-size: 0.83rem;
       padding: 0.5rem;
-  
     }
   
     .deleteButton {

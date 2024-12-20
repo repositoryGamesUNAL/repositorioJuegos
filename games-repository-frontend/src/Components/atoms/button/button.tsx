@@ -22,8 +22,7 @@
     ]
       .filter(Boolean)        // Filtramos valores `undefined` o `null`
       .join(' ');             
-
-      console.log(variant);
+      
     return (
       <button
         id={id}

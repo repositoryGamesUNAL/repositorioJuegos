@@ -12,11 +12,11 @@ const InputList: React.FC<InputListProps> = ({
 	className,
 	inputClassName,
 	id,
-	layout = "normal",
+	layout = "normal",	
 }) => {
 
 	// Clases de los elementos
-	const containerClasses = [
+	const containerInputClasses = [
 		styles.inputListContainer,
 		className
 	].filter(Boolean).join(' ');
@@ -24,6 +24,15 @@ const InputList: React.FC<InputListProps> = ({
 	const inputClasses = [
 		styles.input,
 		inputClassName
+	].filter(Boolean).join(' ');
+
+	const inputItem = [
+		styles.inputItem,
+		layout === "column" && styles["inputItem--column"],
+	].filter(Boolean).join(' ');	
+
+	const columnDiv = [
+		layout === "column" && styles.column
 	].filter(Boolean).join(' ');
 
 	// Estado para los inputs	
@@ -51,42 +60,44 @@ const InputList: React.FC<InputListProps> = ({
 	};
 
 	return (
-		<div id={id} className={containerClasses}>
-		{inputs.map((input, index) => (
-			<div key={input.id} className={styles.inputItem}>
-			<Input
-				containerClassName={styles.fatherInput}
-				className={inputClasses}
-				squeare={true}	
-				type="textarea"
-				placeholder={`${placeholder} ${index + 1}`}
-				value={input.value}
-				onChange={(e) => handleChangeInput(input.id	, e.target.value)}
-			/>
-			{index !== 0 && (
-				<Button
-					className={styles.deleteButton} 
-					onClick={() => handleRemoveInput(input.id)}
-					size="small"
-					variant="icon"
-				>
-					<FontAwesomeIcon icon={faTrash}/>
-				</Button>
-			)}
-			{index === 0 && (
-				<Button
-					id={styles.hide}
-					className={styles.deleteButton}
-					onClick={() => handleRemoveInput(input.id)}
-					size="small"
-					variant="icon"
-					status="disabled"
-				>
-					ba
-				</Button>
-			)}
+		<div id={id} className={containerInputClasses}>
+			<div className={columnDiv}>
+			{inputs.map((input, index) => (
+				<div key={input.id} className={inputItem}>
+					<Input
+						containerClassName={styles.fatherInput}
+						className={inputClasses}
+						squeare={true}	
+						type="textarea"
+						placeholder={`${placeholder} ${index + 1}`}
+						value={input.value}
+						onChange={(e) => handleChangeInput(input.id	, e.target.value)}
+					/>
+					{index !== 0 && (
+						<Button
+							className={styles.deleteButton} 
+							onClick={() => handleRemoveInput(input.id)}
+							size="small"
+							variant="icon"
+						>
+							<FontAwesomeIcon icon={faTrash}/>
+						</Button>
+					)}
+					{index === 0 && (
+						<Button
+							id={styles.hide}
+							className={styles.deleteButton}
+							onClick={() => handleRemoveInput(input.id)}
+							size="small"
+							variant="icon"
+							status="disabled"
+						>
+							ba
+						</Button>
+					)}
+				</div>
+			))}
 			</div>
-		))}
 			<div className={styles.buttonsContainer}>
 				<Button 
 					onClick={handleAddInput} 
