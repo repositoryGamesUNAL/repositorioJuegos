@@ -90,7 +90,7 @@ const InputList: React.FC<InputListProps> = ({
 			<div className={styles.buttonsContainer}>
 				<Button 
 					onClick={handleAddInput} 
-					size="medium"
+					size="small"
 				>
 				Agregar
 				</Button>
