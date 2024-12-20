@@ -55,7 +55,7 @@ const validateFields = (
             res.status(400);
             next(new Error(`El campo "${field}.description debe ser string."`))
           }
-          if(!(typeof file.url === "number")){
+          if(!(typeof file.url === "string")){
             res.status(400);
             next(new Error(`El campo "${field}.url debe ser string."`))
           }
