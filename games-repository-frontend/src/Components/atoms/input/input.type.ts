@@ -1,5 +1,7 @@
 export interface InputProps {
     className?: string;
+    containerClassName?: string;
+    squeare?: boolean;
     size?: "normal" | "small" | "medium";
     label?: string;
     error?: string;

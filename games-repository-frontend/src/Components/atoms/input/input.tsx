@@ -4,6 +4,8 @@ import styles from './input.module.scss'; // Importar estilos como módulo
 
 const Input: React.FC<InputProps> = ({
 	className,
+	containerClassName,
+	squeare = false,
 	size = "normal",
 	label,
 	error,
@@ -26,13 +28,19 @@ const Input: React.FC<InputProps> = ({
 		disabled && styles['input--disabled'],
 		active && styles['input--active'], 
 		type === "scroll" && styles['input-textarea--scroll'],
+		squeare && styles['input--squeare'],
 		className 
 	]
 		.filter(Boolean) // Elimina valores `undefined` o `false`
 		.join(' '); // Une las clases en una cadena
 
+	const containerClasses = [
+		styles["input-container"],
+		containerClassName
+	].filter(Boolean).join(' ');
+
 	return (
-		<div className={styles["input-container"]}>
+		<div className={containerClasses}>
 		{/* Renderizado del label */}
 		{label && <label className={styles["input-label"]}>{label}</label>}
 
