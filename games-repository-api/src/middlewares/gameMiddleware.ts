@@ -36,7 +36,7 @@ export const postGame = (
   next: NextFunction
 ): void => {
   try {
-    const body = req.body;
+    const { body } = req;
     const newGame = createGame(body);
 
     res.status(201).json(newGame);

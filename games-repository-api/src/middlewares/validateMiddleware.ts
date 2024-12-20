@@ -1,30 +1,65 @@
 import express, { Request, Response, NextFunction } from "express";
-import { newGame, changesOfGame } from "../models/game";
+import { 
+  teamSizes,
+  filesRelated,
+  newGame,
+  changesOfGame } from "../models/game";
 
 const validateFields = (
   res: Response,
   data: changesOfGame,
-  field: String,
+  field: string,
   next: NextFunction
 ) => {
   switch (
     field //validate if the field is the correct type
   ) {
     case "name":
+    case "concepts":
     case "purpose":
+    case "winner":
     case "genre":
-    case "objectives":
     case "time":
-      if (typeof data[field as keyof changesOfGame] !== "string") {
+    case "level":
+    case "time":
+      if (!(typeof data[field] === "string")) {
         res.status(400);
         next(new Error(`El campo "${field}" debe ser un texto.`));
       }
       break;
+    case "objectives":
     case "thematic":
     case "materials":
-      if (!Array.isArray(data[field as keyof changesOfGame])) {
+    case "rules":
+      if (!Array.isArray(data[field])) {
         res.status(400);
         next(new Error(`El campo "${field}" debe ser una lista.`));
+      }
+      break;
+    case "teams":
+      if(data[field]){
+        if(!(typeof data[field].min === "number")){
+          res.status(400);
+          next(new Error(`El campo "${field}.min debe ser number."`))
+        }
+        if(!(typeof data[field].max === "number")){
+          res.status(400);
+          next(new Error(`El campo "${field}.max debe ser number."`))
+        }
+      }
+      break;
+    case "related":
+      if(data[field]){
+        for(const file of data[field]){
+          if(!(typeof file.description === "string")){
+            res.status(400);
+            next(new Error(`El campo "${field}.description debe ser string."`))
+          }
+          if(!(typeof file.url === "string")){
+            res.status(400);
+            next(new Error(`El campo "${field}.url debe ser string."`))
+          }
+        }
       }
       break;
     default:
@@ -41,12 +76,19 @@ export const validateNewGame = (
 
   const requiredFields: Array<keyof newGame> = [
     "name",
+    "concepts",
     "purpose",
-    "thematic",
+    "winner",
     "genre",
-    "materials",
-    "objectives",
     "time",
+    "level",
+    "time",
+    "objectives",
+    "thematic",
+    "materials",
+    "rules",
+    "teams",
+    "related"
   ];
 
   for (const field of requiredFields) {
@@ -70,12 +112,19 @@ export const validateGameChanges = (
 
   const validFields: Array<keyof changesOfGame> = [
     "name",
+    "concepts",
     "purpose",
-    "thematic",
+    "winner",
     "genre",
-    "materials",
-    "objectives",
     "time",
+    "level",
+    "time",
+    "objectives",
+    "thematic",
+    "materials",
+    "rules",
+    "teams",
+    "related",
   ];
 
   for (const field in data) {
