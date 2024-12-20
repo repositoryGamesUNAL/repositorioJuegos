@@ -1,5 +1,6 @@
 export interface InputProps {
-    size?: "normal" | "small";
+    className?: string;
+    size?: "normal" | "small" | "medium";
     label?: string;
     error?: string;
     value?: string;
@@ -10,4 +11,3 @@ export interface InputProps {
     maxLength?: number;
     onChange?: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
   }
-  
