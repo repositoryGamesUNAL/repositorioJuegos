@@ -1,37 +1,9 @@
 import React from "react";
 import InputList from "../molecules/inputList/inputList";
-import axios from "axios";
+import { handleSendGame } from "../../services/HandleSendGame/handleSend";
+import { handleModifyGame } from "../../services/HandleModifyGame/handleModify";
 
-type SendGame = {
-  name: string;
-  purpose: string;
-  thematic: Array<string>;
-  genre: string;
-  materials: Array<string>;
-  objectives: string;
-  time: string;
-};
 const Home: React.FC = () => {
-  const handleSendGame = ({
-    name,
-    purpose,
-    thematic,
-    genre,
-    materials,
-    objectives,
-    time,
-  }: SendGame) => {
-    axios.post("http://localhost:3000/games", {
-      name,
-      purpose,
-      thematic,
-      genre,
-      materials,
-      objectives,
-      time,
-    });
-  };
-
   return (
     <div>
       <h1>Welcome to the Home Page</h1>
@@ -50,6 +22,21 @@ const Home: React.FC = () => {
         }
       >
         enviar
+      </button>
+      <button
+        onClick={() =>
+          handleModifyGame({
+            name: "juego",
+            purpose: "hooka",
+            thematic: [],
+            genre: "action",
+            materials: [],
+            objectives: "si",
+            time: "1 min",
+            id:"1",
+          })
+        }
+      >Modificar_Juego
       </button>
     </div>
   );
