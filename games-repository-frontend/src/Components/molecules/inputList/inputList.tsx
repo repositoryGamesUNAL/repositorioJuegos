@@ -14,7 +14,11 @@ const InputList: React.FC<InputListProps> = ({
 	id,
 	layout = "normal",	
 }) => {
-
+	// Estado para los inputs	
+	const [inputs, setInputs] = useState<{ id: string; value: string }[]>([
+		{ id: uuidv4(), value: "" },
+	]);
+	
 	// Clases de los elementos
 	const containerInputClasses = [
 		styles.inputListContainer,
@@ -40,11 +44,6 @@ const InputList: React.FC<InputListProps> = ({
 		styles.fatherInput,
 		layout === "column" && styles["fatherInput--column"],
 	].filter(Boolean).join(' ');
-
-	// Estado para los inputs	
-	const [inputs, setInputs] = useState<{ id: string; value: string }[]>([
-		{ id: uuidv4(), value: "" },
-	]);
 
 	// Función para agregar un nuevo input vacío
 	const handleAddInput = () => {
