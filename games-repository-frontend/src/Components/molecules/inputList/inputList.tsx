@@ -12,6 +12,7 @@ const InputList: React.FC<InputListProps> = ({
 	className,
 	inputClassName,
 	id,
+	layout = "normal",
 }) => {
 
 	// Clases de los elementos
