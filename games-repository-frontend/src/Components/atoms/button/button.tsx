@@ -5,6 +5,7 @@
 
   const Button: React.FC<ButtonProps> = ({
     className, 
+    id,
     size = 'medium',
     variant = 'main',
     status = 'default',
@@ -25,6 +26,7 @@
       console.log(variant);
     return (
       <button
+        id={id}
         className={buttonClasses}
         onClick={onClick}
         disabled={status === 'disabled'}
