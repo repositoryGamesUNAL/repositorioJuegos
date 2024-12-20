@@ -21,7 +21,7 @@ $orange: colors.$orange;
   .column{
     display: flex;
     flex-wrap: wrap; 
-    gap: 16px; 
+    column-gap: 16px; 
   }
 
   .inputItem {
@@ -32,7 +32,19 @@ $orange: colors.$orange;
 
     &--column {
       flex: 1 1 13.5rem;
+      min-width: calc(33.33% - 16px);
       max-width: 13.5rem;
+
+      @media (max-width: 1135px) {
+        flex: 1 1 13.5rem;
+        min-width: calc(50% - 16px);
+        max-width: 13.5rem;
+      }
+
+      @media (max-width: 750px) {
+        min-width: 100%;
+        max-width: 100%;
+      }
     }
   
     svg{
@@ -46,6 +58,10 @@ $orange: colors.$orange;
       width: 100%;
       margin-left: 0px;
       height: 4.313rem;
+
+      &--column {
+        height: 2.25rem;
+      }
     }
   
     .input{
@@ -56,6 +72,11 @@ $orange: colors.$orange;
       font-weight: 400;
       font-size: 0.83rem;
       padding: 0.5rem;
+
+      &--column {
+        font-size: 0.75rem;
+      }
+
     }
   
     .deleteButton {

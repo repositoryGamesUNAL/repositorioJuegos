@@ -23,6 +23,7 @@ const InputList: React.FC<InputListProps> = ({
 
 	const inputClasses = [
 		styles.input,
+		layout === "column" && styles["input--column"],
 		inputClassName
 	].filter(Boolean).join(' ');
 
@@ -33,6 +34,11 @@ const InputList: React.FC<InputListProps> = ({
 
 	const columnDiv = [
 		layout === "column" && styles.column
+	].filter(Boolean).join(' ');
+
+	const fatherInput = [
+		styles.fatherInput,
+		layout === "column" && styles["fatherInput--column"],
 	].filter(Boolean).join(' ');
 
 	// Estado para los inputs	
@@ -65,7 +71,7 @@ const InputList: React.FC<InputListProps> = ({
 			{inputs.map((input, index) => (
 				<div key={input.id} className={inputItem}>
 					<Input
-						containerClassName={styles.fatherInput}
+						containerClassName={fatherInput}
 						className={inputClasses}
 						squeare={true}	
 						type="textarea"
