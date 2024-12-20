@@ -4,10 +4,28 @@ import Button from "../../atoms/button/button";
 import styles from "./inputList.module.scss";
 import { InputListProps } from "./inputList.type"; 
 import { v4 as uuidv4 } from "uuid";
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const InputList: React.FC<InputListProps> = ({
 	placeholder = "Item",
+	className,
+	inputClassName,
+	id,
 }) => {
+
+	// Clases de los elementos
+	const containerClasses = [
+		styles.inputListContainer,
+		className
+	].filter(Boolean).join(' ');
+
+	const inputClasses = [
+		styles.input,
+		inputClassName
+	].filter(Boolean).join(' ');
+
+	// Estado para los inputs	
 	const [inputs, setInputs] = useState<{ id: string; value: string }[]>([
 		{ id: uuidv4(), value: "" },
 	]);
@@ -32,28 +50,47 @@ const InputList: React.FC<InputListProps> = ({
 	};
 
 	return (
-		<div className={styles.inputListContainer}>
+		<div id={id} className={containerClasses}>
 		{inputs.map((input, index) => (
 			<div key={input.id} className={styles.inputItem}>
 			<Input
+				containerClassName={styles.fatherInput}
+				className={inputClasses}
+				squeare={true}	
+				type="textarea"
 				placeholder={`${placeholder} ${index + 1}`}
 				value={input.value}
 				onChange={(e) => handleChangeInput(input.id	, e.target.value)}
 			/>
 			{index !== 0 && (
 				<Button
-				className={styles.deleteButton} 
-				onClick={() => handleRemoveInput(input.id)}
-				size="small"
-				variant="icon"
+					className={styles.deleteButton} 
+					onClick={() => handleRemoveInput(input.id)}
+					size="small"
+					variant="icon"
 				>
-				🗑️
+					<FontAwesomeIcon icon={faTrash}/>
+				</Button>
+			)}
+			{index === 0 && (
+				<Button
+					id={styles.hide}
+					className={styles.deleteButton}
+					onClick={() => handleRemoveInput(input.id)}
+					size="small"
+					variant="icon"
+					status="disabled"
+				>
+					ba
 				</Button>
 			)}
 			</div>
 		))}
 			<div className={styles.buttonsContainer}>
-				<Button onClick={handleAddInput} size="small">
+				<Button 
+					onClick={handleAddInput} 
+					size="medium"
+				>
 				Agregar
 				</Button>
 			</div>

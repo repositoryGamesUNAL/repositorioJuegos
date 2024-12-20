@@ -1,3 +1,7 @@
+@use "../../../styles/colors.scss" as colors;
+
+$orange: colors.$orange;
+
 .inputListContainer {
   padding: 1px;
   display: flex;
@@ -6,28 +10,53 @@
 
 .inputItem {
   display: flex;
-  align-items: center; /* Alinear input y botón verticalmente */
-  padding: 1px; /* Padding del contenedor */
-  width: 100%; /* Asegurarse de que el contenedor ocupe todo el ancho */
-  box-sizing: border-box; /* Incluir el padding en el ancho total */
+  align-items: center; 
+  padding: 1px; 
+  width: 100%; 
+  box-sizing: border-box; 
+
+  svg{
+    width: 40%;
+    height: auto;
+    align-items: center;
+    text-align: center;
+  }
+
+  .fatherInput{
+    width: 100%;
+  }
+
+  .input{
+    width: 100%;
+    height: 4.313rem;
+    resize: none; 
+    overflow: auto;
+    font-weight: 400;
+    font-size: 0.83rem;
+    padding: 0.5rem;
+  }
+
+  .deleteButton {
+    background-color: gray;
+    width: 1.875rem;
+    height: 1.875rem;
+    border-radius: 2px;
+    border: 1px solid #494949;
+
+    &:hover {
+      background-color: $orange ; /* Cambiar color en hover */
+    }
+  }
 }
 
-.inputItem input {
-  flex: 1; /* El input ocupa el espacio restante */
-}
-
-.deleteButton {
-  
-  background-color: rgb(55, 255, 245); /* Color para diferenciar */
-
-}
-
-.deleteButton:hover {
-  background-color: darkred; /* Cambiar color en hover */
+#hide{
+  opacity: 0;
+  cursor: auto; 
 }
 
 .buttonsContainer {
   display: flex;
   margin-top: 5px;
   margin-left: 10px;
+  margin-bottom: 10px;
 }
