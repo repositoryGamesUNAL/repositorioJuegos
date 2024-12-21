@@ -14,7 +14,8 @@ const Input: React.FC<InputProps> = ({
 	type = "text",
 	active = false,
 	maxLength,
-	onChange
+	onChange,
+	value
 }) => {
 	// Crear referencias separadas para input y textarea
 	const inputRef = useRef<HTMLInputElement>(null);
@@ -39,6 +40,8 @@ const Input: React.FC<InputProps> = ({
 		containerClassName
 	].filter(Boolean).join(' ');
 
+	const normalizedValue = typeof value === "number" ? value.toString() : value;
+
 	return (
 		<div className={containerClasses}>
 		{/* Renderizado del label */}
@@ -52,6 +55,7 @@ const Input: React.FC<InputProps> = ({
 			ref={inputRef} 
 			placeholder={placeholder}
 			disabled={disabled} 
+			value={normalizedValue}
 			onChange={onChange}
 			/>
 		)}
@@ -64,6 +68,7 @@ const Input: React.FC<InputProps> = ({
 			placeholder={placeholder}
 			disabled={disabled}
 			maxLength={maxLength} 
+			value={normalizedValue}
 			onChange={onChange}
 			/>
 		)}

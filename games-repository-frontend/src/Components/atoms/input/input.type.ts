@@ -5,7 +5,7 @@ export interface InputProps {
     size?: "normal" | "small" | "medium";
     label?: string;
     error?: string;
-    value?: string;
+    value?: string | string[] | number;
     placeholder?: string;
     disabled?: boolean;
     type?: "text" | "number"|"textarea"|"scroll" ;

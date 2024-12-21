@@ -1,4 +1,4 @@
-import React, {	useState } from "react";
+import React, {	useState, useEffect } from "react";
 import Input from "../../atoms/input/input";
 import Button from "../../atoms/button/button";
 import styles from "./inputList.module.scss";
@@ -12,13 +12,16 @@ const InputList: React.FC<InputListProps> = ({
 	className,
 	inputClassName,
 	id,
+	value = [],
 	layout = "normal",	
 	onChange,
 }) => {
 	// Estado para los inputs	
-	const [inputs, setInputs] = useState<{ id: string; value: string }[]>([
-		{ id: uuidv4(), value: "" },
-	]);
+	const [inputs, setInputs] = useState(
+		value.length > 0 
+		  ? value.map((item) => ({ id: uuidv4(), value: item }))
+		  : [{ id: uuidv4(), value: "" }]
+	);
 	
 	// Clases de los elementos
 	const containerInputClasses = [
@@ -68,7 +71,10 @@ const InputList: React.FC<InputListProps> = ({
 		if (onChange) {
 		  	onChange(inputs.map((input) => input.value));
 		}
-	  };
+	};
+
+	console.log(inputs);
+
 
 	return (
 		<div id={id} className={containerInputClasses}>
