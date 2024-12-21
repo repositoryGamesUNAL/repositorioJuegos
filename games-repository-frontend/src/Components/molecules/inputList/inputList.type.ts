@@ -3,7 +3,7 @@ export interface InputListProps {
     inputClassName?: string;
     id?: string;
     placeholder?: string;
-    layout?: 'column' | 'row';
+    layout?: 'column';
     onChange?: (inputs:string[]) => void ;
     value?: string[];
     title?: string;

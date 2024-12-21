@@ -1,6 +1,7 @@
 import React, {	useState, useEffect } from "react";
 import Input from "../../atoms/input/input";
 import Button from "../../atoms/button/button";
+import Headlines from "../../atoms/headlines/headlines";
 import styles from "./inputList.module.scss";
 import { InputListProps } from "./inputList.type"; 
 import { v4 as uuidv4 } from "uuid";
@@ -79,7 +80,7 @@ const InputList: React.FC<InputListProps> = ({
 
 	return (
 		<div id={id} className={containerInputClasses}>
-			{title && <h3 className={styles.title}>{title}</h3>}
+			{title && <Headlines level="h4" text={title}/>}
 			{description && <p className={styles.description}>{description}</p>}
 			<div className={columnDiv}>
 			{inputs.map((input, index) => (
