@@ -66,14 +66,13 @@ const InputList: React.FC<InputListProps> = ({
 			input.id === id ? { ...input, value } : input
 		  )
 		);
+	}
 	  
-		// Notifica el cambio de valores como un array plano
+	useEffect(() => {
 		if (onChange) {
-		  	onChange(inputs.map((input) => input.value));
+			onChange(inputs.map((input) => input.value));
 		}
-	};
-
-	console.log(inputs);
+	},[inputs])
 
 
 	return (
