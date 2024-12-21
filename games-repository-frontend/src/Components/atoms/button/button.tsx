@@ -5,6 +5,7 @@
 
   const Button: React.FC<ButtonProps> = ({
     className, 
+    id,
     size = 'medium',
     variant = 'main',
     status = 'default',
@@ -21,10 +22,10 @@
     ]
       .filter(Boolean)        // Filtramos valores `undefined` o `null`
       .join(' ');             
-
-      console.log(variant);
+      
     return (
       <button
+        id={id}
         className={buttonClasses}
         onClick={onClick}
         disabled={status === 'disabled'}

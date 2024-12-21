@@ -1,8 +1,11 @@
 export interface InputProps {
-    size?: "normal" | "small";
+    className?: string;
+    containerClassName?: string;
+    squeare?: boolean;
+    size?: "normal" | "small" | "medium";
     label?: string;
     error?: string;
-    value?: string;
+    value?: string | string[] | number;
     placeholder?: string;
     disabled?: boolean;
     type?: "text" | "number"|"textarea"|"scroll" ;
@@ -10,4 +13,3 @@ export interface InputProps {
     maxLength?: number;
     onChange?: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
   }
-  

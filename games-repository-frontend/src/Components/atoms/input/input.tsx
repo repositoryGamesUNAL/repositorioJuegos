@@ -1,64 +1,82 @@
 import React, { useRef } from "react";
-import '../input/input.scss'; // Importar estilos
 import { InputProps } from './input.type';
+import styles from './input.module.scss'; // Importar estilos como módulo
 
 const Input: React.FC<InputProps> = ({
-  size = "normal",
-  label,
-  error,
-  placeholder = "Text",
-  disabled = false,
-  type = "text",
-  active = false,
-  maxLength,
-  onChange
+	className,
+	containerClassName,
+	squeare = false,
+	size = "normal",
+	label,
+	error,
+	placeholder = "Text",
+	disabled = false,
+	type = "text",
+	active = false,
+	maxLength,
+	onChange,
+	value
 }) => {
-  // Crear referencias separadas para input y textarea
-  const inputRef = useRef<HTMLInputElement>(null);
-  const textareaRef = useRef<HTMLTextAreaElement>(null);
+	// Crear referencias separadas para input y textarea
+	const inputRef = useRef<HTMLInputElement>(null);
+	const textareaRef = useRef<HTMLTextAreaElement>(null);
 
-  const inputClassName = `
-    input 
-    input--${size} 
-    ${error ? "input--error" : ""} 
-    ${disabled ? "input--disabled" : ""} 
-    ${active ? "input--active" : ""}
-    ${type === "scroll" ? "input-textarea--scroll":""}
-  `;
+	// Generar las clases dinámicamente
+	const inputClasses = [
+		styles.input,             
+		styles[`input--${size}`],  
+		error && styles['input--error'],     
+		disabled && styles['input--disabled'],
+		active && styles['input--active'], 
+		type === "scroll" && styles['input-textarea--scroll'],
+		squeare && styles['input--squeare'],
+		className 
+	]
+		.filter(Boolean) // Elimina valores `undefined` o `false`
+		.join(' '); // Une las clases en una cadena
 
-  return (
-    <div className={"input-container"}>
-      {/* Renderizado del label */}
-      {label && <label className="input-label">{label}</label>}
+	const containerClasses = [
+		styles["input-container"],
+		containerClassName
+	].filter(Boolean).join(' ');
 
-      {/* Input de texto normal */}
-      {type === "text" && (
-        <input
-          type="text"
-          className={inputClassName}
-          ref={inputRef} 
-          placeholder={placeholder}
-          disabled={disabled} 
-          onChange={onChange}
-        />
-      )}
+	const normalizedValue = typeof value === "number" ? value.toString() : value;
 
-      {/* Textarea */}
-      {(type === "textarea" || type === "scroll") && (
-        <textarea
-          className={inputClassName}
-          ref={textareaRef}
-          placeholder={placeholder}
-          disabled={disabled}
-          maxLength={maxLength} 
-          onChange={onChange}
-        />
-      )}
+	return (
+		<div className={containerClasses}>
+		{/* Renderizado del label */}
+		{label && <label className={styles["input-label"]}>{label}</label>}
 
-      {/* Mensaje de error */}
-      {error && <span className="input-error">{error}</span>}
-    </div>
-  );
+		{/* Input de texto normal */}
+		{type === "text" && (
+			<input
+			type="text"
+			className={inputClasses}
+			ref={inputRef} 
+			placeholder={placeholder}
+			disabled={disabled} 
+			value={normalizedValue}
+			onChange={onChange}
+			/>
+		)}
+
+		{/* Textarea */}
+		{(type === "textarea" || type === "scroll") && (
+			<textarea
+			className={inputClasses}
+			ref={textareaRef}
+			placeholder={placeholder}
+			disabled={disabled}
+			maxLength={maxLength} 
+			value={normalizedValue}
+			onChange={onChange}
+			/>
+		)}
+
+		{/* Mensaje de error */}
+		{error && <span className={styles["input-error"]}>{error}</span>}
+		</div>
+	);
 };
 
 export default Input;
