@@ -17,7 +17,7 @@ const steps = ['Datos generales', 'Conceptos fundamentales','Objetivos instrucci
 const GameForm = () => {
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set<number>());
-  const { control, handleSubmit } = useForm<FormData>({
+  const { control, handleSubmit, setValue ,getValues, getFieldState} = useForm<FormData>({
     defaultValues: {
       name: "",
       description: "",
@@ -99,7 +99,7 @@ const GameForm = () => {
             render={({ field }) => (
               <Input
                 {...field}
-                value={field.value.join(', ') || ""}
+                value={getValues("fundamentalConcepts").join(', ') || "" }
                 label="Conceptos fundamentales"
                 onChange={(e) => {
                   const newValue = e.target.value.split(',').map((item) => item.trim());
@@ -117,7 +117,7 @@ const GameForm = () => {
             render={({ field }) => (
               <Input
                 {...field}
-                value={field.value.join(', ') || ""}
+                value={getValues("instructionalObjectives").join(', ') || "" }
                 label="Objetivos instruccionales"
                 onChange={(e) => {
                   const newValue = e.target.value.split(',').map((item) => item.trim());
@@ -135,7 +135,7 @@ const GameForm = () => {
             render={({ field }) => (
               <Input
                 {...field}
-                value={field.value.join(', ') || ""}
+                value={getValues("rules").join(', ') || "" }
                 label="Reglas"
                 onChange={(e) => {
                   const newValue = e.target.value.split(',').map((item) => item.trim());
@@ -153,7 +153,7 @@ const GameForm = () => {
             render={({ field }) => (
               <Input
                 {...field}
-                value={field.value.join(', ') || ""}
+                value={getValues("purposes").join(', ') || "" }
                 label="Propósitos"
                 onChange={(e) => {
                   const newValue = e.target.value.split(',').map((item) => item.trim());
