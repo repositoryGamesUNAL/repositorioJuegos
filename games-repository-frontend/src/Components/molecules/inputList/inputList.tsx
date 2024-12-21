@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {	useState } from "react";
 import Input from "../../atoms/input/input";
 import Button from "../../atoms/button/button";
 import styles from "./inputList.module.scss";
@@ -13,6 +13,7 @@ const InputList: React.FC<InputListProps> = ({
 	inputClassName,
 	id,
 	layout = "normal",	
+	onChange,
 }) => {
 	// Estado para los inputs	
 	const [inputs, setInputs] = useState<{ id: string; value: string }[]>([
@@ -55,14 +56,19 @@ const InputList: React.FC<InputListProps> = ({
 		setInputs((prevInputs) => prevInputs.filter((input) => input.id !== id));
 	};
 
-	// Función para actualizar el valor de un input
 	const handleChangeInput = (id: string, value: string) => {
+		// Actualiza el valor del input correspondiente
 		setInputs((prevInputs) =>
-			prevInputs.map((input) =>
-				input.id === id ? { ...input, value } : input
-			)
+		  prevInputs.map((input) =>
+			input.id === id ? { ...input, value } : input
+		  )
 		);
-	};
+	  
+		// Notifica el cambio de valores como un array plano
+		if (onChange) {
+		  	onChange(inputs.map((input) => input.value));
+		}
+	  };
 
 	return (
 		<div id={id} className={containerInputClasses}>
