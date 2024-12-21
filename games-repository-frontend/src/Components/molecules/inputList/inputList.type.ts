@@ -5,6 +5,8 @@ export interface InputListProps {
     placeholder?: string;
     layout?: 'column' | 'row';
     onChange?: (inputs:string[]) => void ;
-    value?: string[]
+    value?: string[];
+    title?: string;
+    description?: string;
 }
   

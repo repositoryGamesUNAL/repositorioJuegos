@@ -15,6 +15,8 @@ const InputList: React.FC<InputListProps> = ({
 	value = [],
 	layout = "normal",	
 	onChange,
+	title,
+	description
 }) => {
 	// Estado para los inputs	
 	const [inputs, setInputs] = useState(
@@ -77,6 +79,8 @@ const InputList: React.FC<InputListProps> = ({
 
 	return (
 		<div id={id} className={containerInputClasses}>
+			{title && <h3 className={styles.title}>{title}</h3>}
+			{description && <p className={styles.description}>{description}</p>}
 			<div className={columnDiv}>
 			{inputs.map((input, index) => (
 				<div key={input.id} className={inputItem}>

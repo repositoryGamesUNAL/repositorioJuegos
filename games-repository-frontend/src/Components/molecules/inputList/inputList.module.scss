@@ -10,6 +10,19 @@ $orange: colors.$orange;
     opacity: 0;
     cursor: auto; 
   }
+
+  .title{
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.6rem;
+  }
+
+  .description{
+    font-size: 0.813rem;
+    font-weight: 400;
+    margin-bottom: 0.1rem;
+    color: #AEA39D;
+  }
   
   .buttonsContainer {
     display: block;
