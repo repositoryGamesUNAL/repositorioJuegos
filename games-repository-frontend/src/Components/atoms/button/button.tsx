@@ -11,6 +11,7 @@
     status = 'default',
     children,
     onClick,
+    type = "button",
   }) => {
 
     const buttonClasses = [
@@ -22,13 +23,13 @@
     ]
       .filter(Boolean)        // Filtramos valores `undefined` o `null`
       .join(' ');             
-      
     return (
       <button
         id={id}
         className={buttonClasses}
         onClick={onClick}
         disabled={status === 'disabled'}
+        type={type}
       >
         {variant === 'link' ? <a href="#">{children}</a> : children}
       </button>

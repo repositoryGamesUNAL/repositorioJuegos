@@ -6,4 +6,5 @@ export type ButtonProps = {
   onClick?: () => void;
   className?: string; 
   id?: string;
+  type?: "button" | "submit" | "reset"; 
 };

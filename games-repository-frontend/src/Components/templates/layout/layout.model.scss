@@ -3,9 +3,21 @@
   flex-direction: column; // Coloca los hijos en una columna
   min-height: 100vh; // Garantiza que el layout ocupe al menos toda la pantalla
   width: 100vw; // Ocupa todo el ancho
+  background-color: #ffffff;
+  // align-items: center;    
 
+  &__navbar, &__footer {
+    width: 100%;              // Ambos elementos ocupan todo el ancho disponible
+    background-color: lightgray;
+  }
+
+  // Estilos del Main (contenido principal)
   &__main {
-    flex: 1; // Toma todo el espacio restante si el contenido es pequeño
+    flex: 1;                  // Toma todo el espacio restante entre el Navbar y Footer
     background-color: #ffffff;
+    width: 100%;
+    max-width: 1280px;            // Fijo en 1280px
+    margin: 0 auto; 
+    padding: 30px 70px;          // Centra el contenido
   }
 }
