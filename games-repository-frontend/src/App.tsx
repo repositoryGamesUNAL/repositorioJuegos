@@ -1,16 +1,12 @@
-import React from 'react';
-import './App.css';
-import Steps from './Components/pruebas/pruebaStep'
-import Input from './Components/pruebas/pruebas'
+import "./App.css";
+import Steps from "./Components/pruebas/pruebaStep";
 
 function App() {
- 
-
   return (
     <>
-    <Steps/>
+      <Steps />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
