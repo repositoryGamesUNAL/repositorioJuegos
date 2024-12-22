@@ -32,8 +32,8 @@ const pruebaInput: React.FC = () => {
       >
         <p>Default </p>
 
-        <Input size="normal" placeholder="Default" width={361} />
-        <Input size="small" placeholder="Default" width={361} />
+        <Input size="normal" placeholder="Default" />
+        <Input size="small" placeholder="Default" />
       </div>
       <div>
         <Input
@@ -42,31 +42,19 @@ const pruebaInput: React.FC = () => {
           label="Label"
           placeholder="text area"
           maxLength={2}
-          width={361}
         />
       </div>
       <div>
-        <Input
-          size="normal"
-          error="Error text"
-          placeholder="Error"
-          width={361}
-        />
+        <Input size="normal" error="Error text" placeholder="Error" />
       </div>
       <div>
-        <Input size="small" disabled placeholder="Disabled" width={361} />
+        <Input size="small" disabled placeholder="Disabled" />
       </div>
       <div>
-        <Input size="normal" active placeholder="Active" width={361} />
+        <Input size="normal" active placeholder="Active" />
       </div>
       <div>
-        <Input
-          size="normal"
-          disabled
-          placeholder="text"
-          type="scroll"
-          width={361}
-        />
+        <Input size="normal" disabled placeholder="text" type="scroll" />
       </div>
     </div>
   );
