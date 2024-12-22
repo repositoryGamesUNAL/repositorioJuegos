@@ -1,6 +1,6 @@
-import React, { useRef } from "react";
-import '../input/input.scss'; // Importar estilos
-import { InputProps } from './input.type';
+import { useRef } from "react";
+import "../input/input.scss"; // Importar estilos
+import { InputProps } from "./input.type";
 
 const Input: React.FC<InputProps> = ({
   size = "normal",
@@ -23,7 +23,7 @@ const Input: React.FC<InputProps> = ({
     ${error ? "input--error" : ""} 
     ${disabled ? "input--disabled" : ""} 
     ${active ? "input--active" : ""}
-    ${type === "scroll" ? "input-textarea--scroll":""}
+    ${type === "scroll" ? "input-textarea--scroll" : ""}
   `;
 
   return (
