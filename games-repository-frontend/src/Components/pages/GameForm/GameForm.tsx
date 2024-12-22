@@ -194,7 +194,7 @@ const GameForm = () => {
 
   return (
     <div className={styles.container}>
-      <Headlines level="h3" text="Make a game" />
+      <Headlines level="h3" classNames={styles.headline} text="Make a game" />
       <div className={styles.stepper}>
         <Stepper activeStep={activeStep}>
           {steps.map((label, index) => {
