@@ -11,7 +11,7 @@ const Input: React.FC<InputProps> = ({
   type = "text",
   active = false,
   maxLength,
-  width,
+  onChange
 }) => {
   // Crear referencias separadas para input y textarea
   const inputRef = useRef<HTMLInputElement>(null);
@@ -36,10 +36,10 @@ const Input: React.FC<InputProps> = ({
         <input
           type="text"
           className={inputClassName}
-          ref={inputRef} // Asignar la referencia del input
+          ref={inputRef} 
           placeholder={placeholder}
-          disabled={disabled}
-          style={{ width: `${width}px` }} // Aplicar el estilo aquí
+          disabled={disabled} 
+          onChange={onChange}
         />
       )}
 
@@ -47,11 +47,11 @@ const Input: React.FC<InputProps> = ({
       {(type === "textarea" || type === "scroll") && (
         <textarea
           className={inputClassName}
-          ref={textareaRef} // Asignar la referencia del textarea
+          ref={textareaRef}
           placeholder={placeholder}
           disabled={disabled}
-          maxLength={maxLength}
-          style={{ width: `${width}px` }} // Aplicar el estilo aquí
+          maxLength={maxLength} 
+          onChange={onChange}
         />
       )}
 
