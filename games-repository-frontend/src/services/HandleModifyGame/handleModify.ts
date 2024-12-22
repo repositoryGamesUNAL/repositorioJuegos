@@ -8,16 +8,27 @@ export const handleModifyGame=({
     materials,
     objectives,
     time,
-    id,
-  }: ModifyGame)=>{
+    concepts,
+    rules,
+    winner,
+    teams,
+    level,
+    related,
+  } : ModifyGame, id:number)=>{
+
     axios.patch(`http://localhost:3000/games/${id}`,{
-    name,
-    purpose,
-    thematic,
-    genre,
-    materials,
-    objectives,
-    time
-    }
-    )
-  }
+      name,
+      purpose,
+      thematic,
+      genre,
+      materials,
+      objectives,
+      time,
+      concepts,
+      rules,
+      winner,
+      teams,
+      level,
+      related,
+    })
+  };
