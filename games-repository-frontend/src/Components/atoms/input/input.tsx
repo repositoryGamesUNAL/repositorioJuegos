@@ -1,28 +1,28 @@
-import React, { useRef } from "react";
+import React, { forwardRef } from "react";
 import { InputProps } from './input.type';
 import styles from './input.module.scss'; // Importar estilos como módulo
 
-const Input: React.FC<InputProps> = ({
-	className,
-	containerClassName,
-	squeare = false,
-	size = "normal",
-	label,
-	error,
-	placeholder = "Text",
-	disabled = false,
-	type = "text",
-	active = false,
-	maxLength,
-	onChange,
-	value
-}) => {
-	// Crear referencias separadas para input y textarea
-	const inputRef = useRef<HTMLInputElement>(null);
-	const textareaRef = useRef<HTMLTextAreaElement>(null);
-
-	// Generar las clases dinámicamente
-	const inputClasses = [
+const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputProps>(
+	(
+		{
+		className,
+		containerClassName,
+		squeare = false,
+		size = "normal",
+		label,
+		error,
+		placeholder = "Text",
+		disabled = false,
+		type = "text",
+		active = false,
+		maxLength,
+		onChange,
+		value,
+		},
+		ref // Recibe la referencia pasada como prop
+	) => {
+		// Generar las clases dinámicamente
+		const inputClasses = [
 		styles.input,             
 		styles[`input--${size}`],  
 		error && styles['input--error'],     
@@ -31,52 +31,55 @@ const Input: React.FC<InputProps> = ({
 		type === "scroll" && styles['input-textarea--scroll'],
 		squeare && styles['input--squeare'],
 		className 
-	]
+		]
 		.filter(Boolean) // Elimina valores `undefined` o `false`
 		.join(' '); // Une las clases en una cadena
 
-	const containerClasses = [
+		const containerClasses = [
 		styles["input-container"],
 		containerClassName
-	].filter(Boolean).join(' ');
+		].filter(Boolean).join(' ');
 
-	const normalizedValue = typeof value === "number" ? value.toString() : value;
+		const normalizedValue = typeof value === "number" ? value.toString() : value;
 
-	return (
+		return (
 		<div className={containerClasses}>
-		{/* Renderizado del label */}
-		{label && <label className={styles["input-label"]}>{label}</label>}
+			{/* Renderizado del label */}
+			{label && <label className={styles["input-label"]}>{label}</label>}
 
-		{/* Input de texto normal */}
-		{type === "text" && (
+			{/* Input de texto normal */}
+			{type === "text" && (
 			<input
-			type="text"
-			className={inputClasses}
-			ref={inputRef} 
-			placeholder={placeholder}
-			disabled={disabled} 
-			value={normalizedValue}
-			onChange={onChange}
+				type="text"
+				className={inputClasses}
+				ref={ref as React.Ref<HTMLInputElement>} 
+				placeholder={placeholder}
+				disabled={disabled} 
+				value={normalizedValue}
+				onChange={onChange}
 			/>
-		)}
+			)}
 
-		{/* Textarea */}
-		{(type === "textarea" || type === "scroll") && (
+			{/* Textarea */}
+			{(type === "textarea" || type === "scroll") && (
 			<textarea
-			className={inputClasses}
-			ref={textareaRef}
-			placeholder={placeholder}
-			disabled={disabled}
-			maxLength={maxLength} 
-			value={normalizedValue}
-			onChange={onChange}
+				className={inputClasses}
+				ref={ref as React.Ref<HTMLTextAreaElement>}
+				placeholder={placeholder}
+				disabled={disabled}
+				maxLength={maxLength} 
+				value={normalizedValue}
+				onChange={onChange}
 			/>
-		)}
+			)}
 
-		{/* Mensaje de error */}
-		{error && <span className={styles["input-error"]}>{error}</span>}
+			{/* Mensaje de error */}
+			{error && <span className={styles["input-error"]}>{error}</span>}
 		</div>
-	);
-};
+		);
+	}
+);
+
+Input.displayName = "Input";
 
 export default Input;
