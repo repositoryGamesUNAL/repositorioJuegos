@@ -1,9 +1,9 @@
 //import React from 'react';
-import "./Style.css";
+import "./Style.scss";
 import Button from "../../atoms/button";
 import logo from "./logoprototipo.png";
 
-function Footer() {
+export const Footer = () => {
   return (
     <>
       <link
@@ -58,6 +58,6 @@ function Footer() {
       </footer>
     </>
   );
-}
+};
 
 export default Footer;
