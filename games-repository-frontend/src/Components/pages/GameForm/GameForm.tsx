@@ -9,6 +9,7 @@ import Box from '@mui/material/Box';
 import Button from "../../atoms/button/button";
 import { FormData } from "./GameForm.type";
 import Input from '../../atoms/input/input';
+import InputList from '../../molecules/inputList/inputList';
 
 const steps = ['Datos generales', 'Conceptos fundamentales','Objetivos instruccionales', 'Reglas','Propositos'];
 
@@ -55,9 +56,18 @@ const GameForm = () => {
               render={({ field }) => <Input {...field} value={field.value || ""} label="Descripción" />}
             />
             <Controller
-              name="materials"
-              control={control}
-              render={({ field }) => <Input {...field} value={field.value || ""} label="Materiales" />}
+                name="materials"
+                control={control}
+                render={({ field }) => ( 
+                <InputList 
+                  {...field} value={field.value || ""} 
+                  placeholder='Material' 
+                  layout='column' 
+                  onChange={(inputs) => {
+                    field.onChange(inputs);
+                  }}
+                />
+              )}
             />
             <Controller
               name="gender"
@@ -97,13 +107,13 @@ const GameForm = () => {
             name="fundamentalConcepts"
             control={control}
             render={({ field }) => (
-              <Input
+              <InputList
                 {...field}
-                value={getValues("fundamentalConcepts").join(', ') || "" }
-                label="Conceptos fundamentales"
-                onChange={(e) => {
-                  const newValue = e.target.value.split(',').map((item) => item.trim());
-                  field.onChange(newValue);
+                value={getValues("fundamentalConcepts")}
+                title="Conceptos fundamentales"
+                placeholder='Concepto Fundamental'
+                onChange={(inputs) => {
+                  field.onChange(inputs);
                 }}
               />
             )}
@@ -115,13 +125,13 @@ const GameForm = () => {
             name="instructionalObjectives"
             control={control}
             render={({ field }) => (
-              <Input
+              <InputList
                 {...field}
-                value={getValues("instructionalObjectives").join(', ') || "" }
-                label="Objetivos instruccionales"
-                onChange={(e) => {
-                  const newValue = e.target.value.split(',').map((item) => item.trim());
-                  field.onChange(newValue);
+                value={getValues("instructionalObjectives")}
+                title="Objetivos instruccionales"
+                placeholder='Objetivo Instruccional'
+                onChange={(inputs) => {
+                  field.onChange(inputs);
                 }}
               />
             )}
@@ -133,13 +143,13 @@ const GameForm = () => {
             name="rules"
             control={control}
             render={({ field }) => (
-              <Input
+              <InputList
                 {...field}
-                value={getValues("rules").join(', ') || "" }
-                label="Reglas"
-                onChange={(e) => {
-                  const newValue = e.target.value.split(',').map((item) => item.trim());
-                  field.onChange(newValue);
+                value={getValues("rules")}
+                title="Reglas"
+                placeholder='Regla'
+                onChange={(inputs) => {
+                  field.onChange(inputs);
                 }}
               />
             )}
@@ -151,13 +161,13 @@ const GameForm = () => {
             name="purposes"
             control={control}
             render={({ field }) => (
-              <Input
+              <InputList
                 {...field}
-                value={getValues("purposes").join(', ') || "" }
-                label="Propósitos"
-                onChange={(e) => {
-                  const newValue = e.target.value.split(',').map((item) => item.trim());
-                  field.onChange(newValue);
+                value={getValues("purposes")}
+                title="Propósitos"
+                placeholder='Propósito'
+                onChange={(inputs) => {
+                  field.onChange(inputs);
                 }}
               />
             )}
