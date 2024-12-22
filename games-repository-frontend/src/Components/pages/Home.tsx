@@ -36,7 +36,7 @@ const Home: React.FC = () => {
           });
         }}
       >
-        Submit Game
+        Submit
       </button>
       <button
       type="submit"
