@@ -1,62 +1,107 @@
-  /* Header */
-  .header {
-    width: 100%;
-    background-color: #333;
-    padding: 10px 20px;
+@use "../../../styles/colors" as *;
+
+.header {
+  width: 100%;
+  background-color: #fff;
+
+  .navbar {
     display: flex;
     flex-direction: column;
-    border-bottom-color: #f57223;
-    border-width: 50px;
+    align-items: center;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    height: auto;
+    border-bottom: 1px solid $spacer;
+
+    .navbarList {
+      display: flex;
+      position: relative;
+    }
+
+    .navbarItem { 
+      position: relative; 
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
+      min-width: calc(16 * .5rem); 
+      height: 3.875rem; 
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0; 
+        left: 0;
+        width: 0;
+        height: 3px;
+        background-color: $orange;
+        transition: width 0.4s ease;
+      }
+    
+      &.active::before,
+      &:hover::before {
+        width: 100%;
+      }
+
+      & > a {
+        font-size: 16px;
+        font-weight: 400;
+        text-decoration: none;
+        padding: 18px 15px;
+        color: $black;
+      }
+    }    
   }
-  
+
   .top-bar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #333;
+    border-bottom: 1px solid $spacer;
     padding-bottom: 10px;
-  }
 
-  .logo {
-    height : 150px;
-    width :  300px;
+    .logo {
+      height: 150px;
+      width: 300px;
+      font-weight: bold;
+      background-color: #333;
+    }
 
-    font-weight: bold;
-    background-color: #333;
+    .user-actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .search-box {
+      display: flex;
+
+      input {
+        padding: 5px;
+        border: none;
+        background-color: white;
+        border-radius: 3px 0 0 3px;
+      }
+
+      button {
+        padding: 5px;
+        border: none;
+        background: lightgrey;
+        color: grey;
+        cursor: pointer;
+        border-radius: 0 3px 3px 0;
+      }
+    }
+
+    .auth-links {
+      a {
+        color: grey;
+        text-decoration: none;
+        font-size: 12px;
+
+        &.highlight {
+          color: #f57223; /* Orange Color */
+        }
+      }
+    }
   }
-  
-  .user-actions {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-  }
-  
-  .search-box {
-    display: flex;
-  }
-  
-  .search-box input {
-    padding: 5px;
-    border: none;
-    background-color: white;
-    border-radius: 3px 0 0 3px;
-  }
-  
-  .search-box button {
-    padding: 5px;
-    border: none;
-    background: lightgrey;
-    color: grey;
-    cursor: pointer;
-    border-radius: 0 3px 3px 0;
-  }
-  
-  .auth-links a {
-    color: grey;
-    text-decoration: none;
-    font-size: 12px;
-  }
-  
-  .auth-links a.highlight {
-    color: #f57223; /* Orange Color */
-  }
+}
