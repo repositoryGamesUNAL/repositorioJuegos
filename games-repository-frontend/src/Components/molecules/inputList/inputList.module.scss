@@ -55,7 +55,7 @@ $orange: colors.$orange;
         max-width: 13.5rem;
       }
 
-      @media (max-width: 750px) {
+      @media (max-width: 840px) {
         min-width: 100%;
         max-width: 100%;
       }
@@ -72,6 +72,7 @@ $orange: colors.$orange;
       width: 100%;
       margin-left: 0px;
       height: 4.313rem;
+      margin-right: 10px;
 
       &--column {
         height: 2.25rem;
