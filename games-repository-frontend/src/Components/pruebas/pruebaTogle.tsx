@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import Toggler from "../atoms/toggle";
 
 const App: React.FC = () => {

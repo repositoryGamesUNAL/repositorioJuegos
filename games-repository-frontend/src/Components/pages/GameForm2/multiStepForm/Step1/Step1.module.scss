@@ -1,0 +1,47 @@
+.step1Container{
+    width: 100%;
+
+    .horizontalInput{
+        display: flex;
+        gap: 1rem;
+    }
+
+    .equipoh4{
+        font-weight: 600;
+        font-size: 13px;
+    }
+
+    .inputFather{
+        width: 100%;
+        margin-left: 0;
+
+        &--column{
+            flex: 1;
+        }
+
+        &--numeric{
+            width: 2.5rem;
+            
+            margin: 0;
+        }
+
+        .inputChild{
+            width: 100%;
+            margin: 0;
+            
+            &--description{
+                height: 6.25rem;
+                resize: none;
+            }
+
+            &--column{
+                margin-right: 0;
+            }
+
+            &--numeric{
+                width: 100%;
+                margin: 0;
+            }
+        }
+    }
+}

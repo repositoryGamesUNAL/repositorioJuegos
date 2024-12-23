@@ -1,4 +1,4 @@
-import Button from "../atoms/button";
+import Button from '../atoms/button'
 
 const pruebaBoton: React.FC = () => {
   return (

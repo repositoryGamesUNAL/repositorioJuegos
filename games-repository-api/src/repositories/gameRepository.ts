@@ -36,7 +36,8 @@ export const modifyGame = (id: number, gameModified: Game): void => {
     teams,
     level,
     related,
-    thematic, } = gameModified;
+    thematic,
+    description } = gameModified;
   data[gameIndex].name = name ?? data[gameIndex].name;
   data[gameIndex].concepts = concepts ?? data[gameIndex].concepts;
   data[gameIndex].purpose = purpose ?? data[gameIndex].purpose;
@@ -49,4 +50,5 @@ export const modifyGame = (id: number, gameModified: Game): void => {
   data[gameIndex].level = level ?? data[gameIndex].level;
   data[gameIndex].related = related ?? data[gameIndex].related;
   data[gameIndex].thematic = thematic ?? data[gameIndex].thematic;
+  data[gameIndex].description = description ?? data[gameIndex].description;
 };

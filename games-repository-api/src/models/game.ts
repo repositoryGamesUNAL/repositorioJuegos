@@ -9,8 +9,8 @@ export type filesRelated = {
 export type jsonGame = {
   id : number;
   name : string;
-  concepts : string;
-  purpose : string;
+  concepts : string[];
+  purpose : string[];
   objectives: string[];
   materials : string[];
   rules : string[];
@@ -21,7 +21,8 @@ export type jsonGame = {
   level : string;
   related : filesRelated[];
   date : string;
-  thematic : string[]
+  thematic : string;
+  description : string;
 };
 export type newGame = Omit<jsonGame, "id" | "date">;
 export type changesOfGame = Partial<newGame>;
@@ -29,8 +30,8 @@ export type GameType = Game | null;
 export class Game {
   private _id : number;
   private _name : string;
-  private _concepts : string;
-  private _purpose : string;
+  private _concepts : string[];
+  private _purpose : string[];
   private _objectives: string[];
   private _materials : string[];
   private _rules : string[];
@@ -41,7 +42,8 @@ export class Game {
   private _level : string;
   private _related : filesRelated[];
   private _date : string;
-  private _thematic : string[];
+  private _thematic : string;
+  private _description : string;
 
   constructor(entrance: jsonGame) {
     this._id = entrance["id"];
@@ -59,6 +61,7 @@ export class Game {
     this._related = entrance["related"];
     this._date = entrance["date"];
     this._thematic = entrance["thematic"];
+    this._description = entrance["description"];
   }
 
   public get id(): number {
@@ -77,19 +80,19 @@ export class Game {
     this._name = value;
   }
 
-  public get concepts(): string {
+  public get concepts(): string[] {
     return this._concepts;
   }
 
-  public set concepts(value: string) {
+  public set concepts(value: string[]) {
     this._concepts = value;
   }
 
-  public get purpose(): string {
+  public get purpose(): string[] {
     return this._purpose;
   }
 
-  public set purpose(value: string) {
+  public set purpose(value: string[]) {
     this._purpose = value;
   }
 
@@ -173,11 +176,19 @@ export class Game {
     this._date = value;
   }
 
-  public get thematic(): string[] {
+  public get thematic(): string {
     return this._thematic;
   }
 
-  public set thematic(value: string[]) {
+  public set thematic(value: string) {
     this._thematic = value;
   }
+
+public get description(): string {
+  return this._description;
+}
+
+public set description(value: string) {
+  this._description = value;
+}
 }

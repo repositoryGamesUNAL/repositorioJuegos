@@ -1,0 +1,110 @@
+.container{
+    width: 100%;
+    height: auto;
+    background-color: #F9F4F0;
+    border-radius: 24px;
+    padding: 60px;
+    margin: 20px 0;
+}
+
+.stepper{
+    margin:20px 0px;
+    width: 100%;
+}
+
+.div-buttons{
+    margin-top: 3rem;
+    display: flex;
+    justify-content: space-between;
+} 
+
+.step1{
+    width: 100%;
+
+    .horizontalInput{
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .equipoh4{
+        font-weight: 600;
+        font-size: 13px;
+    }
+    
+    .inputFather{
+        width: 100%;
+        margin-left: 0;
+
+        &--column{
+            flex: 1;
+        }
+
+        &--numeric{
+            width: 3rem;
+            
+            margin: 0;
+        }
+
+        .inputChild{
+            width: 100%;
+            margin: 0;
+            
+            &--description{
+                height: 6.25rem;
+                resize: none;
+            }
+
+            &--column{
+                margin-right: 0;
+            }
+
+            &--numeric{
+                width: 100%;
+                margin: 0;
+            }
+        }
+    }
+}
+
+.generalStep{
+    min-height:27.5rem;
+}
+
+.buttonsContainer{
+    height: auto;
+    overflow-y:none ;
+    margin-top: 20px;
+
+    .buttons{
+        width: auto;
+        margin-left: 10px;
+    }
+
+}
+
+.loaderContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh; // Puedes ajustarlo según tu layout
+  }
+  
+  .loader {
+    border: 4px solid rgba(0, 0, 0, 0.1); // Color del borde exterior
+    border-top: 4px solid #3498db; // Color del borde animado
+    border-radius: 50%;
+    width: 40px; // Tamaño del loader
+    height: 40px;
+    animation: spin 1s linear infinite;
+  }
+  
+    @keyframes spin {
+        0% {
+        transform: rotate(0deg);
+        }
+        100% {
+        transform: rotate(360deg);
+        }
+  }
+  

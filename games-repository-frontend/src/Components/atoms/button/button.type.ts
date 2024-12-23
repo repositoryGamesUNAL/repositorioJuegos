@@ -5,4 +5,6 @@ export type ButtonProps = {
   children: React.ReactNode;
   onClick?: () => void;
   className?: string; 
+  id?: string;
+  type?: "button" | "submit" | "reset"; 
 };

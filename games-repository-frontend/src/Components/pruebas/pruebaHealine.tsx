@@ -1,4 +1,4 @@
-import Headline from "../atoms/headlines/headlines"
+import Headline from "../atoms/headlines"
 
 
 

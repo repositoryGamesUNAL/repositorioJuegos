@@ -13,6 +13,7 @@
     box-sizing: border-box; /* Configuración común */
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
     
   }
   h1, h2, h3, h4, h5, h6,p {
@@ -35,4 +36,12 @@
     place-items: center;
     min-width: 320px;
     min-height: 100vh;
+  }
+
+  .gray-container {
+    background-color: #F9F4F0;
+    padding: 20px;
+    border-radius: 10px;
+  height: 100%;
+  overflow: auto;
   }

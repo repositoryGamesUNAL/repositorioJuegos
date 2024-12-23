@@ -1,3 +1,4 @@
+import React from "react";
 import Input from "../atoms/input";
 
 const pruebaInput: React.FC = () => {

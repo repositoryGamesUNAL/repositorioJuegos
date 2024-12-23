@@ -1,5 +1,6 @@
 //import React from 'react';
 import "./Style.scss";
+import { Link } from "react-router-dom";
 import Button from "../../atoms/button";
 import logo from "./logoprototipo.png";
 
@@ -14,9 +15,9 @@ export const Footer = () => {
         <div className="grupo-1">
           <div className="box">
             <figure>
-              <a href="#">
+              <Link to="" >
                 <img src={logo} alt="Logo Prototipo" />
-              </a>
+              </Link>
             </figure>
           </div>
           <div className="box">

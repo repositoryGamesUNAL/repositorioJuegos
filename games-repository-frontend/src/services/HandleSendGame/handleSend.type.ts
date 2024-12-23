@@ -8,14 +8,15 @@ type related={
 };
 export type SendGame = {
   name: string;
-  purpose: string;
-  thematic: Array<string>;
+  purpose: string[];
+  description: string;
+  thematic: string;
   genre: string;
-  materials: Array<string>;
-  objectives: Array<string>;
+  materials: string[];
+  objectives: string[];
   time: string;
-  concepts: string;
-  rules:Array<string>;
+  concepts: string[];
+  rules:string[];
   winner:string;
   teams:teams;
   level:string;
