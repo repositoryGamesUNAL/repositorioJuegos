@@ -31,7 +31,7 @@ export const routes: RouteConfig[] = [
         <img 
           style={{
             position: 'absolute',
-            top: '200px',
+            top: '350px',
             left: '20px',
             width: '150px',
             height: 'auto' // Si deseas que la altura se ajuste proporcionalmente
@@ -43,7 +43,7 @@ export const routes: RouteConfig[] = [
         <img 
           style={{
             position: 'absolute',
-            top: '200px',
+            top: '350px',
             right: '20px',
             width: '150px',
             height: '340px' // Si deseas que la altura se ajuste proporcionalmente
