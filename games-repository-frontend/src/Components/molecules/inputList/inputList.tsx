@@ -80,7 +80,7 @@ const InputList: React.FC<InputListProps> = ({
 
 	return (
 		<div id={id} className={containerInputClasses}>
-			{title && <Headlines level="h4" text={title}/>}
+			{title && <Headlines level="h4" text={title} classNames={styles.title}/>}
 			{description && <p className={styles.description}>{description}</p>}
 			<div className={columnDiv}>
 			{inputs.map((input, index) => (

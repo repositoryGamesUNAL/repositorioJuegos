@@ -3,6 +3,7 @@ import { useForm } from '../../hooks/useForm';
 import styles from './step1.module.scss';
 import Input from '../../../../atoms/input/input';
 import InputList from '../../../../molecules/inputList/inputList';
+import Headlines from '../../../../atoms/headlines/headlines';
 
 const Step1: React.FC = () => {
   	const { state, dispatch } = useForm();
@@ -16,6 +17,31 @@ const Step1: React.FC = () => {
 		dispatch({ type: 'NEXT_STEP' });
 	};
 
+	const descriptionStyle=[
+		styles.inputChild,
+		styles['inputChild--description']
+	  ].join(' ');
+
+	const columnInputs=[
+		styles.inputFather,
+		styles['inputFather--column']
+	].join(' ');
+	
+	const columChildInputs=[
+		styles.inputChild,
+		styles['inputChild--column']
+	].join(' ');
+
+	const inputTeam=[
+		styles.inputChild,
+		styles['inputChild--numeric']
+	].join(' ');
+
+	const inputFatherInput=[
+		styles.inputFather,
+		styles['inputFather--numeric']
+	].join(' ');
+
 	return (
 		<div className={styles.step1Container}>
 			<Input
@@ -23,16 +49,16 @@ const Step1: React.FC = () => {
 				className={styles.inputChild}
 				type="text"
 				label='Nombre'
-				placeholder="Title"
+				placeholder="Nombre del juego"
 				squeare={true}
 			/>
 
 			<Input
 				containerClassName={styles.inputFather}
-				className={styles.inputChild}
+				className={descriptionStyle}
 				type="textarea"
 				label='Descripcion'
-				placeholder="Description"
+				placeholder="Descricion del juego"
 				squeare={true}
 			/>
 
@@ -42,24 +68,30 @@ const Step1: React.FC = () => {
 				title='Materiales'
 			/>
 
-			<div>
+			<div className={styles.horizontalInput}>
 				<Input
 					type="text"
 					label='Genero'
 					placeholder="Title"
-					squeare={true}
+                    squeare={true}
+                    className={columChildInputs}
+                    containerClassName={columnInputs}
 				/>
 				<Input
 					type="text"
 					label='Tiempo'
-					placeholder="Title"
-					squeare={true}
+					placeholder="Minutos.."
+                    squeare={true}
+                    className={columChildInputs}
+                    containerClassName={columnInputs}
 				/>
 				<Input
 					type="text"
 					label='Nivel'
-					placeholder="Title"
-					squeare={true}
+					placeholder="Alto, Medio, Bajo"
+                    squeare={true}
+                    className={columChildInputs}
+                    containerClassName={columnInputs}
 				/>
 			</div>
 			<Input
@@ -70,6 +102,25 @@ const Step1: React.FC = () => {
 				placeholder="Title"
 				squeare={true}
 			/>
+			<Headlines level={"h4"} text='Equipos' classNames={styles.equipoh4}/>
+			<div className={styles.horizontalInput}>
+				<Input
+					containerClassName={inputFatherInput}
+					className={inputTeam}
+					type="number"
+					label="Min"
+					placeholder="0"
+					squeare={true}
+				/>
+				<Input
+					containerClassName={inputFatherInput}
+					className={inputTeam}
+					type="number"
+					label="Max"
+					placeholder="0"
+					squeare={true}
+				/>
+			</div>
 
 			<form onSubmit={handleSubmit}>
 				<button type="submit">Next</button>

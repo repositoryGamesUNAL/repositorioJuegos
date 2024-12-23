@@ -12,9 +12,8 @@ $orange: colors.$orange;
   }
 
   .title{
-    font-size: 1rem;
     font-weight: 600;
-    margin-bottom: 0.6rem;
+    font-size: 13px;
   }
 
   .description{
@@ -35,7 +34,6 @@ $orange: colors.$orange;
     display: flex;
     flex-wrap: wrap; 
     column-gap: 16px; 
-
   }
 
   .inputItem {
