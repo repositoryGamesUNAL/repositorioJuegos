@@ -35,10 +35,21 @@ const GameForm = () => {
   });
   
   const onSubmit = (data: FormData) => {
+    // Convertir `min` y `max` explícitamente (aunque ya son números)
+    const min = Number(data.teams.min);
+    const max = Number(data.teams.max);
+  
+    // Crear el objeto `teams` directamente
+    const teams = {
+      min,
+      max,
+    };
+  
+    // Crear el nuevo juego
     const newGame = {
       name: data.name,
       purpose: data.purposes,
-      thematic: ["tematica","tematica2"],
+      thematic: "Gonorrea",
       genre: data.gender,
       materials: data.materials,
       objectives: data.instructionalObjectives,
@@ -46,10 +57,12 @@ const GameForm = () => {
       concepts: data.fundamentalConcepts,
       rules: data.rules,
       winner: data.winnerCriteria,
-      teams: data.teams,
+      teams: teams,
       level: data.level,
       related: [],
-    }
+    };
+  
+    // Procesar la siguiente acción
     handleNext();
     handleSendGame(newGame);
   };

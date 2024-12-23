@@ -9,7 +9,7 @@ type related={
 export type SendGame = {
   name: string;
   purpose: string[];
-  thematic: string[];
+  thematic: string;
   genre: string;
   materials: string[];
   objectives: string[];
