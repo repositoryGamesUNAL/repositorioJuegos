@@ -21,7 +21,8 @@ export type jsonGame = {
   level : string;
   related : filesRelated[];
   date : string;
-  thematic : string
+  thematic : string;
+  description : string;
 };
 export type newGame = Omit<jsonGame, "id" | "date">;
 export type changesOfGame = Partial<newGame>;
@@ -42,6 +43,7 @@ export class Game {
   private _related : filesRelated[];
   private _date : string;
   private _thematic : string;
+  private _description : string;
 
   constructor(entrance: jsonGame) {
     this._id = entrance["id"];
@@ -59,6 +61,7 @@ export class Game {
     this._related = entrance["related"];
     this._date = entrance["date"];
     this._thematic = entrance["thematic"];
+    this._description = entrance["description"];
   }
 
   public get id(): number {
@@ -180,4 +183,12 @@ export class Game {
   public set thematic(value: string) {
     this._thematic = value;
   }
+
+public get description(): string {
+  return this._description;
+}
+
+public set description(value: string) {
+  this._description = value;
+}
 }

@@ -20,6 +20,7 @@ const validateFields = (
     case "genre": 
     case "time":
     case "level":
+    case "description":
     case "time":
       if (!(typeof data[field] === "string")) {
         res.status(400);
