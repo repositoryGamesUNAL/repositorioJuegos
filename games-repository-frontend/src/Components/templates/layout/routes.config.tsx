@@ -25,7 +25,36 @@ export const routes: RouteConfig[] = [
     element: <GameForm />
   },*/
   {
+    path: '/game/create/:id?',
+    element: (
+      <>
+        <img 
+          style={{
+            position: 'absolute',
+            top: '200px',
+            left: '20px',
+            width: '150px',
+            height: 'auto' // Si deseas que la altura se ajuste proporcionalmente
+          }} 
+          src="/roshi.png" 
+          alt="" 
+        />
+        <GameForm key={2000} />
+        <img 
+          style={{
+            position: 'absolute',
+            top: '200px',
+            right: '20px',
+            width: '150px',
+            height: '340px' // Si deseas que la altura se ajuste proporcionalmente
+          }} 
+          src="/navidad.jpg" 
+          alt="" 
+        />
+      </>)
+  },
+  {
     path: '/game/:action/:id?',
-    element: <GameForm />
-  }
+    element: (<GameForm key={129492}/>)
+  },
 ];
