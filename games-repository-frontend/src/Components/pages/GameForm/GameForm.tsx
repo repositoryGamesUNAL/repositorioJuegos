@@ -16,7 +16,7 @@ const steps = ['Datos generales', 'Conceptos fundamentales','Objetivos instrucci
 const GameForm = () => {
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set<number>());
-  const { control, handleSubmit, setValue ,getValues} = useForm<FormData>({
+  const { control, handleSubmit, setValue ,getValues, reset} = useForm<FormData>({
     defaultValues: {
       name: "",
       description: "",
@@ -306,7 +306,7 @@ const GameForm = () => {
 
   const handleReset = () => {
     setActiveStep(0);
-    
+    reset();
   };
 
   return (
