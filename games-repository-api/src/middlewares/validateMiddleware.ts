@@ -15,10 +15,9 @@ const validateFields = (
     field //validate if the field is the correct type
   ) {
     case "name":
-    case "concepts":
-    case "purpose":
     case "winner":
-    case "genre":
+    case "thematic":
+    case "genre": 
     case "time":
     case "level":
     case "time":
@@ -28,7 +27,8 @@ const validateFields = (
       }
       break;
     case "objectives":
-    case "thematic":
+    case "concepts":
+    case "purpose":
     case "materials":
     case "rules":
       if (!Array.isArray(data[field])) {
