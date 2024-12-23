@@ -25,7 +25,11 @@ export const routes: RouteConfig[] = [
     element: <GameForm />
   },*/
   {
+    path: '/game/create/:id?',
+    element: <GameForm key={2000} />
+  },
+  {
     path: '/game/:action/:id?',
-    element: <GameForm />
-  }
+    element: <GameForm key={129492}/>
+  },
 ];

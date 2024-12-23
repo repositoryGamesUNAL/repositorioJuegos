@@ -5,19 +5,25 @@ import Headlines from '../../atoms/headlines/';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
-import Box from '@mui/material/Box';
 import Button from "../../atoms/button/";
 import { FormData } from "./GameForm.type";
 import Input from '../../atoms/input/';
 import InputList from '../../molecules/inputList/';
 import { handleSendGame } from '../../../services/HandleSendGame/handleSend';
+import { useNavigate, useParams, Link } from 'react-router-dom';
+import axios from 'axios';
+import { handleModifyGame } from '../../../services/HandleModifyGame/handleModify';
 
 const steps = ['Datos generales', 'Conceptos fundamentales','Objetivos instruccionales', 'Reglas','Propositos'];
 
 const GameForm = () => {
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set<number>());
-  const { control, handleSubmit, setValue ,getValues, reset} = useForm<FormData>({
+  const [isLoading, setIsLoading] = React.useState(true); // Estado para el loader
+  const { id, action } = useParams();
+  const [createdId,setCreatedId] = React.useState(0);
+  const navigate = useNavigate();
+  const { control, handleSubmit, setValue, reset, getValues } = useForm<FormData>({
     defaultValues: {
       name: "",
       description: "",
@@ -26,15 +32,53 @@ const GameForm = () => {
       time: "",
       level: "",
       winnerCriteria: "",
-      fundamentalConcepts: [], // Asegúrate de que sea un array vacío por defecto
+      fundamentalConcepts: [],
       instructionalObjectives: [],
       rules: [],
       purposes: [],
       teams: { min: 0, max: 0 },
     },
   });
-  
-  const onSubmit = (data: FormData) => {
+
+  // Fetch data when `action` is "edit"
+  React.useEffect(() => {
+    if (action === "edit" && id) {
+      axios
+        .get(`http://localhost:3000/games/${id}`)
+        .then((response) => {
+          const data = response.data;
+          console.log(data);
+          reset({
+            name: data.name || "",
+            description: data.description || "",
+            materials: data.materials || [],
+            gender: data.genre || "",
+            time: data.time || "",
+            level: data.level || "",
+            winnerCriteria: data.winner || "",
+            fundamentalConcepts: data.concepts || [],
+            instructionalObjectives: data.objectives || [],
+            rules: data.rules || [],
+            purposes: data.purpose || [],
+            teams: {
+              min: data.teams?.min || 0,
+              max: data.teams?.max || 0,
+            },
+          });
+          setCreatedId(data.id);
+        })
+        .catch((error) => {
+          console.error("Error fetching game data:", error);
+        })
+        .finally(() => {
+          setTimeout(() => {setIsLoading(false);} , 1500);
+        });
+    } else {
+      setIsLoading(false); // No hay datos que cargar
+    }
+  }, [action, id, reset]);
+
+  const onSubmit = async (data: FormData) => {
     // Convertir `min` y `max` explícitamente (aunque ya son números)
     const min = Number(data.teams.min);
     const max = Number(data.teams.max);
@@ -48,6 +92,7 @@ const GameForm = () => {
     // Crear el nuevo juego
     const newGame = {
       name: data.name,
+      description: data.description,
       purpose: data.purposes,
       thematic: "Gonorrea",
       genre: data.gender,
@@ -63,9 +108,26 @@ const GameForm = () => {
     };
   
     // Procesar la siguiente acción
-    handleNext();
-    handleSendGame(newGame);
+    if (action === "edit") {
+      const number_id = Number(id);
+      handleModifyGame(newGame, number_id);
+    } else {
+      try {
+        // Esperar a que se resuelva la promesa de handleSendGame
+        const newId = await handleSendGame(newGame);
+        setCreatedId(newId);
+      } catch (error) {
+        console.error('Error al crear el juego:', error);
+      }
+    }
+  
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+      handleNext();
+    }, 1500);
   };
+  
 
   const descriptionStyle=[
     styles.inputChild,
@@ -99,6 +161,7 @@ const GameForm = () => {
         return (
           <div className={styles.step1}>
             <Controller
+              key={20}
               name="name"
               control={control}
               render={({ field }) => (
@@ -113,6 +176,7 @@ const GameForm = () => {
                 />)}
             />
             <Controller
+              key={21}  
               name="description"
               control={control}
               render={({ field }) => 
@@ -127,12 +191,13 @@ const GameForm = () => {
                 />}
             />
             <Controller
+                key={10}
                 name="materials"
                 control={control}
                 render={({ field }) => ( 
                 <InputList 
                   {...field} 
-                  value={field.value || ""} 
+                  value={field.value} 
                   placeholder='Material' 
                   layout='column' 
                   onChange={(inputs) => {
@@ -143,6 +208,7 @@ const GameForm = () => {
             />
             <div className={styles.horizontalInput}>
               <Controller
+                key={22}
                 name="gender"
                 control={control}
                 render={({ field }) => 
@@ -156,6 +222,7 @@ const GameForm = () => {
                   />}
               />
               <Controller
+                key={23}    
                 name="time"
                 control={control}
                 render={({ field }) => 
@@ -169,6 +236,7 @@ const GameForm = () => {
                   />}
               />
               <Controller
+                key={24}
                 name="level"
                 control={control}
                 render={({ field }) => 
@@ -183,6 +251,7 @@ const GameForm = () => {
               />
             </div>
             <Controller
+              key={25}
               name="winnerCriteria"
               control={control}
               render={({ field }) => 
@@ -198,6 +267,7 @@ const GameForm = () => {
 
             <div className={styles.horizontalInput}>
               <Controller
+                key={26}
                 name="teams.min"
                 control={control}
                 render={({ field }) => 
@@ -213,6 +283,7 @@ const GameForm = () => {
                   />}
               />
               <Controller
+                key={27}
                 name="teams.max"
                 control={control}
                 render={({ field }) => 
@@ -338,6 +409,20 @@ const GameForm = () => {
     reset();
   };
 
+  const handleEdit = () => {
+    console.log("Editar", createdId);
+    navigate(`/game/edit/${createdId}/`);
+  };
+
+  if (isLoading) {
+    // Loader mientras los datos se cargan
+    return (
+      <div className={styles.loaderContainer}>
+        <div className={styles.loader}></div>
+      </div>
+    );
+  }
+
   return (
     <div className={styles.container}>
       <Headlines level="h3" classNames={styles.headline} text="Crea un Juego" />
@@ -360,11 +445,18 @@ const GameForm = () => {
 
       {activeStep === steps.length ? (
         <React.Fragment>
-          <h3>Juego creado con éxito</h3>
-          <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
-            <Box sx={{ flex: "1 1 auto" }} />
+          <h3>{(action != 'editar' ? "Juego creado con éxito": "Juego editado con éxito" )} </h3>
+          <div className={styles.buttonsContainer}>
             <Button onClick={handleReset}>Crear otro</Button>
-          </Box>
+            {action !== "edit" ? (
+              <Link to={`/game/edit/${createdId}`}>
+                <Button className={styles.buttons} >Editar</Button>
+              </Link>
+            ) : (
+              <Button className={styles.buttons} onClick={handleReset}>Editar de nuevo</Button>
+            )}
+          </div>
+
         </React.Fragment>
       ) : (
         <React.Fragment>
