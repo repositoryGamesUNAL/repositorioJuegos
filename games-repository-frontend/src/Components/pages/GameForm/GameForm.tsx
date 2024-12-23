@@ -10,6 +10,7 @@ import Button from "../../atoms/button/";
 import { FormData } from "./GameForm.type";
 import Input from '../../atoms/input/';
 import InputList from '../../molecules/inputList/';
+import { handleSendGame } from '../../../services/HandleSendGame/handleSend';
 
 const steps = ['Datos generales', 'Conceptos fundamentales','Objetivos instruccionales', 'Reglas','Propositos'];
 
@@ -34,8 +35,23 @@ const GameForm = () => {
   });
   
   const onSubmit = (data: FormData) => {
-    console.log(data);
+    const newGame = {
+      name: data.name,
+      purpose: data.purposes,
+      thematic: ["tematica","tematica2"],
+      genre: data.gender,
+      materials: data.materials,
+      objectives: data.instructionalObjectives,
+      time: data.time,
+      concepts: data.fundamentalConcepts,
+      rules: data.rules,
+      winner: data.winnerCriteria,
+      teams: data.teams,
+      level: data.level,
+      related: [],
+    }
     handleNext();
+    handleSendGame(newGame);
   };
 
   const descriptionStyle=[
