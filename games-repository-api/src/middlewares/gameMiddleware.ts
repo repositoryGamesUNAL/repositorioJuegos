@@ -26,7 +26,6 @@ export const getGameById = (
 
     res.status(200).json(game);
   } catch (err) {
-    console.log(err);
     next(err);
   }
 };
