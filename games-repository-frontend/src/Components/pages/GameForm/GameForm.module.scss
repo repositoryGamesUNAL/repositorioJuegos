@@ -1,7 +1,10 @@
 .container{
-    display: flex;  /* El contenedor es un flexbox */
-    flex-direction: column;  /* O row, dependiendo de la orientación que desees */
-    height: 85vh;  /* O cualquier valor fijo */
+    width: 100%;
+    height: auto;
+    background-color: #F9F4F0;
+    border-radius: 24px;
+    padding: 60px;
+    margin: 20px 0;
 }
 
 .stepper{
@@ -13,7 +16,37 @@
     display: flex;
     justify-content: space-between;
     margin-top: 10px;
+} 
+
+.step1{
+    width: 100%;
+
+    .horizontalInput{
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    .inputFather{
+        width: 100%;
+        margin-left: 0;
+
+        &--column{
+            flex: 1;
+        }
+
+        .inputChild{
+            width: 100%;
+            margin: 0;
+
+            &--description{
+                height: 6.25rem;
+                resize: none;
+            }
+
+            &--column{
+                margin-right: 0;
+            }
+        }
+    }
 }
-
-
-  
