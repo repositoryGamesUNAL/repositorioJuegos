@@ -1,8 +1,16 @@
 export interface FormData {
-    firstName?: string;
-    lastName?: string;
-    email?: string;
-    phone?: string;
+    name: string;
+    description: string;
+    materials: stirng[];
+    gender: string;
+    time: string;
+    level: string;
+    winnerCriteria: string;
+    fundamentalConcepts: string[];
+    instructionalObjectives: string[];
+    rules: string[];
+    purposes: string[];
+    teams: { min: numer, max: number };
 }
 
 export interface FormState {

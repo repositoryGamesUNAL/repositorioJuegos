@@ -1,9 +1,9 @@
 import React from 'react';
 import { useForm } from '../../hooks/useForm';
 import styles from './step1.module.scss';
-import Input from '../../../../atoms/input/input';
-import InputList from '../../../../molecules/inputList/inputList';
-import Headlines from '../../../../atoms/headlines/headlines';
+import Input from '../../../../atoms/input';
+import InputList from '../../../../molecules/inputList';
+import Headlines from '../../../../atoms/headlines';
 
 const Step1: React.FC = () => {
   	const { state, dispatch } = useForm();

@@ -1,5 +1,5 @@
 import React from "react";
-import Step from "../molecules/steps/steps";
+import Step from "../molecules/steps";
 
 import { StepItem } from '../molecules/steps/steps.type';
 

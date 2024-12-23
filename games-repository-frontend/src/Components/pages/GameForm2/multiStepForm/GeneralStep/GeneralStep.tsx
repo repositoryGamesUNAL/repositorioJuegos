@@ -3,20 +3,19 @@ import { useForm } from '../../hooks/useForm';
 import styles from './GeneralStep.module.scss';
 import { GeneralStepProps } from './GeneralStep.type';
 
-const GeneralStep: React.FC<GeneralStepProps> = ({child}) => {
+const GeneralStep: React.FC<GeneralStepProps> = ({child, param}) => {
 	const { state, dispatch } = useForm();
 
-	const handleSubmit = (e: React.FormEvent) => {
-		e.preventDefault();
-		const form = new FormData(e.target as HTMLFormElement);
-		const data = Object.fromEntries(form.entries()) as Record<string, string>;
-
-		dispatch({ type: 'UPDATE_FORM_DATA', payload: data });
-		dispatch({ type: 'NEXT_STEP' });
-	};
-
 	const handleChange = (inputs: string[]) => {
-		console.log(inputs);
+		const newData = {
+			[param]: inputs,
+		}
+		
+		dispatch(
+			{ type: 'UPDATE_FORM_DATA', 
+				payload: newData 
+			}
+		);
 	};
 
 	return (

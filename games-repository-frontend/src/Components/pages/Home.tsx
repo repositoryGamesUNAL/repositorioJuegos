@@ -1,5 +1,5 @@
 import React from 'react';
-import InputList from '../molecules/inputList/inputList';
+import InputList from '../molecules/inputList';
 
 const Home: React.FC = () => {
     return (

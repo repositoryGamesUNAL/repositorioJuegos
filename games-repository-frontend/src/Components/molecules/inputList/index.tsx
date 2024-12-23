@@ -1,12 +1,13 @@
 import React, {	useState, useEffect } from "react";
-import Input from "../../atoms/input/input";
-import Button from "../../atoms/button/button";
-import Headlines from "../../atoms/headlines/headlines";
+import Input from "../../atoms/input";
+import Button from "../../atoms/button";
+import Headlines from "../../atoms/headlines";
 import styles from "./inputList.module.scss";
 import { InputListProps } from "./inputList.type"; 
 import { v4 as uuidv4 } from "uuid";
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { set } from "react-hook-form";
 
 const InputList: React.FC<InputListProps> = ({
 	placeholder = "Item",

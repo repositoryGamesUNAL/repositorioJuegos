@@ -2,7 +2,18 @@ import { FormState, FormAction } from '../context';
 
 export const initialState: FormState = {
     formData: {
-		
+		name: "",
+		description: "",
+		materials: [],
+		gender: "",
+		time: "",
+		level: "",
+		winnerCriteria: "",
+		fundamentalConcepts: [], 
+		instructionalObjectives: [],
+		rules: [],
+		purposes: [],
+		teams: { min: 0, max: 0 },
 	},
     currentStep: 0,
 };

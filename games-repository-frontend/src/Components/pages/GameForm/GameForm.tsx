@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { useForm, Controller } from "react-hook-form";
 import styles  from "./GameForm.module.scss";
-import Headlines from '../../atoms/headlines/headlines';
+import Headlines from '../../atoms/headlines';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Box from '@mui/material/Box';
-import Button from "../../atoms/button/button";
+import Button from "../../atoms/button";
 import { FormData } from "./GameForm.type";
-import Input from '../../atoms/input/input';
+import Input from '../../atoms/input';
 
 const steps = ['Datos generales', 'Conceptos fundamentales','Objetivos instruccionales', 'Reglas','Propositos'];
 

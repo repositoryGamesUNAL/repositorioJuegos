@@ -1,3 +1,4 @@
 export interface GeneralStepProps{
-    child: React.ReactNode;
+    child: React.ReactElement;
+    param: string;
 }

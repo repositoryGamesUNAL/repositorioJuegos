@@ -1,6 +1,6 @@
 import React from 'react';
 import { useForm } from '../../hooks/useForm';
-import Button from '../../../../atoms/button/button';
+import Button from '../../../../atoms/button';
 import styles from './ControlButtons.module.scss'; // Importamos el SCSS específico de este componente
 
 const ControlButtons: React.FC = () => {
@@ -14,6 +14,7 @@ const ControlButtons: React.FC = () => {
 	};
 
 	const handleNext = () => {
+		console.log(state.formData);
 		if (!isLastStep) {
 			dispatch({ type: 'NEXT_STEP' });
 		} else {

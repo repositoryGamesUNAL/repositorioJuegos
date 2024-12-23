@@ -2,7 +2,7 @@ import React from 'react';
 import { FormProvider } from './context/FormContext/FormContext';
 import MultiStepForm from './multiStepForm/MultiStepForm';
 import styles from './gameForm.module.scss'
-import Headlines from '../../atoms/headlines/headlines';
+import Headlines from '../../atoms/headlines';
 
 const GameForm: React.FC = () => {
     return (

@@ -1,6 +1,6 @@
 
 
-import Button from '../atoms/button/button'
+import Button from '../atoms/button'
 
 
 

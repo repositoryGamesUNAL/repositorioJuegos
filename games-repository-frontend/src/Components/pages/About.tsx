@@ -1,5 +1,5 @@
 import React from 'react';
-import Headlines from '../atoms/headlines/headlines';
+import Headlines from '../atoms/headlines';
 
 const About: React.FC = () => {
   return (

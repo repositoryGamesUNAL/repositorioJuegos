@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Toggler from "../atoms/toggle/toggle";
+import Toggler from "../atoms/toggle";
 
 const App: React.FC = () => {
   const [isOn, setIsOn] = useState(false);
