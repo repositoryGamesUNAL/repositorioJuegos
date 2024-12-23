@@ -1,4 +1,3 @@
-// app.test.ts
 import { Request, Response } from "express";
 import { logError, errorResponse } from "../middlewares/errorMiddleware";
 
@@ -16,19 +15,13 @@ describe("App Initialization", () => {
         next = jest.fn();
     });
 
-    it("should handle JSON requests", () => {
-        const body = { key: "value" };
-        req = { ...req, body };
-        expect(req.body).toEqual(body);
-    });
-
-    it("should call logError middleware", () => {
+    it("should call next with error object middleware", () => {
         const error = new Error("Test Error");
         logError(error, req as Request, res as Response, next);
         expect(next).toHaveBeenCalledWith(error);
     });
 
-    it("should call errorResponse middleware", () => {
+    it("errorResponse should have status 500 and have a message error", () => {
         const error = new Error("Test Error");
         errorResponse(error, req as Request, res as Response, next);
         expect(res.status).toHaveBeenCalledWith(500);

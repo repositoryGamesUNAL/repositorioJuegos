@@ -2,7 +2,7 @@
 import { Request, Response } from "express";
 import { logError, errorResponse, gameNotFound } from "../../middlewares/errorMiddleware";
 
-describe("Middleware Tests", () => {
+describe("errorMiddleware Tests", () => {
     let req: Partial<Request>;
     let res: Partial<Response>;
     let next: jest.Mock;
@@ -19,9 +19,9 @@ describe("Middleware Tests", () => {
         next = jest.fn();
     });
 
-    it("should log error with logError middleware", () => {
+    it("should call next with object error middleware", () => {
         const error = new Error("Test Error");
-        console.log = jest.fn(); // Mock console.log
+        console.log = jest.fn();
 
         logError(error, req as Request, res as Response, next);
 
