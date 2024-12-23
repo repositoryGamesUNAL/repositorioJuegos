@@ -4,6 +4,7 @@ import styles from './multiStepForm.module.scss';
 import Step1 from './Step1/Step1';
 import Step2 from './Step2';
 import Step3 from './Step3';
+import ControlButtons from './ControlButtons/ControlButtons';
 
 const MultiStepForm: React.FC = () => {
 	const { state } = useForm();
@@ -15,8 +16,11 @@ const MultiStepForm: React.FC = () => {
 	];
 
 	return (
-		<div className={styles.mask}>
-			{steps[state.currentStep]}
+		<div>
+			<div className={styles.mask}>
+				{steps[state.currentStep]}
+			</div>
+			<ControlButtons />
 		</div>
 	);
 };
