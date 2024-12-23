@@ -12,17 +12,16 @@ const validateFields = (
   next: NextFunction
 ) => {
   switch (
-    field //validate if the field is the correct type
+    field
   ) {
     case "name":
     case "concepts":
     case "purpose":
     case "winner":
     case "genre":
-    case "time":
     case "level":
     case "time":
-      if (!(typeof data[field] === "string")) {
+      if (typeof data[field] !== "string") {
         res.status(400);
         next(new Error(`El campo "${field}" debe ser un texto.`));
       }
@@ -38,11 +37,11 @@ const validateFields = (
       break;
     case "teams":
       if(data[field]){
-        if(!(typeof data[field].min === "number")){
+        if(typeof data[field].min !== "number"){
           res.status(400);
           next(new Error(`El campo "${field}.min debe ser number."`))
         }
-        if(!(typeof data[field].max === "number")){
+        if(typeof data[field].max !== "number"){
           res.status(400);
           next(new Error(`El campo "${field}.max debe ser number."`))
         }
@@ -51,11 +50,11 @@ const validateFields = (
     case "related":
       if(data[field]){
         for(const file of data[field]){
-          if(!(typeof file.description === "string")){
+          if(typeof file.description !== "string"){
             res.status(400);
             next(new Error(`El campo "${field}.description debe ser string."`))
           }
-          if(!(typeof file.url === "string")){
+          if(typeof file.url !== "string"){
             res.status(400);
             next(new Error(`El campo "${field}.url debe ser string."`))
           }
