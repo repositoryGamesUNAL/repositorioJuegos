@@ -2,16 +2,25 @@
 
 .piePagina{
   width: 100%;
-  background-color: $black; 
+  background-color: $black;
 
   .grupo1{
     width: 100%;
     margin: auto;
     display: grid;
-    grid-template-columns:repeat(4, 1fr) ;
+    grid-template-columns: repeat(4, 1fr);
     grid-gap: 50px;
     padding: 45px;
     border-bottom: 1px solid $spacer;
+    
+    @media (max-width: 1024px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 640px) {
+      grid-template-columns: 1fr;
+      padding: 20px;
+    }
 
     .image{
       width: 80px;
@@ -46,7 +55,7 @@
         width: 10rem;
         height: 3rem;
       }
-    
+
       h3 {
         color: aliceblue;
         margin-bottom: 25px;
@@ -54,8 +63,11 @@
         font-weight: 700;
       }
     }    
+
     .redes{
       justify-content: flex-end;
+      display: flex;
+      gap: 10px;
       a {
         display: inline-block;
         width: 50px;
@@ -71,16 +83,28 @@
       }
     }
   }
-  
+
   .grupo2{
     background-color: $black;
     padding: 15px 10px;
     text-align: center;
     color: aliceblue;
-  }  
 
-  .grupo2 small{
-    font-size: 15px;
-    margin-left: 50px;
-  }
+    small {
+      font-size: 15px;
+      margin-left: 50px;
+    }
+
+    @media (max-width: 640px) {
+      small {
+        margin-left: 0;
+        display: block;
+        margin-top: 10px;
+      }
+
+      .redes{
+        justify-content: center;
+      }
+    }
+  }  
 }
