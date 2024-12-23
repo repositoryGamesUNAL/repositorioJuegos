@@ -6,7 +6,7 @@ import styles from './ControlButtons.module.scss'; // Importamos el SCSS especí
 const ControlButtons: React.FC = () => {
 	const { state, dispatch } = useForm();
 
-	const isLastStep = state.currentStep === 5;
+	const isLastStep = state.currentStep === 4;
 	const isFirstStep = state.currentStep === 0;
 
 	const handlePrevious = () => {

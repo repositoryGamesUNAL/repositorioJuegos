@@ -2,17 +2,42 @@ import React from 'react';
 import { useForm } from '../hooks/useForm';
 import styles from './multiStepForm.module.scss';
 import Step1 from './Step1/Step1';
-import Step2 from './Step2/Step2';
-import Step3 from './Step3';
+import GeneralStep from './GeneralStep/GeneralStep';
 import ControlButtons from './ControlButtons/ControlButtons';
+import InputList from '../../../molecules/inputList/inputList';
 
 const MultiStepForm: React.FC = () => {
 	const { state } = useForm();
 
 	const steps = [
 		<Step1 key="step1" />,
-		<Step2 key="step2" />,
-		<Step3 key="step3" />,
+		<GeneralStep child={<InputList
+			placeholder='Concepto Fundamental'
+			title='Conceptos Fundamentales'
+			description='Escribe los conceptos fundamentales que se deben aprender en el desarrollo del juego'
+			/>} 
+		/>,
+		<GeneralStep child={
+			<InputList
+				placeholder='Objetivo Instruccional'
+				title='Objetivos Instruccionales'
+				description='Escribe los objetivos instruccionales que se deben aprender en el desarrollo del juego'
+			/>} 
+		/>,
+		<GeneralStep child={
+			<InputList
+				placeholder='Regla'
+				title='Reglas'
+				description='Escribe las reglas que hay en el juego'
+			/>}	
+		/>,
+		<GeneralStep child={
+			<InputList
+				placeholder='Proposito'
+				title='Propositos'
+				description='Escribe los propositos que se deben aprender en el desarrollo del juego'
+			/>}
+		/>,	
 	];
 
 	return (

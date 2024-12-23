@@ -1,9 +1,9 @@
 import React from 'react';
 import { useForm } from '../../hooks/useForm';
-import InputList from '../../../../molecules/inputList/inputList';
-import styles from './Step2.module.scss';
+import styles from './GeneralStep.module.scss';
+import { GeneralStepProps } from './GeneralStep.type';
 
-const Step2: React.FC = () => {
+const GeneralStep: React.FC<GeneralStepProps> = ({child}) => {
 	const { state, dispatch } = useForm();
 
 	const handleSubmit = (e: React.FormEvent) => {
@@ -15,16 +15,15 @@ const Step2: React.FC = () => {
 		dispatch({ type: 'NEXT_STEP' });
 	};
 
+	const handleChange = (inputs: string[]) => {
+		console.log(inputs);
+	};
 
 	return (
 		<div className={styles.step2Container}>
-			<InputList
-				placeholder='Concepto Fundamental'
-				title='Conceptos Fundamentales'
-				description='Escribe los conceptos fundamentales que se deben aprender en el desarrollo del juego'
-			/>
+      		{React.cloneElement(child, { onChange: handleChange })}
 		</div>
 	);
 };
 
-export default Step2;
+export default GeneralStep;
