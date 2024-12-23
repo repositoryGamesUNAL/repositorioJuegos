@@ -1,0 +1,86 @@
+@use "../../../styles/colors.scss" as *;
+
+.piePagina{
+  width: 100%;
+  background-color: $black; 
+
+  .grupo1{
+    width: 100%;
+    margin: auto;
+    display: grid;
+    grid-template-columns:repeat(4, 1fr) ;
+    grid-gap: 50px;
+    padding: 45px;
+    border-bottom: 1px solid $spacer;
+
+    .image{
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 100%;
+      transition: all 300ms ease;
+    }
+
+    .box {
+      .figure{
+        width: auto;
+        height: auto;
+      }
+
+      &--box-button {
+        text-align: right; 
+        display: flex;
+        flex-direction: column; 
+        justify-content: flex-start; 
+        align-items: flex-end; 
+        gap: 20px; 
+        margin-top: 10px;
+      }
+
+      &--box-info{
+        text-align: right; 
+        margin-right: 40px;
+      }
+
+      .button{
+        width: 10rem;
+        height: 3rem;
+      }
+    
+      h3 {
+        color: aliceblue;
+        margin-bottom: 25px;
+        font-size: 1.2rem;
+        font-weight: 700;
+      }
+    }    
+    .redes{
+      justify-content: flex-end;
+      a {
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+        overflow: hidden;
+        color: aliceblue;
+        text-align: right;
+        transition: all 300ms ease;
+
+        &:hover{
+          color: aqua;
+        }
+      }
+    }
+  }
+  
+  .grupo2{
+    background-color: $black;
+    padding: 15px 10px;
+    text-align: center;
+    color: aliceblue;
+  }  
+
+  .grupo2 small{
+    font-size: 15px;
+    margin-left: 50px;
+  }
+}
