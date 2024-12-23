@@ -29,12 +29,12 @@ const Input: React.FC<InputProps> = ({
 		disabled && styles['input--disabled'],
 		active && styles['input--active'], 
 		type === "scroll" && styles['input-textarea--scroll'],
+		type === "number" && styles['input--number'], 
 		squeare && styles['input--squeare'],
 		className 
-	]
+	  ]
 		.filter(Boolean) // Elimina valores `undefined` o `false`
 		.join(' '); // Une las clases en una cadena
-
 	const containerClasses = [
 		styles["input-container"],
 		containerClassName
@@ -70,6 +70,19 @@ const Input: React.FC<InputProps> = ({
 			maxLength={maxLength} 
 			value={normalizedValue}
 			onChange={onChange}
+			/>
+		)}
+
+		{/* Input de número */}
+		{type === "number" && (
+			<input
+				type="number"
+				className={inputClasses}
+				ref={inputRef}		
+				placeholder={placeholder}
+				disabled={disabled}
+				value={normalizedValue}
+				onChange={onChange}
 			/>
 		)}
 

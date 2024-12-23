@@ -84,6 +84,17 @@ $big-size-x: 300px;
       background-color: #e4e4e4;
     }
 
+    &--number {
+      &::-webkit-inner-spin-button,
+      &::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+    
+      -moz-appearance: textfield;
+      appearance: textfield;
+    }
+
     // Tamaños
     &--small {
       font-size: 14px;
