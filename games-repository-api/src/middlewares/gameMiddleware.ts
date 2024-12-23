@@ -5,6 +5,7 @@ import {
   createGame,
   editGame,
 } from "../services/gameService";
+import { jsonGame } from "../models/game";
 
 export const getAllGames = (
   req: Request,
@@ -36,7 +37,7 @@ export const postGame = (
 ): void => {
   try {
     const { body } = req;
-    const newGame = createGame(body);
+    const newGame: jsonGame = createGame(body);
 
     res.status(201).json(newGame);
   } catch (err) {
@@ -54,7 +55,7 @@ export const modifyGame = (
     } = req;
     const { body } = req;
 
-    const data = editGame(parseInt(id), body);
+    const data:jsonGame = editGame(parseInt(id), body);
 
     res.status(200).json(data);
   } catch (err) {
