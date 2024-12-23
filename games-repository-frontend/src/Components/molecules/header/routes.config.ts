@@ -12,7 +12,7 @@ export const routes = [
         "name":"Crear Juego"
     },
     {
-        "path": "/game/update",
+        "path": "/game/edit",
         "name":"Actualizar Juego"
     },
     {
