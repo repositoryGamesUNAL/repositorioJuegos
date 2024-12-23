@@ -82,14 +82,14 @@ $orange: colors.$orange;
       height: 100%;
       resize: none; 
       overflow: auto;
-      font-weight: 400;
-      font-size: 0.83rem;
+      font-weight: 500;
+      font-size: 1rem;
       padding: 0.5rem;
       color: #494949;
       background-color: #FFFFFF;
 
       &--column {
-        font-size: 0.75rem;
+        font-size: 1rem;
       }
 
     }
