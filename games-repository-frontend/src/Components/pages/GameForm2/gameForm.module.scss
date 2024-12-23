@@ -1,0 +1,20 @@
+.container{
+    display: flex;  
+    flex-direction: column; 
+    height: auto;  
+    width: 80%;
+    margin: 15px auto; 
+    align-items: center;
+    //border: 1px solid #000;
+}
+
+.stepper{
+    margin:20px 0px;
+    width: 100%;
+}
+
+.div-buttons{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
