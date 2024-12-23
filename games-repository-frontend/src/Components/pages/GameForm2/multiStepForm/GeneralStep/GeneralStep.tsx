@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from '../../hooks/useForm';
 import styles from './GeneralStep.module.scss';
 import { GeneralStepProps } from './GeneralStep.type';
 
 const GeneralStep: React.FC<GeneralStepProps> = ({child, param}) => {
 	const { state, dispatch } = useForm();
+
+	useEffect(() => {
+		console.log("Se ha cargado el GeneralStep!");
+	}, []);
 
 	const handleChange = (inputs: string[]) => {
 		const newData = {

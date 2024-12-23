@@ -12,6 +12,7 @@ const MultiStepForm: React.FC = () => {
 	const steps = [
 		<Step1 key="step1" />,
 		<GeneralStep 
+			key={1}
 			param={'fundamentalConcepts'}
 			child={<InputList
 			placeholder='Concepto Fundamental'
@@ -19,7 +20,8 @@ const MultiStepForm: React.FC = () => {
 			description='Escribe los conceptos fundamentales que se deben aprender en el desarrollo del juego'
 			/>} 
 		/>,
-		<GeneralStep 
+		<GeneralStep
+			key={2}
 			param={'instructionalObjectives'}
 			child={
 			<InputList
@@ -28,7 +30,8 @@ const MultiStepForm: React.FC = () => {
 				description='Escribe los objetivos instruccionales que se deben aprender en el desarrollo del juego'
 			/>} 
 		/>,
-		<GeneralStep 
+		<GeneralStep
+			key={3}
 			param='rules'
 			child={
 			<InputList
@@ -38,6 +41,7 @@ const MultiStepForm: React.FC = () => {
 			/>}	
 		/>,
 		<GeneralStep 
+			key={4}
 			param='purposes'
 			child={
 			<InputList
