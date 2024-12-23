@@ -27,7 +27,7 @@ export const errorResponse = (
 
   res.status(statusCode).json({
     error: true,
-    message: `ERROR: ${error.message}` || "Error inesperado",
+    message: error.message ? `ERROR: ${error.message}` : "Error inesperado",
   });
   next(error);
 };
