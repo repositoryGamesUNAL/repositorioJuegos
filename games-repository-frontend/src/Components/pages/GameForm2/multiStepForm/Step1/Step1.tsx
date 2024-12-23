@@ -121,10 +121,6 @@ const Step1: React.FC = () => {
 					squeare={true}
 				/>
 			</div>
-
-			<form onSubmit={handleSubmit}>
-				<button type="submit">Next</button>
-			</form>
 		</div>
 	);
 };
