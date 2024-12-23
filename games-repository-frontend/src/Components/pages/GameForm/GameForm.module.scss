@@ -1,7 +1,10 @@
 .container{
-    display: flex;  /* El contenedor es un flexbox */
-    flex-direction: column;  /* O row, dependiendo de la orientación que desees */
-    height: 85vh;  /* O cualquier valor fijo */
+    width: 100%;
+    height: auto;
+    background-color: #F9F4F0;
+    border-radius: 24px;
+    padding: 60px;
+    margin: 20px 0;
 }
 
 .stepper{
@@ -10,10 +13,60 @@
 }
 
 .div-buttons{
+    margin-top: 3rem;
     display: flex;
     justify-content: space-between;
-    margin-top: 10px;
+} 
+
+.step1{
+    width: 100%;
+
+    .horizontalInput{
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .equipoh4{
+        font-weight: 600;
+        font-size: 13px;
+    }
+    
+    .inputFather{
+        width: 100%;
+        margin-left: 0;
+
+        &--column{
+            flex: 1;
+        }
+
+        &--numeric{
+            width: 3rem;
+            
+            margin: 0;
+        }
+
+        .inputChild{
+            width: 100%;
+            margin: 0;
+            
+            &--description{
+                height: 6.25rem;
+                resize: none;
+            }
+
+            &--column{
+                margin-right: 0;
+            }
+
+            &--numeric{
+                width: 100%;
+                margin: 0;
+            }
+        }
+    }
 }
 
-
-  
+.generalStep{
+    min-height:27.5rem;
+}
