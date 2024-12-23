@@ -11,7 +11,6 @@ import {
   modifyGame,
 } from "../middlewares/gameMiddleware";
 import { gameNotFound } from "../middlewares/errorMiddleware";
-import app from "../app";
 
 export const gamesRouter: Router = express.Router();
 
