@@ -1,8 +1,8 @@
 //import React from 'react';
-import "./Style.scss";
+import styles from "./styles.module.scss";
 import { Link } from "react-router-dom";
 import Button from "../../atoms/button";
-import logo from "./logoprototipo.png";
+import logo from "/logo.jpg";
 
 export const Footer = () => {
   return (
@@ -11,30 +11,39 @@ export const Footer = () => {
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
       />
-      <footer className="pie-pagina">
-        <div className="grupo-1">
-          <div className="box">
-            <figure>
+      <footer className={styles.piePagina}>
+        <div className={styles.grupo1}>
+          <div className={styles.box}>
+            <figure className={styles.figure}>
               <Link to="" >
-                <img src={logo} alt="Logo Prototipo" />
+                <img src={logo} alt="" className={styles.image}/>
               </Link>
             </figure>
           </div>
-          <div className="box">
+          <div className={styles.box}>
             <h3>Menu 1</h3>
             <h3>Menu 2</h3>
             <h3>Menu 3</h3>
             <h3>Menu 4</h3>
           </div>
-          <div className="box">
-            <Button>Boton 1</Button>
-            <Button>Boton 2</Button>
+          <div className={`${styles.box} ${styles['box--box-button']}`}>
+            <Button 
+              size="medium" 
+              className={styles.button}
+              >Boton 1
+            </Button>
+            <Button 
+              size="medium" 
+              className={styles.button}
+              variant="secondary"
+              >Boton 2
+            </Button>
           </div>
-          <div className="box">
+          <div className={`${styles.box} ${styles['box--box-info']}`}>
             <h3>+7 (495) 000-00-00</h3>
             <h3>Moscow,ul. Name d. 1</h3>
             <h3>mhenaoga@unal.edu.co</h3>
-            <div className="red-social">
+            <div className={styles.redes}>
               <a href="https://www.instagram.com/" target="_blank">
                 <i className="fa-brands fa-instagram"></i>
               </a>
@@ -49,7 +58,7 @@ export const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="grupo-2">
+        <div className={styles.grupo2}>
           <small>
             &copy; 2024 <b>Repositorio de juegos</b>-Todos los derechos
             reservados

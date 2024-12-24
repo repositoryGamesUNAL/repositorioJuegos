@@ -1,25 +1,42 @@
-import Input from "../../atoms/input"
-import Button from "../../atoms/button"
-import styles from "./styles.module.scss"
-import logo from "./gohan_nojao.jpg"
-export const Header: React.FC = ()=>{
+import Input from "../../atoms/input";
+import Button from "../../atoms/button";
+import styles from "./styles.module.scss";
+import { routes } from "./routes.config";
+import { NavLink } from "react-router-dom";
 
-  return (
-  <header className={styles.header}>
-    <div className={styles["top-bar"]}>
-        <figure>
-        <img src={logo} className={styles["logo"]} alt="Logo Prototipo" />
-        </figure>
-        <div className="search-bar">
-            
-            <Input/ >
-            <Button>search</Button>
-
-        </div>
-        <div className="auth-links">
-            <Button >SVSF</Button>
-            <Button >sign up</Button>
-        </div>
-    </div>
-</header>);
-}
+export const Header: React.FC = () => {
+    return (
+        <header className={styles.header}>
+            <div className={styles["top-bar"]}>
+                <figure>
+                {/* Logo del sitio */}
+                {/* <img src={logo} className={styles.logo} alt="Logo Prototipo" /> */}
+                </figure>
+                <div className={styles["search-box"]}>
+                    <Input />
+                    <Button>Search</Button>
+                </div>
+                <div className={styles["user-actions"]}>
+                    <Button>Login</Button>
+                    <Button>Sign Up</Button>
+                </div>
+            </div>
+            <nav className={styles.navbar}>
+                <ul className={styles.navbarList}>
+                {routes.map((route, index) => (
+                    <li key={index} className={styles.navbarItem}>
+                        <NavLink
+                            to={route.path}
+                            className={({ isActive }) =>
+                                `${styles.navbarItem} ${isActive ? styles.active : ""}`
+                            }
+                        >
+                            {route.name}
+                        </NavLink>
+                    </li>
+                ))}
+                </ul>
+            </nav>
+        </header>
+    );
+};

@@ -20,7 +20,7 @@ const GameForm = () => {
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set<number>());
   const [isLoading, setIsLoading] = React.useState(true); // Estado para el loader
-  const { id, action } = useParams();
+  const { id } = useParams();
   const [createdId,setCreatedId] = React.useState(0);
   const navigate = useNavigate();
   const { control, handleSubmit, setValue, reset, getValues } = useForm<FormData>({
@@ -39,10 +39,11 @@ const GameForm = () => {
       teams: { min: 0, max: 0 },
     },
   });
-
+  
   // Fetch data when `action` is "edit"
   React.useEffect(() => {
-    if (action === "edit" && id) {
+    if (id) {
+      console.log("Fetching game data...");
       axios
         .get(`http://localhost:3000/games/${id}`)
         .then((response) => {
@@ -76,7 +77,7 @@ const GameForm = () => {
     } else {
       setIsLoading(false); // No hay datos que cargar
     }
-  }, [action, id, reset]);
+  }, [ id, reset]);
 
   const onSubmit = async (data: FormData) => {
     // Convertir `min` y `max` explícitamente (aunque ya son números)
@@ -94,7 +95,7 @@ const GameForm = () => {
       name: data.name,
       description: data.description,
       purpose: data.purposes,
-      thematic: "Gonorrea",
+      thematic: "Tematica 1",
       genre: data.gender,
       materials: data.materials,
       objectives: data.instructionalObjectives,
@@ -108,7 +109,7 @@ const GameForm = () => {
     };
   
     // Procesar la siguiente acción
-    if (action === "edit") {
+    if (id) {
       const number_id = Number(id);
       handleModifyGame(newGame, number_id);
     } else {
@@ -445,11 +446,11 @@ const GameForm = () => {
 
       {activeStep === steps.length ? (
         <React.Fragment>
-          <h3>{(action != 'editar' ? "Juego creado con éxito": "Juego editado con éxito" )} </h3>
+          <h3>{(id  ? "Juego creado con éxito": "Juego editado con éxito" )} </h3>
           <div className={styles.buttonsContainer}>
             <Button onClick={handleReset}>Crear otro</Button>
-            {action !== "edit" ? (
-              <Link to={`/game/edit/${createdId}`}>
+            {id ? (
+              <Link to={`/game/edit/`}>
                 <Button className={styles.buttons} >Editar</Button>
               </Link>
             ) : (

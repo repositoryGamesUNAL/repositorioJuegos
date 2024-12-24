@@ -3,6 +3,8 @@ import Home from '../../pages/Home';
 import About from '../../pages/About';
 import Contact from '../../pages/Contact';
 import GameForm from '../../pages/GameForm/GameForm';
+import GameManager from '../../pages/GameForm/GameManager';
+import GameList from '../../pages/GameList/GameList';
 //import GameForm from '../../pages/GameForm2/gameForm';
 //Importe componentes adicionales y adicione a la lista de rutas
 
@@ -54,7 +56,15 @@ export const routes: RouteConfig[] = [
       </>)
   },
   {
+    path: '/game/edit/:id?',
+    element: <GameManager key={2001} />
+  },
+  {
     path: '/game/:action/:id?',
     element: (<GameForm key={129492}/>)
   },
+  {
+    "path": "/games",
+    element: <GameList />
+  }
 ];
