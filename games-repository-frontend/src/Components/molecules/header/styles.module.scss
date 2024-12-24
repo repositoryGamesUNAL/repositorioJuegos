@@ -1,15 +1,138 @@
+/* ================== Global Styles ================== */
+/* General reset or reusable styles */
 @use "../../../styles/colors" as *;
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #333;
+  --secondary-color: $orange;
+  --background-light: white;
+  --background-light-grey: lightgrey;
+  --border-radius-small: 0px;
+  --gap-large: 2.5rem;
+  --gap-small: 1.5rem;
+}
+
+/* ================== Header Section ================== */
 .header {
   width: 100%;
-  background-color: #fff;
+  background-color: var(--background-light);
+  
+  display: flex;
+  flex-direction: column;
+  height: 10.563rem;
+  overflow-y: hidden;
+}
+
+
+
+/* ================== User Actions ================== */
+.authLinks {
+  display: flex;
+  gap: var(--gap-small);
+  padding-top: 3px;
+  width: 9.375rem;
+  align-items: center;
+}
+
+.authLinks a {
+  color: $spacer-light;
+  text-decoration: none;
+  font-size: 16px;
+  transition: color 0.3s;
+}
+
+.authLinks a.login {
+  color: black;
+}
+
+.authLinks a.signUp {
+  color: $orange;
+}
+
+.authLinks a:hover {
+  opacity: 0.8;
+}
+
+/* ================== Search Box ================== */
+.searchDiv {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  gap: var(--gap-small);
+  
+  overflow-y: hidden;
+}
+
+.searchDiv input {
+  padding-right: 9px;
+  background-color: white;
+  border-radius: 2px;
+}
+
+.searchDiv button {
+  padding-right: 9px;
+  color: $spacer-light;
+  cursor: pointer;
+  border-radius: 0 var(--border-radius-small) var(--border-radius-small) 0;
+}
+@media screen and (max-width: 656px) {
+  .searchDiv {
+    display: none; 
+  }
+
+  .authLinks {
+    justify-content: center; /* Centra los enlaces de "Login" y "Sign Up" */
+    width: auto; /* Ajusta el ancho automáticamente */
+  }
+  .header.topBar{
+    justify-content: center; 
+  }
+}
+
+
+
+.header {
+  .topBar {
+    display: flex;
+    justify-content: end;
+    
+    padding: 15px 0 10px;
+    border-bottom: 1px solid $spacer;
+    overflow-y: hidden;
+    height: 6.563rem;
+  }
+  
+  .logo {
+    height: 4rem;
+    width: 6rem;
+    font-weight: bold;
+    background-color: var(--primary-color);
+  }
+  
+  .rigthcontainer {
+    display: flex;
+    gap: var(--gap-large);
+    padding-right: 2rem;
+    width: 100%;
+    justify-content: end;
+    padding-bottom: 8px;
+  }
+  
+ 
 
   .navbar {
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: #fff;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+   
     height: auto;
     border-bottom: 1px solid $spacer;
 
@@ -51,58 +174,4 @@
         color: $black;
       }
     }    
-  }
-
-  .top-bar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid $spacer;
-    padding-bottom: 10px;
-
-    .logo {
-      height: 150px;
-      width: 300px;
-      font-weight: bold;
-      background-color: #333;
-    }
-
-    .user-actions {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
-
-    .search-box {
-      display: flex;
-
-      input {
-        padding: 5px;
-        border: none;
-        background-color: white;
-        border-radius: 3px 0 0 3px;
-      }
-
-      button {
-        padding: 5px;
-        border: none;
-        background: lightgrey;
-        color: grey;
-        cursor: pointer;
-        border-radius: 0 3px 3px 0;
-      }
-    }
-
-    .auth-links {
-      a {
-        color: grey;
-        text-decoration: none;
-        font-size: 12px;
-
-        &.highlight {
-          color: #f57223; /* Orange Color */
-        }
-      }
-    }
-  }
-}
+  }}

@@ -1,27 +1,37 @@
 import Input from "../../atoms/input";
 import Button from "../../atoms/button";
 import styles from "./styles.module.scss";
+
 import { routes } from "./routes.config";
 import { NavLink } from "react-router-dom";
 
+import InputSearch from "../../atoms/inputSearch/index"
 export const Header: React.FC = () => {
-    return (
-        <header className={styles.header}>
-            <div className={styles["top-bar"]}>
-                <figure>
-                {/* Logo del sitio */}
-                {/* <img src={logo} className={styles.logo} alt="Logo Prototipo" /> */}
-                </figure>
-                <div className={styles["search-box"]}>
-                    <Input />
-                    <Button>Search</Button>
-                </div>
-                <div className={styles["user-actions"]}>
-                    <Button>Login</Button>
-                    <Button>Sign Up</Button>
-                </div>
-            </div>
-            <nav className={styles.navbar}>
+  const handleSignUpClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    console.log("Sign up link clicked without page reload");
+  };
+
+  return (
+    <header className={styles.header}>
+      <div className={styles.topBar}>
+        
+        <div className={styles.rigthcontainer}>
+        <div className={styles.searchDiv}>
+          <Button  size="small">Search</Button>
+          <InputSearch />
+        </div>
+        <div className={styles.authLinks}>
+          <a href="#" onClick={handleSignUpClick} className={styles.login}>
+            Login
+          </a>
+          <a href="#" onClick={handleSignUpClick} className={styles.signUp}>
+            Sign Up
+          </a>
+        </div>
+        </div>
+      </div>
+      <nav className={styles.navbar}>
                 <ul className={styles.navbarList}>
                 {routes.map((route, index) => (
                     <li key={index} className={styles.navbarItem}>
@@ -37,6 +47,7 @@ export const Header: React.FC = () => {
                 ))}
                 </ul>
             </nav>
-        </header>
-    );
+    </header>
+  );
+
 };

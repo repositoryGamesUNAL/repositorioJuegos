@@ -1,0 +1,45 @@
+.searchContainer {
+    display: flex;
+    align-items: center;
+     
+    gap: 8px;  
+}
+
+.searchInput {
+
+    
+    width: 100%;  // Ancho del 100% en pantallas pequeñas
+    max-width: 248px;  // Ancho máximo
+    height: 36px;  // Altura ajustada
+    border: 1px solid #EFE9E3;  // Borde
+     // Radio de borde
+    padding: 8px 12px;  // Relleno (padding)
+    box-sizing: border-box; // Incluye el padding y el borde en el ancho total
+
+
+    @media (min-width: 480px) {
+        width: 200px;  // Ancho en pantallas medianas
+    }
+
+    @media (min-width: 768px) {
+        width: 248px;  // Ancho en pantallas grandes
+    }
+}
+
+.searchButton {
+    position: relative; 
+    right: 10%; 
+    height: 50%; 
+    border: none; 
+    background-color: transparent; 
+    cursor: pointer; 
+   
+    border: none; 
+  
+    cursor: pointer;  
+
+    &:hover {
+        opacity: 0.7;  
+    }
+}
+
