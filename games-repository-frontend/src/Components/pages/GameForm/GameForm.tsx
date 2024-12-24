@@ -95,7 +95,7 @@ const GameForm = () => {
       name: data.name,
       description: data.description,
       purpose: data.purposes,
-      thematic: "Gonorrea",
+      thematic: "Tematica 1",
       genre: data.gender,
       materials: data.materials,
       objectives: data.instructionalObjectives,
