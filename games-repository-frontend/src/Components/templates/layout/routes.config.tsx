@@ -33,9 +33,9 @@ export const routes: RouteConfig[] = [
         <img 
           style={{
             position: 'absolute',
-            top: '350px',
+            top: '250px',
             left: '20px',
-            width: '150px',
+            width: '80px',
             height: 'auto' // Si deseas que la altura se ajuste proporcionalmente
           }} 
           src="/roshi.png" 
@@ -45,10 +45,10 @@ export const routes: RouteConfig[] = [
         <img 
           style={{
             position: 'absolute',
-            top: '350px',
+            top: '250px',
             right: '20px',
-            width: '150px',
-            height: '340px' // Si deseas que la altura se ajuste proporcionalmente
+            width: '80px',
+            height: 'auto' // Si deseas que la altura se ajuste proporcionalmente
           }} 
           src="/navidad.jpg" 
           alt="" 
